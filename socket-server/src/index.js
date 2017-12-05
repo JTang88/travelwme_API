@@ -1,5 +1,7 @@
-var app = require('express')();
-var server = require('http').Server(app);
+import app from 'express'
+
+//var app = require('express')();
+var server = require('http').Server(app());
 var io = require('socket.io')(server);
 
 io.on('connection', function (socket) {
@@ -9,5 +11,5 @@ io.on('connection', function (socket) {
   });
 });
 
-const port = 4155;
+const port = 4155 || process.env.PORT;
 server.listen(port, () => console.log(`socket.io server is listening on port ${port}`));
