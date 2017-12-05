@@ -1,12 +1,8 @@
-//const express = require('express');
-
 import express from 'express';
-//import sum from "./sum.js"
-
 
 const app = express()
 
-let port = 3001
+let port = 3001 || process.env.PORT;
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
