@@ -1,8 +1,7 @@
-import app from 'express'
-
-//var app = require('express')();
-var server = require('http').Server(app());
-var io = require('socket.io')(server);
+const express = require('express')
+const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 
 io.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
