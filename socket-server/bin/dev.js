@@ -2,9 +2,11 @@ require('babel-register');
 require('babel-polyfill');
 
 const env = require('dotenv');
+const path = require('path');
+
 //configure dotenv here
 env.config({
-  path: '../.env'
+  path: path.join(__dirname, '/../.env')
 })
 
 require('../src')
