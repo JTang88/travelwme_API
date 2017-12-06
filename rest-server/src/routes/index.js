@@ -1,5 +1,4 @@
 import express from 'express';
-//import all controller-functions from all controllers here 
 
 const router = express.Router();
 
