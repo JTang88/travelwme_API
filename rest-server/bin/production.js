@@ -8,4 +8,3 @@ const path = require('path');
 env.config({
   path: path.join(__dirname, '/../.env'),
 });
-

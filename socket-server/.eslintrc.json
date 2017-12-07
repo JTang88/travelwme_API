@@ -1,5 +1,5 @@
 {
-    "extends": ["airbnb",
+    "extends": ["airbnb-base",
                 "plugin:jest/recommended"
             ],
     "parserOptions": {
