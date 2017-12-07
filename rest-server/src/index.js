@@ -1,9 +1,6 @@
-import router from './routes';
-import app from './app.js';
+import app from './app';
 
-let port = 3001 || process.env.PORT;
-
-app.use('/api', router);
+const port = 3001 || process.env.PORT;
 
 app.listen(port, () => console.log(`rest-server listening on port ${port}!`));
 
