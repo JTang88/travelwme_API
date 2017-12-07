@@ -1,3 +1,21 @@
 {
-    "extends": "airbnb"
+    "extends": ["airbnb",
+                "plugin:jest/recommended"
+            ],
+    "parserOptions": {
+        "ecmaVersion": 6
+    },
+    "env": {
+      "node": true,
+      "es6": true,
+      "jest": true
+    },
+    "rules": {
+      "no-shadow": "off",
+      "no-console": "off",
+      "arrow-body-style": "off",
+      "curly": "warn",
+      "arrow-parens": "off",
+      "no-unused-vars": "off"
+    } 
 }
