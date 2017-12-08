@@ -1,10 +1,11 @@
-const Sequelize = require('sequelize');
+import Sequelize from 'sequelize';
+
 const sequelize = new Sequelize('postgres://vhqwwvao:AJGKf_dXDkbDEebQS46mLMYrAbeGs_H9@baasu.db.elephantsql.com:5432/vhqwwvao');
 
 
 const db = {
   User: sequelize.import('./models/users')
-}
+};
   
 // Object.keys(db).forEach(modelName => {
 //   if (db[modelName].associate) {
@@ -17,4 +18,4 @@ db.sequelize = sequelize;
 
 //export default db;
 
-module.export = db;
+export default db;
