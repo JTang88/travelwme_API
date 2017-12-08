@@ -1,11 +1,10 @@
-require('../dist/index')
+require('../dist/index');
 require('babel-register');
 require('babel-polyfill');
 
 const env = require('dotenv');
 const path = require('path');
-//configure dotenv here
+// configure dotenv here
 env.config({
-  path: path.join(__dirname, '/../.env')
-})
-
+  path: path.join(__dirname, '/../.env'),
+});

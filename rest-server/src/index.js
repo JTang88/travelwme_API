@@ -1,11 +1,6 @@
-import express from 'express';
-import router from './router';
+import app from './app';
 
-const app = express()
-
-let port = 3001 || process.env.PORT;
-
-app.get('/', (req, res) => res.send('Hello World!'))
-app.use('/api', router);
+const port = 3001 || process.env.PORT;
 
 app.listen(port, () => console.log(`rest-server listening on port ${port}!`));
+
