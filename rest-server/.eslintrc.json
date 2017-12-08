@@ -1,6 +1,6 @@
 {
     "extends": ["airbnb",
-                "plugin:jest/recommended"
+                "plugin:jest"
             ],
     "parserOptions": {
         "ecmaVersion": 6
@@ -11,6 +11,11 @@
       "jest": true
     },
     "rules": {
+      "jest/no-disabled-tests": 0,
+      "jest/no-focused-tests": 0,
+      "jest/no-identical-title": 0,
+      "jest/prefer-to-have-length": 1,
+      "jest/valid-expect": 0,
       "eol-last": "off",
       "no-shadow": "off",
       "no-console": "off",
