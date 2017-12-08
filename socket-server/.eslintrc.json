@@ -11,6 +11,11 @@
       "jest": true
     },
     "rules": {
+      "jest/no-disabled-tests": 0,
+      "jest/no-focused-tests": 0,
+      "jest/no-identical-title": 0,
+      "jest/prefer-to-have-length": "off",
+      "jest/valid-expect": 0,
       "eol-last": "off",
       "no-shadow": "off",
       "no-console": "off",

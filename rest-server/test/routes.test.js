@@ -6,4 +6,3 @@ test('It should response the GET method', () => {
     expect(response.statusCode).toBe(200);
   });
 });
-
