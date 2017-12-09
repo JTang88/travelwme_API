@@ -1,17 +1,10 @@
 import Sequelize from 'sequelize';
 
-// const sequelize = new Sequelize('postgres://vhqwwvao:AJGKf_dXDkbDEebQS46mLMYrAbeGs_H9@baasu.db.elephantsql.com:5432/vhqwwvao');
-
-// this could be used for graphQL testing purpose
-// const db = {
-//   User: sequelize.import('./models/users'),
-// };
 const sequelize = new Sequelize('travelwme', 'root', '', {
   host: 'localhost',
   dialect: 'sqlite',
   storage: './db/sql.storage',
 });
-
 
 const db = {
   Users: sequelize.import('./models/Users'),
@@ -33,16 +26,10 @@ db.TripKeywords.belongsToMany(db.Trips, {
   as: 'TripKeywords',
 });
 
-// project.belongsToMany(user, {
-//   through: 'writer_of_project'
-//   foreign-key: 'project'
-//   as: 'writers'
-// });
-
-// project.find({
-//   where: { id: 1 },
-//   include: [ { model: User, as: 'writers' } ]
-// });
+// this could be used for graphQL testing purpose
+// const db = {
+//   User: sequelize.import('./models/users'),
+// };
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
