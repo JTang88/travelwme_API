@@ -3,8 +3,8 @@ import bodyParser from 'body-parser';
 import { graphiqlExpress, graphqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 import router from './routes';
-import typeDefs from './schema';
-import resolvers from './resolvers';
+import typeDefs from './schema/';
+import resolvers from './schema/resolvers';
 import models from '../../db';
 
 

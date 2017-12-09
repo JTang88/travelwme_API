@@ -1,5 +1,3 @@
-// console.log('this is User in resolvers!!!=================', User)
-
 export default {
   Query: {
     allUsers: (parent, args, { models }) => models.User.findAll(),
