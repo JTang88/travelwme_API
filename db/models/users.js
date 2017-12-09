@@ -1,11 +1,20 @@
 export default (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
-    username: DataTypes.STRING
+  const Users = sequelize.define('Users', {
+    username: DataTypes.STRING,
+    email: DataTypes.STRING,
+    password: DataTypes.STRING,
+    age: DataTypes.INTEGER,
+    fitness: DataTypes.STRING,
+    gender: DataTypes.STRING,
+    relationship_status: DataTypes.STRING,
   });
-
-  User.associate = function(models) {
-    models.User.hasMany(models.Task);
-  };
-
-  return User;
+  return Users;
 };
+
+// for test graphQL purpose
+// export default (sequelize, DataTypes) => {
+//   const User = sequelize.define('User', {
+//     username: DataTypes.STRING,
+//   });
+//   return User;
+// };

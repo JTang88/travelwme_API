@@ -41,6 +41,7 @@
     "pg-hstore": "^2.3.2",
     "redis": "^2.8.0",
     "sequelize": "^4.26.0",
-    "socket.io": "^2.0.4"
+    "socket.io": "^2.0.4",
+    "sqlite": "^2.9.0"
   }
 }
