@@ -1,12 +1,12 @@
 export default (sequelize, DataTypes) => {
-  const Trip = sequelize.define('Trips', {
+  const Trips = sequelize.define('Trips', {
     title: DataTypes.STRING,
     description: DataTypes.STRING,
-    cost_range: DataTypes.INGETER,
-    date_start: DataTypes.DATE,
-    date_end: DataTypes.DATE,
+    cost_range: DataTypes.INTEGER,
+    date_start: DataTypes.DATEONLY,
+    date_end: DataTypes.DATEONLY,
     trip_state: DataTypes.STRING,
     trip_region: DataTypes.STRING,
   });
-  return Trip;
+  return Trips;
 };

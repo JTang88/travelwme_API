@@ -1,17 +1,23 @@
 import Sequelize from 'sequelize';
 
-const sequelize = new Sequelize('postgres://vhqwwvao:AJGKf_dXDkbDEebQS46mLMYrAbeGs_H9@baasu.db.elephantsql.com:5432/vhqwwvao');
+// const sequelize = new Sequelize('postgres://vhqwwvao:AJGKf_dXDkbDEebQS46mLMYrAbeGs_H9@baasu.db.elephantsql.com:5432/vhqwwvao');
 
 // this could be used for graphQL testing purpose
 // const db = {
 //   User: sequelize.import('./models/users'),
 // };
+const sequelize = new Sequelize('travelwme', 'root', '', {
+  host: 'localhost',
+  dialect: 'sqlite',
+  storage: './db/sql.storage',
+});
+
 
 const db = {
-  Users: sequelize.import('./models/users'),
-  TripKeywords: sequelize.import('./models/users'),
-  TripMembers: sequelize.import('./models/users'),
-  Trips: sequelize.import('./models/users'),
+  Users: sequelize.import('./models/Users'),
+  TripKeywords: sequelize.import('./models/TripKeywords'),
+  TripMembers: sequelize.import('./models/TripMembers'),
+  Trips: sequelize.import('./models/Trips'),
 };
 
 // m.Book.hasMany(m.Article, {through: 'book_articles'});
@@ -39,6 +45,6 @@ db.TripKeywords.belongsToMany(db.Trips, {
 // });
 
 db.sequelize = sequelize;
-// db.Sequelize = Sequelize;
+db.Sequelize = Sequelize;
 
 export default db;

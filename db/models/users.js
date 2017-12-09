@@ -5,7 +5,7 @@ export default (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     age: DataTypes.INTEGER,
     fitness: DataTypes.STRING,
-    Gender: DataTypes.STRING,
+    gender: DataTypes.STRING,
     relationship_status: DataTypes.STRING,
   });
   return Users;
