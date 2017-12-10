@@ -36,6 +36,8 @@ db.Comment.hasMany(db.Vote);
 db.Vote.belongsTo(db.User);
 db.User.hasMany(db.Vote);
 
+sequelize.sync();
+
 
 // m.Book.hasMany(m.Article, {through: 'book_articles'});
 // db.Trips.belongsToMany(db.TripKeywords, {
@@ -56,3 +58,4 @@ db.User.hasMany(db.Vote);
 // };
 
 export default db;
+

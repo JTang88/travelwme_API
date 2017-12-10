@@ -4,7 +4,7 @@ export default (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       primaryKey: true,
     },
-    displayName: Sequelize.STRING,
+    username: Sequelize.STRING,
     email: Sequelize.STRING,
     gender: Sequelize.STRING,
     age: Sequelize.INTEGER,
