@@ -18,5 +18,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 package-lock.json
+sql.storage
+yarn.lock
 
 graveyard.jse_modules

@@ -1,0 +1,115 @@
+{
+  "TripKeyword": [
+    {"word": "adventurous"},
+    {"word": "outdoor"},
+    {"word": "luxury"},
+    {"word": "foodie"}
+  ],
+  "Trip": [
+    {
+      "title": "Paris Love",
+      "description": "fun trip",
+      "cost_range": 1,
+      "date_start": 11-20-2016,
+      "date_end": 12-20-2016,
+      "gender": "F",
+      "age": 21,
+      "fitness": "sporty",
+      "relationship_status": "single",
+      "trip_state": "open",
+      
+    },
+    {
+      "title": "Latin Summer",
+      "description": "cool trip",
+      "cost_range": 2,
+      "date_start": 03-20-2016,
+      "date_end": 04-20-2016,
+      "gender": "M",
+      "age": 30,
+      "fitness": "intense",
+      "relationship_status": "single",
+      "trip_state": "close",
+    },
+    { 
+      "title": "Tokyo Crazy",
+      "description": "guilt trip",
+      "cost_range": 4,
+      "date_start": 11-20-2016,
+      "date_end": 12-20-2016,
+      "gender": "F",
+      "age": 27,
+      "fitness": "light walker",
+      "relationship_status": "Commited",
+      "trip_state": "open",
+    },
+    {
+      "description": "sexy trip",
+      "cost_range": 3,
+      "date_start": 06-20-2016,
+      "date_end": 06-20-2016,
+      "gender": "M",
+      "age": 21,
+      "fitness": "no sports",
+      "relationship_status": "Married",
+      "trip_state": "close",
+    }
+  ],
+  "User": [
+    {
+      "firebaseId": "asdgajsgdh12365",
+      "username": "Jerry Tang",
+      "email": "jerica0722@gmail.com",
+      "password": "jt122384",
+      "gender": "male",
+      "age": 29,
+      "fitness": "average",
+      "relationship_status": "single"
+    },
+    {
+      "firebaseId": "asdg12345678905",
+      "username": "Danny Yang",
+      "email": "jerica0722@gmail.com",
+      "password": "dy122384",
+      "gender": "male",
+      "age": 29,
+      "fitness": "athletic",
+      "relationship_status": "Married"
+    },
+    {
+      "firebaseId": "asdgafgndh12365",
+      "username": "Kelly Feng",
+      "email": "kelly@gmail.com",
+      "password": "kf122384",
+      "gender": "female",
+      "age": 23,
+      "fitness": "average",
+      "relationship_status": "Commited"
+    },
+    {
+      "firebaseId": "as132456shcb365",
+      "username": "Jessica Wang",
+      "email": "jessica@gmail.com",
+      "password": "jw122384",
+      "gender": "female",
+      "age": 35,
+      "fitness": "sexy",
+      "relationship_status": "single"
+    }
+  ],
+  // "TripMembers" : [
+  //   { 
+  //     "user_type": "closed"
+  //   },
+  //   {
+  //     "user_type": "joined"
+  //   },
+  //   {
+  //     "user_type": "joined"
+  //   },
+  //   {
+  //     "user_type": "interested"
+  //   }
+  // ]
+}
+
