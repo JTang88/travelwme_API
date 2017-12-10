@@ -8,6 +8,6 @@ env.config({
   path: path.join(__dirname, '/../.env'),
 });
 
-require(path.join(__dirname, '/../graphqL-server/src'));
+require(path.join(__dirname, '/../graphql-server/src/'));
 require(path.join(__dirname, '/../socket-server/src'));
 

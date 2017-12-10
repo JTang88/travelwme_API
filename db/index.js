@@ -6,32 +6,53 @@ const sequelize = new Sequelize('travelwme', 'root', '', {
   storage: './db/sql.storage',
 });
 
-const db = {
-  Users: sequelize.import('./models/Users'),
-  TripKeywords: sequelize.import('./models/TripKeywords'),
-  TripMembers: sequelize.import('./models/TripMembers'),
-  Trips: sequelize.import('./models/Trips'),
-};
+sequelize
+.authenticate()
+.then(() => {
+  console.log('Connection has been established');
+})
+.catch(err => {
+  console.log('Unable to connect to the database');
+});
+
+const db = {};
+
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
+db.User = sequelize.import('./models/user');
+db.Trip = sequelize.import('./models/trip');
+db.TripKeyword= sequelize.import('./models/tripKeyword');
+db.TripMembers = sequelize.import('./models/tripMembers');
+db.Comment = sequelize.import('./models/comment');
+db.Vote = sequelize.import('./models/vote');
+
+db.User.belongsToMany(db.Trip, {through: db.TripMembers});
+db.Trip.belongsToMany(db.User, {through: db.TripMembers});
+db.Comment.belongsTo(db.Trip);
+db.Trip.hasMany(db.Comment);
+db.Vote.belongsTo(db.Comment);
+db.Comment.hasMany(db.Vote);
+db.Vote.belongsTo(db.User);
+db.User.hasMany(db.Vote);
+
 
 // m.Book.hasMany(m.Article, {through: 'book_articles'});
-db.Trips.belongsToMany(db.TripKeywords, {
-  through: 'Trips_TripKeywords',
-  foreign_key: 'Trips',
-  as: 'Trips',
-});
-// m.Article.hasMany(m.Books, {through: 'book_articles'});
-db.TripKeywords.belongsToMany(db.Trips, {
-  through: 'Trips_TripKeywords',
-  foreign_key: 'TripKeywordss',
-  as: 'TripKeywords',
-});
+// db.Trips.belongsToMany(db.TripKeywords, {
+//   through: 'Trips_TripKeywords',
+//   foreign_key: 'Trips',
+//   as: 'Trips',
+// });
+// // m.Article.hasMany(m.Books, {through: 'book_articles'});
+// db.TripKeywords.belongsToMany(db.Trips, {
+//   through: 'Trips_TripKeywords',
+//   foreign_key: 'TripKeywordss',
+//   as: 'TripKeywords',
+// });
 
 // this could be used for graphQL testing purpose
 // const db = {
 //   User: sequelize.import('./models/users'),
 // };
-
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
 
 export default db;
