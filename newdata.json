@@ -16,8 +16,7 @@
       "age": 21,
       "fitness": "sporty",
       "relationship_status": "single",
-      "trip_state": "open",
-      
+      "trip_state": "open"
     },
     {
       "title": "Latin Summer",
@@ -29,7 +28,7 @@
       "age": 30,
       "fitness": "intense",
       "relationship_status": "single",
-      "trip_state": "close",
+      "trip_state": "close"
     },
     { 
       "title": "Tokyo Crazy",
@@ -41,7 +40,7 @@
       "age": 27,
       "fitness": "light walker",
       "relationship_status": "Commited",
-      "trip_state": "open",
+      "trip_state": "open"
     },
     {
       "description": "sexy trip",
