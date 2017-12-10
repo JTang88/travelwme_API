@@ -1,8 +1,6 @@
-export default (sequelize, DataTypes) => {
-  const TripMembers = sequelize.define('TripMembers', {
-    trip_id: DataTypes.STRING,
-    user_id: DataTypes.STRING,
-    user_type: DataTypes.STRING,
+export default (sequelize, Sequelize) => {
+  const TripMembers = sequelize.define('TripMembers', {  
+    user_type: Sequelize.STRING,
   });
   return TripMembers;
 };
