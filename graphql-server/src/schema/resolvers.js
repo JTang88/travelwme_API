@@ -22,5 +22,9 @@ export default {
       const TripMembers = await models.TripMembers.create({ tripId: Trip.id, userId, user_type: "creator" });
       return Trip;
     }, 
+    updateUserRelationshipToTrip: (parent, args, { models }) => 
+      models.TripMembers.update({ user_type: args.user_type }, { where: { userId: args.userId, tripId: args.tripId }})
   },
 };
+
+// updateUserRelationshipToTrip(id: Int!, tripId: Int!, currentRelationship: String!, newRelationship: String!): Int! 
