@@ -15,3 +15,4 @@ export default (sequelize, Sequelize) => {
   });
   return Trip;
 };
+

@@ -15,5 +15,12 @@ export default {
       models.User.update({ username, newUsername }, { where: { username } }),
     deleteUser: (parent, args, { models }) =>
       models.User.destroy({ where: args }),
+    createTrip: async (parent, args, { models }) => {
+      const userId = args.userId;
+      delete args.userId;
+      const Trip = await models.Trip.create(args);
+      const TripMembers = await models.TripMembers.create({ tripId: Trip.id, userId, user_type: "creator" });
+      return Trip;
+    }, 
   },
 };

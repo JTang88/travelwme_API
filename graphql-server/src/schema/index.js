@@ -22,6 +22,7 @@ type TripKeyword {
 type TripMembers {
   id: Int!
   user_type: String!
+  tripId: Int!
 }
   
 type User {
@@ -51,7 +52,7 @@ type Query {
 type Mutation {
   createUser(username: String!, email: String!, gender: String!, age: Int!, fitness: String!, relationship_status: String! ): User
   updateUser(id: Int!, username: String!, email: String!, gender: String!, age: Int!, fitness: String!, relationship_status: String!): [Int!]!
-  deleteUser(firebaseId: Int!): Int! 
+  deleteUser(id: Int!): Int! 
   createTrip(title: String!, descriptions: String!, cost: Int!, date_start: String!, date_end: String!, gender: String!, age: Int!, fitness: String!, relationship_status: String!, trip_state: String!, userId: Int!): Trip
   updateTrip(id: Int!, title: String!, descriptions: String!, cost: Int!, date_start: String!, date_end: String!, gender: String!, age: Int!, fitness: String!, relationship_status: String!, trip_state: String!, userId: Int!): [Int!]!
   deleteTrip(id: Int!): Int
