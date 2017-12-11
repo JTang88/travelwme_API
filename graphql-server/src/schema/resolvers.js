@@ -30,6 +30,8 @@ export default {
       await delete args.id;
       return models.Trip.update( args, { where: { id } })
     },
+    updateTripState: (parent, args, { models }) => 
+      models.Trip.update({ trip_state: args.new_state },  { where: { id: args.id } }),
     updateUserRelationshipToTrip: (parent, args, { models }) => 
       models.TripMembers.update({ user_type: args.user_type }, { where: { userId: args.userId, tripId: args.tripId }})
   },
