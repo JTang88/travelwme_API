@@ -1,9 +1,5 @@
 export default (sequelize, Sequelize) => {
   const User = sequelize.define('user', {
-    firebaseId: {
-      type: Sequelize.STRING,
-      primaryKey: true,
-    },
     username: Sequelize.STRING,
     email: Sequelize.STRING,
     gender: Sequelize.STRING,

@@ -17,7 +17,7 @@ const schema = makeExecutableSchema({
   resolvers,
 });
 
-app.use('/graphiql', graphiqlExpress({ endpointURL: '/grapihql' }));
+app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 app.use('/graphql', bodyParser.json(), graphqlExpress({ schema, context: { models } }));
 

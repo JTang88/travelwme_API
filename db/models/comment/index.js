@@ -1,11 +1,5 @@
 export default (sequelize, Sequelize) => {
   const Comments = sequelize.define('comment', {
-    post_id: {
-      type: Sequelize.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-      allowNull: false,
-    },
     content: {
       type: Sequelize.TEXT,
       required: true
