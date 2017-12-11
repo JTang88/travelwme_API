@@ -1,4 +1,26 @@
 export default {
+  User: {
+    trips: ({ id }, args, { models }) => 
+      models.Trip.findAll({ 
+        include: [{
+          model: models.User,
+          through: {
+            where: { userId: id }
+          }
+        }]
+      })
+  },
+  Trip: {
+    users: ({ id }, args, { models }) => 
+    models.User.findAll({ 
+      include: [{
+        model: models.Trip,
+        through: {
+          where: { tripId: id }
+        }
+      }]
+    })
+  },
   Query: {
     allUsers: (parent, args, { models }) => models.User.findAll(),
     getUser: (parent, { id }, { models }) =>
