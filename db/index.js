@@ -7,13 +7,13 @@ const sequelize = new Sequelize('travelwme', 'root', '', {
 });
 
 sequelize
-.authenticate()
-.then(() => {
-  console.log('Connection has been established');
-})
-.catch(err => {
-  console.log('Unable to connect to the database');
-});
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established');
+  })
+  .catch(err => {
+    console.log('Unable to connect to the database');
+  });
 
 const db = {};
 
@@ -22,13 +22,17 @@ db.Sequelize = Sequelize;
 
 db.User = sequelize.import('./models/user');
 db.Trip = sequelize.import('./models/trip');
-db.TripKeyword= sequelize.import('./models/tripKeyword');
+db.TripKeyword = sequelize.import('./models/tripKeyword');
 db.TripMembers = sequelize.import('./models/tripMembers');
 db.Comment = sequelize.import('./models/comment');
 db.Vote = sequelize.import('./models/vote');
 
-db.User.belongsToMany(db.Trip, {through: db.TripMembers});
-db.Trip.belongsToMany(db.User, {through: db.TripMembers});
+db.User.belongsToMany(db.Trip, { through: db.TripMembers });
+db.Trip.belongsToMany(db.User, { through: db.TripMembers });
+
+db.Trip.belongsToMany(db.TripKeyword, { through: 'Trip_details' });
+db.TripKeyword.belongsToMany(db.Trip, { through: 'Trip_details' });
+
 db.Comment.belongsTo(db.Trip);
 db.Trip.hasMany(db.Comment);
 db.Vote.belongsTo(db.Comment);

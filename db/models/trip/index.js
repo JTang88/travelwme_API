@@ -1,14 +1,10 @@
 export default (sequelize, Sequelize) => {
   const Trip = sequelize.define('trip', {
-    tripId: {
-      type: Sequelize.STRING,
-      primaryKey: true,
-    },
     title: Sequelize.STRING,
     descriptions: Sequelize.STRING,
     cost: Sequelize.INTEGER,
     date_start: Sequelize.DATE,
-    date_end: Sequelize.DATE, 
+    date_end: Sequelize.DATE,
     gender: Sequelize.STRING,
     age: Sequelize.INTEGER,
     fitness: Sequelize.STRING,
@@ -19,3 +15,4 @@ export default (sequelize, Sequelize) => {
   });
   return Trip;
 };
+
