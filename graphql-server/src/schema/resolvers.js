@@ -4,9 +4,7 @@ export default {
       models.Trip.findAll({ 
         include: [{
           model: models.User,
-          through: {
-            where: { userId: id }
-          }
+          where: { id }
         }]
       })
   },
@@ -15,9 +13,7 @@ export default {
     models.User.findAll({ 
       include: [{
         model: models.Trip,
-        through: {
-          where: { tripId: id }
-        }
+        where: { id }
       }]
     })
   },
@@ -25,6 +21,13 @@ export default {
     allUsers: (parent, args, { models }) => models.User.findAll(),
     getUser: (parent, { id }, { models }) =>
       models.User.findOne({
+        where: {
+          id,
+        },
+      }),
+    allTrips: (parent, args, { models }) => models.Trip.findAll(),
+    getTrip: (parent, { id }, { models }) =>
+      models.Trip.findOne({
         where: {
           id,
         },
@@ -55,8 +58,13 @@ export default {
     updateTripState: (parent, args, { models }) => 
       models.Trip.update({ trip_state: args.new_state },  { where: { id: args.id } }),
     updateUserRelationshipToTrip: (parent, args, { models }) => 
-      models.TripMembers.update({ user_type: args.user_type }, { where: { userId: args.userId, tripId: args.tripId }})
+      models.TripMembers.update({ user_type: args.user_type }, { where: { userId: args.userId, tripId: args.tripId }}),
+    interestedInATrip: (parent, args, { models }) => 
+      models.TripMembers.create(args)
   },
 };
+
+// user.addProject(project, { through: { status: 'started' }})
+
 
 // updateUserRelationshipToTrip(id: Int!, tripId: Int!, currentRelationship: String!, newRelationship: String!): Int! 
