@@ -21,8 +21,4 @@ app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 app.use('/graphql', bodyParser.json(), graphqlExpress({ schema, context: { models } }));
 
-// app.use('/api', router);
-// models.sequelize.sync();
-// app.get('/', (req, res) => res.send('Hello World!'));
-
 export default app;

@@ -55,7 +55,7 @@ type Mutation {
   updateUserRelationshipToTrip(userId: Int!, tripId: Int!, user_type: String!): Int!
   deleteUser(id: Int!): Int! 
   createTrip(title: String!, descriptions: String!, cost: Int!, date_start: String!, date_end: String!, gender: String!, age: Int!, fitness: String!, relationship_status: String!, trip_state: String!, userId: Int!): Trip
-  updateTrip(id: Int!, title: String!, descriptions: String!, cost: Int!, date_start: String!, date_end: String!, gender: String!, age: Int!, fitness: String!, relationship_status: String!, trip_state: String!, userId: Int!): [Int!]!
+  updateTrip(id: Int!, title: String!, descriptions: String!, cost: Int!, date_start: String!, date_end: String!, gender: String!, age: Int!, fitness: String!, relationship_status: String!, trip_state: String!): [Int!]!
   updateTripStatus(id: Int! newStatus: String!): Int!
   deleteTrip(id: Int!): Int!
 }

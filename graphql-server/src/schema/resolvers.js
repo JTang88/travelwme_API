@@ -25,6 +25,11 @@ export default {
       const TripMembers = await models.TripMembers.create({ tripId: Trip.id, userId, user_type: "creator" });
       return Trip;
     }, 
+    updateTrip: async (parent, args, { models }) => {
+      const id = args.id;
+      await delete args.id;
+      return models.Trip.update( args, { where: { id } })
+    },
     updateUserRelationshipToTrip: (parent, args, { models }) => 
       models.TripMembers.update({ user_type: args.user_type }, { where: { userId: args.userId, tripId: args.tripId }})
   },
