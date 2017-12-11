@@ -11,8 +11,11 @@ export default {
 
   Mutation: {
     createUser: (parent, args, { models }) => models.User.create(args),
-    updateUser: (parent, { username, newUsername }, { models }) =>
-      models.User.update({ username, newUsername }, { where: { username } }),
+    updateUser: async (parent, args, { models }) => {
+      const id = args.id;
+      await delete args.id;
+      return models.User.update( args, { where: { id } })
+    },
     deleteUser: (parent, args, { models }) =>
       models.User.destroy({ where: args }),
     createTrip: async (parent, args, { models }) => {
