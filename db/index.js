@@ -29,6 +29,10 @@ db.Vote = sequelize.import('./models/vote');
 
 db.User.belongsToMany(db.Trip, { through: db.TripMembers });
 db.Trip.belongsToMany(db.User, { through: db.TripMembers });
+
+db.Trip.belongsToMany(db.TripKeyword, { through: 'Trip_details' });
+db.TripKeyword.belongsToMany(db.Trip, { through: 'Trip_details' });
+
 db.Comment.belongsTo(db.Trip);
 db.Trip.hasMany(db.Comment);
 db.Vote.belongsTo(db.Comment);
