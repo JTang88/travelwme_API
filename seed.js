@@ -1,19 +1,32 @@
-// import db from './db';
-// import seedData from './newdata.json';
-const db = require ('./db');
-const seedData = require('./newdata.json');
+import db from './db';
+import seedData from './newdata.json';
+// const db = require ('./db');
+// const seedData = require('./newdata.json');
 
 db.User.bulkCreate(seedData.User)
-  .then(()=>{console.log('created user')})
-  .catch((err)=>{console.log('error', err)}) 
+  .then(()=>{
+    console.log('created user')
+  })
+  .catch((err)=>{
+    console.log('error', err)
+  })
 
 db.Trip.bulkCreate(seedData.Trip)
-  .then(()=>{console.log('created trip')})
-  .catch((err)=>{console.log('error', err)}) 
+  .then(()=>{
+    console.log('created trip')
+  })
+  .catch((err)=>{
+    console.log('error', err)
+  })
+
 
 db.TripKeyword.bulkCreate(seedData.TripKeyword)
-  .then(()=>{console.log('created trip keyword')})
-  .catch((err)=>{console.log('error', err)}) 
+  .then(()=>{
+    console.log('created trip keyword')
+  })
+  .catch((err)=>{
+    console.log('error', err)
+  }) 
 
 // db.TripKeywords.sync({ force: true }).then(() => {
 //   data.TripKeywords.forEach((tk) => {
@@ -33,9 +46,9 @@ db.TripKeyword.bulkCreate(seedData.TripKeyword)
 //   });
 // });
 
-// db.Trips.sync({ force: true }).then(() => {
-//   data.Trips.forEach((tp) => {
-//     db.Trips.create({
+// db.Trip.sync({ force: true }).then(() => {
+//   data.Trip.forEach((tp) => {
+//     db.Trip.create({
 //       title: tp.title,
 //       description: tp.description,
 //       cost_range: tp.cost_range,
@@ -59,4 +72,4 @@ db.TripKeyword.bulkCreate(seedData.TripKeyword)
 //       relationship_status: us.relationship_status,
 //     });
 //   });
-// });
+// })
