@@ -60,6 +60,7 @@ type Mutation {
   updateTrip(id: Int!, title: String!, descriptions: String!, cost: Int!, date_start: String!, date_end: String!, gender: String!, age: Int!, fitness: String!, relationship_status: String!, trip_state: String!, key1: String!, key2: String!, key3: String!, key4: String!, key5: String!, key6: String!): [Int!]!
   updateTripState(id: Int! new_state: String!): [Int!]!
   deleteTrip(id: Int!): Int!
+  register(username: String!, email: String!, password: String!): User!
 }
 `;
 

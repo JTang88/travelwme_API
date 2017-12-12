@@ -1,3 +1,6 @@
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+
 export default {
   User: {
     trips: ({ id }, args, { models }) => 
@@ -123,7 +126,11 @@ export default {
     updateUserRelationshipToTrip: (parent, args, { models }) => 
       models.TripMembers.update({ user_type: args.user_type }, { where: { userId: args.userId, tripId: args.tripId }}),
     interestedInATrip: (parent, args, { models }) => 
-      models.TripMembers.create(args)
+      models.TripMembers.create(args),
+    register: async (parent, args, { models }) => {  
+      args.password = await bcrypt.hash(args.password, 12);
+      return models.User.create(args);
+    }
   },
 };
 
