@@ -61,6 +61,7 @@ type Mutation {
   updateTripState(id: Int! new_state: String!): [Int!]!
   deleteTrip(id: Int!): Int!
   register(username: String!, email: String!, password: String!): User!
+  login(email: String, password: String): String!
 }
 `;
 

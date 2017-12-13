@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import _ from 'lodash';
 
 export default {
   User: {
@@ -22,12 +23,16 @@ export default {
   },
   Query: {
     allUsers: (parent, args, { models }) => models.User.findAll(),
-    getUser: (parent, { id }, { models }) =>
-      models.User.findOne({
+    getUser: (parent, { id }, { models, user }) => {
+      if(!user) {
+        throw new Error("You are not logged in")
+      }
+      return models.User.findOne({
         where: {
           id,
         },
-      }),
+      })
+    },
     searchTrip: (parent, args, { models }) => {
       return models.Trip.findAll({
         where: {
@@ -127,10 +132,29 @@ export default {
       models.TripMembers.update({ user_type: args.user_type }, { where: { userId: args.userId, tripId: args.tripId }}),
     interestedInATrip: (parent, args, { models }) => 
       models.TripMembers.create(args),
-    register: async (parent, args, { models }) => {  
+    register: async (parent, args, { models }) => {
       args.password = await bcrypt.hash(args.password, 12);
       return models.User.create(args);
-    }
+    },
+    login: async (parent, { email, password }, { models }) => {
+      const user = await models.User.findOne({ where: { email }}); 
+
+      if(!user) {
+        throw new Error('No such user or email exist');
+      }
+
+      const valid = bcrypt.compare(password, user.password); 
+
+      if(!valid) {
+        throw new Error('invalid password motherfuckers!!');
+      }
+
+      const token = await jwt.sign({
+        user: _.pick(user, 'id', 'username')
+      }, process.env.TOKEN_SECRET , { expiresIn: '1h' })
+
+      return token;
+    }  
   },
 };
 
