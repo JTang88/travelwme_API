@@ -2,7 +2,11 @@ export default (sequelize, Sequelize) => {
   const User = sequelize.define('user', {
     username: Sequelize.STRING,
     email: Sequelize.STRING,
+<<<<<<< HEAD
     password:Sequelize.STRING,
+=======
+    password: Sequelize.STRING,
+>>>>>>> current-working
     gender: Sequelize.STRING,
     age: Sequelize.INTEGER,
     fitness: Sequelize.STRING,
