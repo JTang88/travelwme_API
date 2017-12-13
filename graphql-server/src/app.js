@@ -33,7 +33,8 @@ const schema = makeExecutableSchema({
 
 app.use(cors());
 
-app.use(addUser);
+// comment out the follwoing line to bypass authentication, also go to resolver.js, find the comments and do the same
+// app.use(addUser);
 
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 

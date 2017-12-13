@@ -24,9 +24,10 @@ export default {
   Query: {
     allUsers: (parent, args, { models }) => models.User.findAll(),
     getUser: (parent, { id }, { models, user }) => {
-      if(!user) {
-        throw new Error("You are not logged in")
-      }
+      // comment out the following to bybass authentication
+      // if(!user) {
+      //   throw new Error("You are not logged in")
+      // }
       return models.User.findOne({
         where: {
           id,
