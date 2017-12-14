@@ -1,10 +1,7 @@
-<<<<<<< 0a5ae587c01d946ea1f27f7ab502158c675b2a10
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+// import jwt from 'jsonwebtoken';
 import _ from 'lodash';
-=======
 import util from 'util'
->>>>>>> [feat][fix]fixed trip members query to grab users and type, updated seed data
 
 export default {
   User: {
@@ -18,30 +15,34 @@ export default {
     
   },
   Trip: {
-    // users: ({ id }, args, { models }) => 
-    // models.User.findAll({ 
-    //   include: [{
-    //     model: models.TripMembers,
-    //     include: [{
-    //       model: models.Trip,
-    //       where: { id }}]
-        
-    //   }],
-    // }),
-//     users: async ({ id }, args, { models }) => {
-//       const userandtype = await models.User.findOne({
-//         include: [{
-//           model: models.Trip,
-//           where: { id },
-//           through: {
-//             attributes: ['user_type']
-//           }
-//         }],
-//     }) 
-//     // console.log(util.inspect(userandtype, {depth: 6}))
-//     console.log('datavalues,=================', userandtype[0])
-// return userandtype
-//     },
+    users: async ({ id }, args, { models }) => {
+      const users = await models.User.findAll({
+        include: [{
+          model: models.Trip,
+          where: { id },
+          through: {
+            attributes: ['user_type']
+          }
+        }],
+      })
+      for(let i = 0; i < users.length; i++) {
+        // console.log('payload=========', users[i].dataValues.trips[0].dataValues.TripMembers)
+        console.log('payload=========', users[i].dataValues.trips.length)  
+        // console.log('this is new')
+        // for(let j = 0; j < 1; j++) {
+        //   console.log('are we here')
+        // }
+        for(let j = 0; j < users[i].dataValues.trips.length; j++) {
+          console.log('are we here?!!')
+          console.log('payload of trips ============', users[i].dataValues.trips[j].dataValues.TripMembers.user_type)
+        }     
+      }
+      // console.log('datavalues,=================', users[0])
+      users.forEach((user, idx) => {
+        user.user_type = user.dataValues.trips[0].dataValues.TripMembers.user_type;
+      });
+      return users
+    },
     members: ({ id }, args, { models }) => 
     models.TripMembers.findAll({ 
         where: { tripId: id }
@@ -54,33 +55,18 @@ export default {
     }),
   },
   Query: {
-<<<<<<< 0a5ae587c01d946ea1f27f7ab502158c675b2a10
     allUsers: (parent, args, { models }) => models.User.findAll(),
     getUser: (parent, { id }, { models, user }) => {
       // comment out the following to bybass authentication
       // if(!user) {
       //   throw new Error("You are not logged in")
-      // }
-      return models.User.findOne({
-        where: {
-          id,
-        },
-      })
+      // // }
+      // return models.User.findOne({
+      //   where: {
+      //     id,
+      //   },
+      // })
     },
-=======
-    allUsers: async (parent, args, { models }) => {
-      const test = await models.User.findAll();
-      // console.log('This what test look like monther Fuckers!!!! ======================', test[0].id)
-      return test
-    },
-    getUser: (parent, { id }, { models }) =>
-      models.User.findOne({
-        where: {
-          id,
-        },
-      }),
-    allTripMembers: (parent, args, { models }) => models.TripMembers.findAll(),
->>>>>>> [feat][fix]fixed trip members query to grab users and type, updated seed data
     searchTrip: (parent, args, { models }) => {
       return models.Trip.findAll({
         where: {
