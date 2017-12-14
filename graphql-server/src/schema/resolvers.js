@@ -1,6 +1,10 @@
+<<<<<<< 0a5ae587c01d946ea1f27f7ab502158c675b2a10
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import _ from 'lodash';
+=======
+import util from 'util'
+>>>>>>> [feat][fix]fixed trip members query to grab users and type, updated seed data
 
 export default {
   User: {
@@ -9,19 +13,48 @@ export default {
         include: [{
           model: models.User,
           where: { id }
-        }]
-      })
+        }], 
+      }),
+    
   },
   Trip: {
-    users: ({ id }, args, { models }) => 
-    models.User.findAll({ 
-      include: [{
-        model: models.Trip,
-        where: { id }
-      }]
+    // users: ({ id }, args, { models }) => 
+    // models.User.findAll({ 
+    //   include: [{
+    //     model: models.TripMembers,
+    //     include: [{
+    //       model: models.Trip,
+    //       where: { id }}]
+        
+    //   }],
+    // }),
+//     users: async ({ id }, args, { models }) => {
+//       const userandtype = await models.User.findOne({
+//         include: [{
+//           model: models.Trip,
+//           where: { id },
+//           through: {
+//             attributes: ['user_type']
+//           }
+//         }],
+//     }) 
+//     // console.log(util.inspect(userandtype, {depth: 6}))
+//     console.log('datavalues,=================', userandtype[0])
+// return userandtype
+//     },
+    members: ({ id }, args, { models }) => 
+    models.TripMembers.findAll({ 
+        where: { tripId: id }
     })
   },
+  TripMembers: {
+    users: ({ userId }, args, { models }) => 
+    models.User.findAll({ 
+        where: { id: userId }
+    }),
+  },
   Query: {
+<<<<<<< 0a5ae587c01d946ea1f27f7ab502158c675b2a10
     allUsers: (parent, args, { models }) => models.User.findAll(),
     getUser: (parent, { id }, { models, user }) => {
       // comment out the following to bybass authentication
@@ -34,6 +67,20 @@ export default {
         },
       })
     },
+=======
+    allUsers: async (parent, args, { models }) => {
+      const test = await models.User.findAll();
+      // console.log('This what test look like monther Fuckers!!!! ======================', test[0].id)
+      return test
+    },
+    getUser: (parent, { id }, { models }) =>
+      models.User.findOne({
+        where: {
+          id,
+        },
+      }),
+    allTripMembers: (parent, args, { models }) => models.TripMembers.findAll(),
+>>>>>>> [feat][fix]fixed trip members query to grab users and type, updated seed data
     searchTrip: (parent, args, { models }) => {
       return models.Trip.findAll({
         where: {
@@ -55,7 +102,7 @@ export default {
         }]
       })
     },
-      
+    
     allTrips: (parent, args, { models }) => models.Trip.findAll(),
     getTrip: (parent, { id }, { models }) =>
       models.Trip.findOne({

@@ -28,37 +28,13 @@ db.TripKeyword.bulkCreate(seedData.TripKeyword)
     console.log('error', err)
   }) 
 
-// db.TripKeywords.sync({ force: true }).then(() => {
-//   data.TripKeywords.forEach((tk) => {
-//     db.TripKeywords.create({
-//       word: tk.word,
-//     });
-//   });
-// });
-
-// db.TripMembers.sync({ force: true }).then(() => {
-//   data.TripMembers.forEach((tm) => {
-//     db.TripMembers.create({
-//       trip_id: tm.trip_id,
-//       user_id: tm.user_id,
-//       user_type: tm.user_type,
-//     });
-//   });
-// });
-
-// db.Trip.sync({ force: true }).then(() => {
-//   data.Trip.forEach((tp) => {
-//     db.Trip.create({
-//       title: tp.title,
-//       description: tp.description,
-//       cost_range: tp.cost_range,
-//       date_start: tp.date_start,
-//       date_end: tp.date_end,
-//       trip_state: tp.trip_state,
-//       trip_region: tp.trip_region,
-//     });
-//   });
-// });
+db.TripMembers.bulkCreate(seedData.TripMembers)
+  .then(()=>{
+    console.log('created tripmembers')
+  })
+  .catch((err)=>{
+    console.log('error', err)
+  }); 
 
 // db.Users.sync({ force: true }).then(() => {
 //   data.Users.forEach((us) => {
