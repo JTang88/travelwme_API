@@ -5,13 +5,21 @@ import util from 'util'
 
 export default {
   User: {
-    trips: ({ id }, args, { models }) => 
-      models.Trip.findAll({ 
+    trips: async ({ id }, args, { models }) => {
+      const trips = await models.Trip.findAll({
         include: [{
           model: models.User,
-          where: { id }
-        }], 
-      }),
+          where: { id },
+          through: {
+            attributes: ['user_type']
+          }
+        }],
+      })
+      trips.forEach((trip, idx) => {
+        trip.user_type = trip.dataValues.users[0].dataValues.TripMembers.user_type;
+      });
+      return trips
+    }
     
   },
   Trip: {
@@ -25,19 +33,6 @@ export default {
           }
         }],
       })
-      for(let i = 0; i < users.length; i++) {
-        // console.log('payload=========', users[i].dataValues.trips[0].dataValues.TripMembers)
-        console.log('payload=========', users[i].dataValues.trips.length)  
-        // console.log('this is new')
-        // for(let j = 0; j < 1; j++) {
-        //   console.log('are we here')
-        // }
-        for(let j = 0; j < users[i].dataValues.trips.length; j++) {
-          console.log('are we here?!!')
-          console.log('payload of trips ============', users[i].dataValues.trips[j].dataValues.TripMembers.user_type)
-        }     
-      }
-      // console.log('datavalues,=================', users[0])
       users.forEach((user, idx) => {
         user.user_type = user.dataValues.trips[0].dataValues.TripMembers.user_type;
       });
