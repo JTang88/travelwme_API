@@ -45,6 +45,7 @@
         "trip_state": "open"
       },
       {
+        "title": "Las Vegas",
         "description": "sexy trip",
         "cost_range": "3",
         "date_start": "06-20-2016",
@@ -93,5 +94,32 @@
           "fitness": "sexy",
           "relationship_status": "single"
         }
-      ]
+      ],
+  "TripMembers": [
+      {"userId": "1",
+      "tripId": "2",
+      "user_type": "C"},
+      {"userId": "3",
+        "tripId": "2",
+        "user_type": "I"},
+      {"userId": "1",
+        "tripId": "4",
+        "user_type": "J"},
+      {"userId": "3",
+        "tripId": "1",
+        "user_type": "C"},
+      {"userId": "1",
+        "tripId": "1",
+        "user_type": "I"},
+      {"userId": "2",
+        "tripId": "1",
+        "user_type": "J"},  
+      {"userId": "4",
+        "tripId": "1",
+        "user_type": "J"},
+        {"userId": "4",
+          "tripId": "4",
+          "user_type": "C"}     
+    ]
+
 }

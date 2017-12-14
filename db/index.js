@@ -42,24 +42,5 @@ db.User.hasMany(db.Vote);
 
 sequelize.sync();
 
-
-// m.Book.hasMany(m.Article, {through: 'book_articles'});
-// db.Trips.belongsToMany(db.TripKeywords, {
-//   through: 'Trips_TripKeywords',
-//   foreign_key: 'Trips',
-//   as: 'Trips',
-// });
-// // m.Article.hasMany(m.Books, {through: 'book_articles'});
-// db.TripKeywords.belongsToMany(db.Trips, {
-//   through: 'Trips_TripKeywords',
-//   foreign_key: 'TripKeywordss',
-//   as: 'TripKeywords',
-// });
-
-// this could be used for graphQL testing purpose
-// const db = {
-//   User: sequelize.import('./models/users'),
-// };
-
 export default db;
 

@@ -13,10 +13,3 @@ export default (sequelize, Sequelize) => {
   return User;
 }
 
-// for test graphQL purpose
-// export default (sequelize, DataTypes) => {
-//   const User = sequelize.define('User', {
-//     username: DataTypes.STRING,
-//   });
-//   return User;
-// };

@@ -1,7 +1,7 @@
 export default `
 type Trip {
   id: Int!
-  title: String!
+  title: String
   descriptions: String!
   cost: Int!
   date_start: String!
@@ -11,7 +11,7 @@ type Trip {
   fitness: String!
   relationship_status: String!
   trip_state: String!
-  users: [User!]!
+  members: [TripMembers]
 }
 
 type TripKeyword {
@@ -20,8 +20,8 @@ type TripKeyword {
 }
 
 type TripMembers {
-  id: Int!
   user_type: String!
+  users: [User]
   tripId: Int!
 }
   
@@ -34,6 +34,7 @@ type User {
   fitness: String!
   relationship_status: String!  
   trips: [Trip!]!
+  user_type: String
 }
 
 type Vote {
@@ -45,6 +46,7 @@ type Vote {
 type Query {
   allUsers: [User!]!
   getUser(id: Int!): User
+  allTripMembers: [TripMembers!]!
   allTrips: [Trip!]!
   searchTrip(gender: String!, age: Int!, fitness: String!, relationship_status: String!, key1: String!, key2: String!, key3: String!, key4: String!, key5: String!, key6: String!): [Trip]!
   getTrip(id: Int!): Trip
