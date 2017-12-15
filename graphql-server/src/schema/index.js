@@ -11,6 +11,8 @@ type Trip {
   fitness: String!
   relationship_status: String!
   trip_state: String!
+  users:[User]
+  user_type: String
   members: [TripMembers]
 }
 
@@ -35,6 +37,7 @@ type User {
   relationship_status: String!  
   trips: [Trip!]!
   user_type: String
+  
 }
 
 type Vote {
