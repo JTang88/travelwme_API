@@ -11,50 +11,50 @@
       {
         "title": "Paris Love",
         "description": "fun trip",
-        "cost_range": "1",
+        "cost": "1",
         "date_start": "11-20-2016",
         "date_end": "12-20-2016",
         "gender": "F",
         "age": "21",
         "fitness": "sporty",
         "relationship_status": "single",
-        "trip_state": "open"
+        "trip_status": "open"
       },
       {
         "title": "Latin Summer",
         "description": "cool trip",
-        "cost_range": "2",
+        "cost": "2",
         "date_start":" 03-20-2016",
         "date_end": "04-20-2016",
         "gender": "M",
         "age": "30",
         "fitness": "intense",
         "relationship_status": "single",
-        "trip_state": "close"
+        "trip_status": "close"
       },
       { 
         "title": "Tokyo Crazy",
         "description": "guilt trip",
-        "cost_range": "4",
+        "cost": "4",
         "date_start": "11-20-2016",
         "date_end": "12-20-2016",
         "gender": "F",
         "age": "27",
         "fitness": "light walker",
         "relationship_status": "Commited",
-        "trip_state": "open"
+        "trip_status": "open"
       },
       {
         "title": "Las Vegas",
         "description": "sexy trip",
-        "cost_range": "3",
+        "cost": "3",
         "date_start": "06-20-2016",
         "date_end": "06-20-2016",
         "gender": "M",
         "age": "21",
         "fitness": "no sports",
         "relationship_status": "Married",
-        "trip_state": "close"
+        "trip_status": "close"
       }
     ],
     "User": [

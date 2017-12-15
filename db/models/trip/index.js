@@ -1,7 +1,7 @@
 export default (sequelize, Sequelize) => {
   const Trip = sequelize.define('trip', {
     title: Sequelize.STRING,
-    descriptions: Sequelize.STRING,
+    description: Sequelize.STRING,
     cost: Sequelize.INTEGER,
     date_start: Sequelize.DATE,
     date_end: Sequelize.DATE,
@@ -9,7 +9,7 @@ export default (sequelize, Sequelize) => {
     age: Sequelize.INTEGER,
     fitness: Sequelize.STRING,
     relationship_status: Sequelize.STRING,
-    trip_state: Sequelize.STRING,
+    trip_status: Sequelize.STRING,
   }, {
     timestamps: false,
   });

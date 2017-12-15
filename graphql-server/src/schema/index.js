@@ -2,7 +2,7 @@ export default `
 type Trip {
   id: Int!
   title: String
-  descriptions: String!
+  description: String!
   cost: Int!
   date_start: String!
   date_end: String!
@@ -10,7 +10,7 @@ type Trip {
   age: Int!
   fitness: String!
   relationship_status: String!
-  trip_state: String!
+  trip_status: String!
   users:[User]
   user_type: String
   members: [TripMembers]
