@@ -53,15 +53,9 @@ export default {
     allUsers: (parent, args, { models }) => models.User.findAll(),
     getUser: (parent, { id }, { models, user }) => {
       // comment out the following to bybass authentication
-<<<<<<< HEAD
-      // if(!user) {
-      //   throw new Error("You are not logged in")
-      // // }
-=======
       if(!user) {
         throw new Error("You are not logged in")
       }
->>>>>>> [update]:Auth- uncomment out all authentication related functionality
       return models.User.findOne({
         where: {
           id,
