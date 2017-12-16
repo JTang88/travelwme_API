@@ -1,24 +1,24 @@
 export default `
 type Trip {
-  id: Int!
+  id: Int
   title: String
-  descriptions: String!
-  cost: Int!
-  date_start: String!
-  date_end: String!
-  gender: String!
-  age: Int!
-  fitness: String!
-  relationship_status: String!
-  trip_state: String!
+  description: String
+  cost: Int
+  date_start: String
+  date_end: String
+  gender: String
+  age: Int
+  fitness: String
+  relationship_status: String
+  trip_status: String
   users:[User]
   user_type: String
   members: [TripMembers]
 }
 
 type TripKeyword {
-  id: Int!
-  word: String!
+  id: Int
+  word: String
 }
 
 type TripMembers {
@@ -61,8 +61,9 @@ type Mutation {
   updateUserRelationshipToTrip(userId: Int!, tripId: Int!, user_type: String!): Int!
   interestedInATrip(userId: Int!, tripId: Int!, user_type: String!): TripMembers
   deleteUser(id: Int!): Int! 
-  createTrip(title: String!, descriptions: String!, cost: Int!, date_start: String!, date_end: String!, gender: String!, age: Int!, fitness: String!, relationship_status: String!, trip_state: String!, key1: String!, key2: String!, key3: String!, key4: String!, key5: String!, key6: String!, userId: Int!): Trip
-  updateTrip(id: Int!, title: String!, descriptions: String!, cost: Int!, date_start: String!, date_end: String!, gender: String!, age: Int!, fitness: String!, relationship_status: String!, trip_state: String!, key1: String!, key2: String!, key3: String!, key4: String!, key5: String!, key6: String!): [Int!]!
+  addKey(word: String) : TripKeyword
+  createTrip(title: String!, description: String!, cost: Int!, date_start: String!, date_end: String!, gender: String!, age: Int!, fitness: String!, relationship_status: String!, trip_state: String!, key1: String!, key2: String!, key3: String!, key4: String!, key5: String!, key6: String!, userId: Int!): Trip
+  updateTrip(id: Int!, title: String!, description: String!, cost: Int!, date_start: String!, date_end: String!, gender: String!, age: Int!, fitness: String!, relationship_status: String!, trip_state: String!, key1: String!, key2: String!, key3: String!, key4: String!, key5: String!, key6: String!): [Int!]!
   updateTripState(id: Int! new_state: String!): [Int!]!
   deleteTrip(id: Int!): Int!
   register(username: String!, email: String!, password: String!): User!

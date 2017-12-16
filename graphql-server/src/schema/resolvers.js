@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-// import jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import _ from 'lodash';
 import util from 'util'
 
@@ -56,11 +56,11 @@ export default {
       // if(!user) {
       //   throw new Error("You are not logged in")
       // // }
-      // return models.User.findOne({
-      //   where: {
-      //     id,
-      //   },
-      // })
+      return models.User.findOne({
+        where: {
+          id,
+        },
+      })
     },
     searchTrip: (parent, args, { models }) => {
       return models.Trip.findAll({
@@ -131,6 +131,10 @@ export default {
       })
       return Trip;
     }, 
+    addKey: async (parent, args, {models}) =>{
+      await models.TripKeyword.create(args);
+      return TripKeyword;
+    },
     updateTrip: async (parent, args, { models }) => {
       const updateTrip = await models.Trip.update({
         title: args.title, 
