@@ -19,6 +19,7 @@ const addUser = async (req, res) => {
   const token = req.headers.authorization;
   try {
     const { user } = await jwt.verify(token, process.env.TOKEN_SECRET);
+    console.log('inside of addUser middle whare!!!!!============')
     req.user = user;
   } catch(err) {
     console.log(err);
@@ -34,7 +35,7 @@ const schema = makeExecutableSchema({
 app.use(cors());
 
 // comment out the follwoing line to bypass authentication, also go to resolver.js, find the comments and do the same
-// app.use(addUser);
+app.use(addUser);
 
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
