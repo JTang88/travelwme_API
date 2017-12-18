@@ -16,10 +16,9 @@ models.sequelize.sync();
 const app = express();
 
 const addUser = async (req, res) => {
-  const token = req.headers.authorization;
+  const token = req.headers.authorization.split(' ')[1];
   try {
     const { user } = await jwt.verify(token, process.env.TOKEN_SECRET);
-    console.log('inside of addUser middle whare!!!!!============')
     req.user = user;
   } catch(err) {
     console.log(err);

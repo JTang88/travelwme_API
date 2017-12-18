@@ -5,8 +5,8 @@ export default (sequelize, Sequelize) => {
     password: Sequelize.STRING,
     gender: Sequelize.STRING,
     age: Sequelize.INTEGER,
-    fitness: Sequelize.STRING,
-    relationship_status: Sequelize.STRING,  
+    body_type: Sequelize.INTEGER,
+    relationship: Sequelize.STRING,  
   }, {
     timestamps: false, 
   });

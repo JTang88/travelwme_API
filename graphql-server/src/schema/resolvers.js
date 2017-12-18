@@ -53,6 +53,9 @@ export default {
     allUsers: (parent, args, { models }) => models.User.findAll(),
     getUser: (parent, { id }, { models, user }) => {
       // comment out the following to bybass authentication
+ 
+      console.log('this is user in getUser resolver', user)
+
       if(!user) {
         throw new Error("You are not logged in")
       }
@@ -94,7 +97,6 @@ export default {
   },
 
   Mutation: {
-    createUser: (parent, args, { models }) => models.User.create(args),
     updateUser: async (parent, args, { models }) => {
       const id = args.id;
       await delete args.id;

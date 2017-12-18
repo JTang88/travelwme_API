@@ -31,10 +31,10 @@ type User {
   id: Int!
   username: String!
   email: String!
-  gender: String!
-  age: Int!,
-  fitness: String!
-  relationship_status: String!  
+  gender: String
+  age: Int,
+  body_type: Int
+  relationship: String  
   trips: [Trip!]!
   user_type: String
   
@@ -56,8 +56,7 @@ type Query {
 }
 
 type Mutation {
-  createUser(username: String!, email: String!, gender: String!, age: Int!, fitness: String!, relationship_status: String! ): User
-  updateUser(id: Int!, username: String!, email: String!, gender: String!, age: Int!, fitness: String!, relationship_status: String!): [Int!]!
+  updateUser(id: Int!, username: String!, email: String!, gender: String!, age: Int!, body_type: Int!, relationship: String!): [Int!]!
   updateUserRelationshipToTrip(userId: Int!, tripId: Int!, user_type: String!): Int!
   interestedInATrip(userId: Int!, tripId: Int!, user_type: String!): TripMembers
   deleteUser(id: Int!): Int! 
