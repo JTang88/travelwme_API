@@ -7,6 +7,44 @@
       {"word": "luxury"},
       {"word": "foodie"}
     ],
+    "User": [
+      {
+        "username": "Jerry Tang",
+        "email": "jerica0722@gmail.com",
+        "password": "jt122384",
+        "gender": "male",
+        "age": "29",
+        "fitness": "average",
+        "relationship_status": "single"
+      },
+      {
+        "username": "Danny Yang",
+        "email": "jerica0722@gmail.com",
+        "password": "dy122384",
+        "gender": "male",
+        "age": "29",
+        "fitness": "athletic",
+        "relationship_status": "Married"
+      },
+      {
+        "username": "Kelly Feng",
+        "email": "kelly@gmail.com",
+        "password": "kf122384",
+        "gender": "female",
+        "age": "23",
+        "fitness": "average",
+        "relationship_status": "Commited"
+      },
+      {
+        "username": "Jessica Wang",
+        "email": "jessica@gmail.com",
+        "password": "jw122384",
+        "gender": "female",
+        "age": "35",
+        "fitness": "sexy",
+        "relationship_status": "single"
+      }
+    ],
   "Trip": [
       {
         "title": "Paris Love",
@@ -18,7 +56,9 @@
         "age": "21",
         "fitness": "sporty",
         "relationship_status": "single",
-        "trip_status": "open"
+        "trip_status": "open",
+        "keys": "[1, 2, 3]",
+        "userId": "1"
       },
       {
         "title": "Latin Summer",
@@ -30,7 +70,9 @@
         "age": "30",
         "fitness": "intense",
         "relationship_status": "single",
-        "trip_status": "close"
+        "trip_status": "close",
+        "keys": "[2, 3]",
+        "userId": "2"
       },
       { 
         "title": "Tokyo Crazy",
@@ -42,7 +84,9 @@
         "age": "27",
         "fitness": "light walker",
         "relationship_status": "Commited",
-        "trip_status": "open"
+        "trip_status": "open",
+        "keys": "[1, 3]",
+        "userId": "3"
       },
       {
         "title": "Las Vegas",
@@ -54,47 +98,11 @@
         "age": "21",
         "fitness": "no sports",
         "relationship_status": "Married",
-        "trip_status": "close"
+        "trip_status": "close",
+        "keys": "[1, 2, 3, 4]",
+        "userId": "4"
       }
     ],
-    "User": [
-        {
-          "username": "Jerry Tang",
-          "email": "jerica0722@gmail.com",
-          "password": "jt122384",
-          "gender": "male",
-          "age": "29",
-          "fitness": "average",
-          "relationship_status": "single"
-        },
-        {
-          "username": "Danny Yang",
-          "email": "jerica0722@gmail.com",
-          "password": "dy122384",
-          "gender": "male",
-          "age": "29",
-          "fitness": "athletic",
-          "relationship_status": "Married"
-        },
-        {
-          "username": "Kelly Feng",
-          "email": "kelly@gmail.com",
-          "password": "kf122384",
-          "gender": "female",
-          "age": "23",
-          "fitness": "average",
-          "relationship_status": "Commited"
-        },
-        {
-          "username": "Jessica Wang",
-          "email": "jessica@gmail.com",
-          "password": "jw122384",
-          "gender": "female",
-          "age": "35",
-          "fitness": "sexy",
-          "relationship_status": "single"
-        }
-      ],
   "TripMembers": [
       {"userId": "1",
       "tripId": "2",
@@ -120,6 +128,6 @@
         {"userId": "4",
           "tripId": "4",
           "user_type": "C"}     
-    ]
+  ]  
 
 }
