@@ -63,6 +63,7 @@ type Mutation {
   deleteUser(id: Int!): Int! 
   addKey(word: String) : TripKeyword
   createTrip(title: String!, description: String!, cost: Int!, date_start: String!, date_end: String!, gender: String!, age: Int!, fitness: String!, relationship_status: String!, trip_state: String!, key1: String!, key2: String!, key3: String!, key4: String!, key5: String!, key6: String!, userId: Int!): Trip
+  searchTrip(cost: Int!, date_start: String!, date_end: String!, gender: String!, age: Int!, fitness: String!, relationship_status: String!, trip_state: String!, keys: [String]): Trip
   updateTrip(id: Int!, title: String!, description: String!, cost: Int!, date_start: String!, date_end: String!, gender: String!, age: Int!, fitness: String!, relationship_status: String!, trip_state: String!, key1: String!, key2: String!, key3: String!, key4: String!, key5: String!, key6: String!): [Int!]!
   updateTripState(id: Int! new_state: String!): [Int!]!
   deleteTrip(id: Int!): Int!

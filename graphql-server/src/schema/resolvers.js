@@ -120,14 +120,10 @@ export default {
         userId: args.userId, 
         user_type: "creator" 
       });
-      const TripKeyword = await models.TripKeyword.create({
+      const TripKeyword = await models.Trip.addKeywords({
         tripId: Trip.id,
-        key1: args.key1,
-        key2: args.key2,
-        key3: args.key3,
-        key4: args.key4,
-        key5: args.key5,
-        key6: args.key6,
+        keys: [1,2]
+
       })
       return Trip;
     }, 
