@@ -7,8 +7,8 @@ export default (sequelize, Sequelize) => {
     date_end: Sequelize.DATE,
     gender: Sequelize.STRING,
     age: Sequelize.INTEGER,
-    fitness: Sequelize.STRING,
-    relationship_status: Sequelize.STRING,
+    body_type: Sequelize.INTEGER,
+    relationship: Sequelize.STRING,
     trip_status: Sequelize.STRING,
   }, {
     timestamps: false,

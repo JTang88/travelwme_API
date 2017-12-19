@@ -31,7 +31,7 @@ const schema = makeExecutableSchema({
   resolvers,
 });
 
-app.use(cors());
+app.use(cors('/*'));
 
 // comment out the follwoing line to bypass authentication, also go to resolver.js, find the comments and do the same
 app.use(addUser);

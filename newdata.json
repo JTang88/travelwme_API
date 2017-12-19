@@ -15,9 +15,9 @@
         "date_start": "11-20-2016",
         "date_end": "12-20-2016",
         "gender": "F",
-        "age": "21",
-        "fitness": "sporty",
-        "relationship_status": "single",
+        "age": 21,
+        "body_type": "sporty",
+        "relationship": "single",
         "trip_status": "open"
       },
       {
@@ -27,9 +27,9 @@
         "date_start":" 03-20-2016",
         "date_end": "04-20-2016",
         "gender": "M",
-        "age": "30",
-        "fitness": "intense",
-        "relationship_status": "single",
+        "age": 30,
+        "body_type": "intense",
+        "relationship": "single",
         "trip_status": "close"
       },
       { 
@@ -39,9 +39,9 @@
         "date_start": "11-20-2016",
         "date_end": "12-20-2016",
         "gender": "F",
-        "age": "27",
-        "fitness": "light walker",
-        "relationship_status": "Commited",
+        "age": 27,
+        "body_type": "light walker",
+        "relationship": "Commited",
         "trip_status": "open"
       },
       {
@@ -51,9 +51,9 @@
         "date_start": "06-20-2016",
         "date_end": "06-20-2016",
         "gender": "M",
-        "age": "21",
-        "fitness": "no sports",
-        "relationship_status": "Married",
+        "age": 21,
+        "body_type": "no sports",
+        "relationship": "Married",
         "trip_status": "close"
       }
     ],
@@ -63,36 +63,36 @@
           "email": "jerica0722@gmail.com",
           "password": "jt122384",
           "gender": "male",
-          "age": "29",
-          "fitness": "average",
-          "relationship_status": "single"
+          "age": 29,
+          "body_type": 1,
+          "relationship": "single"
         },
         {
           "username": "Danny Yang",
           "email": "jerica0722@gmail.com",
           "password": "dy122384",
           "gender": "male",
-          "age": "29",
-          "fitness": "athletic",
-          "relationship_status": "Married"
+          "age": 29,
+          "body_type": 3,
+          "relationship": "Married"
         },
         {
           "username": "Kelly Feng",
           "email": "kelly@gmail.com",
           "password": "kf122384",
           "gender": "female",
-          "age": "23",
-          "fitness": "average",
-          "relationship_status": "Commited"
+          "age": 23,
+          "body_type": 12,
+          "relationship": "Commited"
         },
         {
           "username": "Jessica Wang",
           "email": "jessica@gmail.com",
           "password": "jw122384",
           "gender": "female",
-          "age": "35",
-          "fitness": "sexy",
-          "relationship_status": "single"
+          "age": 25,
+          "body_type": 7,
+          "relationship": "single"
         }
       ],
   "TripMembers": [
