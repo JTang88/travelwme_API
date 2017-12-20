@@ -8,7 +8,7 @@ type Trip {
   date_end: String
   gender: String
   age: Int
-  fitness: String
+  body_type: String
   relationship_status: String
   trip_status: String
   users:[User]
@@ -22,13 +22,19 @@ type TripKeyword {
 }
 
 type TripMembers {
+<<<<<<< Updated upstream
   user_type: String
   users: [User]
   tripId: Int
+=======
+  user_type: String!
+  users: Int!
+  tripId: Int!
+>>>>>>> Stashed changes
 }
   
 type User {
-  id: Int!
+  id: Int
   username: String!
   email: String!
   gender: String
@@ -48,11 +54,11 @@ type Vote {
 
 
 type Query {
-  allUsers: [User!]!
+  allUsers: [User]
   getUser(id: Int!): User
   allTripMembers: [TripMembers]
   allTrips: [Trip!]!
-  searchTrip(gender: String!, age: Int!, fitness: String!, relationship_status: String!, key1: String!, key2: String!, key3: String!, key4: String!, key5: String!, key6: String!): [Trip]!
+  searchTrip(cost: Int!, date_start: String!, date_end: String!, gender: String!, age: Int!, fitness: String!, relationship_status: String!, trip_state: String!, keys: [String]): [Trip]
   getTrip(id: Int!): Trip
 }
 

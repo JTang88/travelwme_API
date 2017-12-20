@@ -50,7 +50,9 @@ export default {
     }),
   },
   Query: {
-    allUsers: (parent, args, { models }) => models.User.findAll(),
+    allUsers: (parent, args, { models }) => models.User.findAll()
+    // .then((user)=>{console.log('users', user)} ),
+    ,
     getUser: (parent, { id }, { models, user }) => {
       // comment out the following to bybass authentication
  
@@ -66,6 +68,7 @@ export default {
       })
     },
     searchTrip: (parent, args, { models }) => {
+      const fitness = []
       return models.Trip.findAll({
         where: {
           gender: args.gender,
@@ -73,17 +76,12 @@ export default {
           fitness: args.fitness,
           relationship_status: args.relationship_status,
         },
-        include: [{
-          model: models.TripKeyword,
-          where: {
-            key1: args.key1,
-            key2: args.key2,
-            key3: args.key3,
-            key4: args.key4,
-            key5: args.key5,
-            key6: args.key6,
-          }
-        }]
+        // include: [{
+        //   model: models.TripKeyword,
+        //   where: {
+        //     word:
+        //   }
+        // }]
       })
     },
     allTripMembers: (parent, args, { models }) => models.TripMembers.findAll(),
@@ -117,27 +115,34 @@ export default {
         fitness: args.fitness, 
         relationship_status: args.relationship_status, 
         trip_state: args.trip_state,
+      })
+      .then ((createdTrip)=>{
+        createdTrip.addTripKeywords(args.keys)
       });
       const TripMembers = await models.TripMembers.create({ 
         tripId: Trip.id, 
         userId: args.userId, 
-        user_type: "creator" 
+        user_type: "C" 
       });
-      const TripKeyword = await models.TripKeyword.create({
-        tripId: Trip.id,
-        key1: args.key1,
-        key2: args.key2,
-        key3: args.key3,
-        key4: args.key4,
-        key5: args.key5,
-        key6: args.key6,
-      })
+      const Trip_Details = await models.Trip.addTripKeyword([1,2])
+      // const Fitness = await models.Trip_Details.create({
+      //   tripId: Trip.id,
+      //   keys: [1,2]
+
+      // })
       return Trip;
     }, 
-    addKey: async (parent, args, {models}) =>{
-      await models.TripKeyword.create(args);
-      return TripKeyword;
-    },
+    // addKeyWords: async (parent, { id }, {models}) =>{
+    //   await models.Trip.findOne({
+    //     where: {
+    //       id,
+    //     },
+    //   })
+    //   .then ((trip)=> {
+    //     trip.addTripKeywords([1])
+    //   })
+    //   return Trip;
+    // },
     updateTrip: async (parent, args, { models }) => {
       const updateTrip = await models.Trip.update({
         title: args.title, 
