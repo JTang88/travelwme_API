@@ -95,50 +95,14 @@
         "date_start": "06-20-2016",
         "date_end": "06-20-2016",
         "gender": "M",
-        "age": 21,
-        "body_type": "no sports",
-        "relationship": "Married",
-        "trip_status": "close"
+        "age": "21",
+        "fitness": "no sports",
+        "relationship_status": "Married",
+        "trip_status": "close",
+        "keys": "[1, 2, 3, 4]",
+        "userId": "4"
       }
     ],
-    "User": [
-        {
-          "username": "Jerry Tang",
-          "email": "jerica0722@gmail.com",
-          "password": "jt122384",
-          "gender": "male",
-          "age": 29,
-          "body_type": 1,
-          "relationship": "single"
-        },
-        {
-          "username": "Danny Yang",
-          "email": "jerica0722@gmail.com",
-          "password": "dy122384",
-          "gender": "male",
-          "age": 29,
-          "body_type": 3,
-          "relationship": "Married"
-        },
-        {
-          "username": "Kelly Feng",
-          "email": "kelly@gmail.com",
-          "password": "kf122384",
-          "gender": "female",
-          "age": 23,
-          "body_type": 12,
-          "relationship": "Commited"
-        },
-        {
-          "username": "Jessica Wang",
-          "email": "jessica@gmail.com",
-          "password": "jw122384",
-          "gender": "female",
-          "age": 25,
-          "body_type": 7,
-          "relationship": "single"
-        }
-      ],
   "TripMembers": [
       {"userId": "1",
       "tripId": "2",
