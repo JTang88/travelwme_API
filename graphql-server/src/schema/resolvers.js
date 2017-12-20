@@ -54,11 +54,11 @@ export default {
     getUser: (parent, { id }, { models, user }) => {
       // comment out the following to bybass authentication
  
-      console.log('this is user in getUser resolver', user)
+      // console.log('this is user in getUser resolver', user)
 
-      if(!user) {
-        throw new Error("You are not logged in")
-      }
+      // if(!user) {
+      //   throw new Error("You are not logged in")
+      // }
       return models.User.findOne({
         where: {
           id,
@@ -86,7 +86,7 @@ export default {
         }]
       })
     },
-    
+    allTripMembers: (parent, args, { models }) => models.TripMembers.findAll(),
     allTrips: (parent, args, { models }) => models.Trip.findAll(),
     getTrip: (parent, { id }, { models }) =>
       models.Trip.findOne({
@@ -94,6 +94,7 @@ export default {
           id,
         },
       }),
+
   },
 
   Mutation: {
@@ -161,8 +162,15 @@ export default {
       }, { where: { tripId: args.id } } );
       return updateTrip;
     },
-    updateTripState: (parent, args, { models }) => 
-      models.Trip.update({ trip_state: args.new_state },  { where: { id: args.id } }),
+    updateTripState: async (parent, args, { models }) => {
+      const tm = await models.Trip.update({ trip_state: args.new_state },  { where: { id: args.id } });
+      const trip = await models.Trip.findOne({
+        where: {
+          id: args.id,
+        }
+      })
+      return trip;
+    },
     updateUserRelationshipToTrip: async (parent, args, { models }) => {
       const tm = await models.TripMembers.update({ user_type: args.user_type }, { where: { userId: args.userId, tripId: args.tripId }});
       const trip = await models.Trip.findOne({ 
@@ -172,6 +180,15 @@ export default {
       })
       return trip;
     },
+    updateUserRelationshipToTrip: async (parent, args, { models }) => {
+        const tm = await models.TripMembers.update({ user_type: args.user_type }, { where: { userId: args.userId, tripId: args.tripId }});
+        const trip = await models.Trip.findOne({
+          where: {
+            id: args.tripId,
+          }
+        })
+        return trip;
+      },
     interestedInATrip: (parent, args, { models }) => 
       models.TripMembers.create(args),
     register: async (parent, args, { models }) => {
