@@ -4,9 +4,5 @@ export default (sequelize, Sequelize) => {
   }, {
     timestamps: false,
   });
-<<<<<<< HEAD
   return BodyType;
-=======
-  return TripKeyword;
->>>>>>> searchtrip
 };

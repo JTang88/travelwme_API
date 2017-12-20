@@ -5,7 +5,7 @@ export default (sequelize, Sequelize) => {
     password: Sequelize.STRING,
     gender: Sequelize.STRING,
     age: Sequelize.INTEGER,
-    body_type: Sequelize.INTEGER,
+    body_type: Sequelize.STRING,
     relationship: Sequelize.STRING,  
     description: Sequelize.STRING,
   }, {

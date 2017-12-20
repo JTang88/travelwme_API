@@ -11,6 +11,14 @@ db.TripKeyword.bulkCreate(seedData.TripKeyword)
   console.log('error', err);
 });
 
+db.BodyType.bulkCreate(seedData.BodyType)
+.then(() => {
+  console.log('created bodytype');
+})
+.catch((err) => {
+  console.log('error', err);
+});
+
 db.User.bulkCreate(seedData.User)
   .then(() => {
     console.log('created user');
@@ -20,12 +28,13 @@ db.User.bulkCreate(seedData.User)
   });
 
 db.Trip.bulkCreate(seedData.Trip)
-  .then((trip) => {
-    // console.log('my trip herre =======', trip)
-    const test = trip;
-    console.log('my test array', test[0].addTripKeywords);
-    return trip[0].addTripKeywords([5, 6]);
-    
+  .then((trips) => {
+    trips.forEach((trip, idx) => {
+      trip.addTripKeywords(seedData.Trip[idx].keys);
+      trip.addBodyType(seedData.Trip[idx].body_types);
+      
+    });
+    // console.log('my test array', test[0].addTripKeywords);
   })
   .then(() => {
     console.log('created trip');
@@ -33,8 +42,6 @@ db.Trip.bulkCreate(seedData.Trip)
   .catch((err) => {
     console.log('error', err);
   });
-
-
 
 
 db.TripMembers.bulkCreate(seedData.TripMembers)

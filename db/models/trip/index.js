@@ -3,11 +3,10 @@ export default (sequelize, Sequelize) => {
     title: Sequelize.STRING,
     description: Sequelize.STRING,
     cost: Sequelize.INTEGER,
-    date_start: Sequelize.DATE,
-    date_end: Sequelize.DATE,
+    date_start: Sequelize.DATEONLY,
+    date_end: Sequelize.DATEONLY,
     gender: Sequelize.STRING,
     age: Sequelize.INTEGER,
-    body_type: Sequelize.INTEGER,
     relationship: Sequelize.STRING,
     trip_status: Sequelize.STRING,
   }, {
