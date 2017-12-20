@@ -46,10 +46,10 @@ app.use('/graphql', bodyParser.json(), graphqlExpress(req => ({
   })),
 );
 
-// app.use('/graphql', bodyParser.json(), graphqlExpress({
-//   schema,
-//   context: { models },
-// }),
-// );
+app.use('/graphql', bodyParser.json(), graphqlExpress({
+  schema,
+  context: { models },
+}),
+);
 
 export default app;
