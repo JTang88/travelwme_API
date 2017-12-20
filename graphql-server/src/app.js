@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import jwt from 'jsonwebtoken';
+import mysql from 'mysql2';
 import { graphiqlExpress, graphqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 import cors from 'cors';
@@ -9,6 +10,7 @@ import typeDefs from './schema/';
 import resolvers from './schema/resolvers';
 import models from '../../db';
 import { read } from 'fs';
+
 
 
 models.sequelize.sync();
@@ -31,7 +33,7 @@ const schema = makeExecutableSchema({
   resolvers,
 });
 
-app.use(cors());
+app.use(cors('/*'));
 
 // comment out the follwoing line to bypass authentication, also go to resolver.js, find the comments and do the same
 app.use(addUser);

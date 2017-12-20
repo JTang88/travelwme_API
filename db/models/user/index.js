@@ -7,6 +7,7 @@ export default (sequelize, Sequelize) => {
     age: Sequelize.INTEGER,
     body_type: Sequelize.INTEGER,
     relationship: Sequelize.STRING,  
+    description: Sequelize.STRING,
   }, {
     timestamps: false, 
   });
