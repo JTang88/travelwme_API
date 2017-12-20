@@ -53,18 +53,12 @@ export default {
     allUsers: (parent, args, { models }) => models.User.findAll(),
     getUser: (parent, { id }, { models, user }) => {
       // comment out the following to bybass authentication
-<<<<<<< HEAD
  
-      console.log('this is user in getUser resolver', user)
+      // console.log('this is user in getUser resolver', user)
 
-      if(!user) {
-        throw new Error("You are not logged in")
-      }
-=======
       // if(!user) {
       //   throw new Error("You are not logged in")
       // }
->>>>>>> [add] Update query and resolvers for trip/user mutation
       return models.User.findOne({
         where: {
           id,
