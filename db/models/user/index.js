@@ -8,6 +8,7 @@ export default (sequelize, Sequelize) => {
     body_type: Sequelize.STRING,
     relationship: Sequelize.STRING,  
     description: Sequelize.STRING,
+    publicId: Sequelize.STRING,
   }, {
     timestamps: false, 
   });
