@@ -9,6 +9,7 @@ export default (sequelize, Sequelize) => {
     age: Sequelize.INTEGER,
     relationship: Sequelize.STRING,
     trip_status: Sequelize.STRING,
+    publicId: Sequelize.STRING,
   }, {
     timestamps: false,
   });

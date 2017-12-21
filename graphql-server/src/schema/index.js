@@ -15,6 +15,7 @@ type Trip {
   users:[User]
   user_type: String
   members: [TripMembers]
+  publicId: String
 }
 
 type TripKeyword {
@@ -68,6 +69,7 @@ type Mutation {
   deleteUser(id: Int!): Int! 
   addKey(word: String) : TripKeyword
   addPhotoToUser(id: Int!, publicId: String!): [Int!]!
+  addPhotoToTrip(id: Int!, publicId: String!): [Int!]!
   createTrip(title: String!, description: String!, cost: Int!, date_start: String!, date_end: String!, gender: String!, age_start: Int!, age_end: Int!, relationship: String!, keys: [Int], body_types: [Int], userId: Int!): Trip
  
   updateTrip(id: Int!, title: String!, description: String!, cost: Int!, date_start: String!, date_end: String!, gender: String!, age: Int!, body_type: Int!, relationship: String!, trip_state: String!, key1: String!, key2: String!, key3: String!, key4: String!, key5: String!, key6: String!): [Int!]!
