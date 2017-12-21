@@ -70,7 +70,7 @@ type Query {
 }
 
 type Mutation {
-  updateUser(id: Int!, username: String!, gender: String!, age: Int!, body_type: Int!, relationship: String!, description: String!): [Int!]!
+  updateUser(id: Int!, username: String!, gender: String!, age: Int!, body_type: String!, relationship: String!, description: String!): [Int!]!
   updateUserRelationshipToTrip(userId: Int!, tripId: Int!, user_type: String!): Trip
   interestedInATrip(userId: Int!, tripId: Int!, user_type: String!): TripMembers
   deleteUser(id: Int!): Int! 
