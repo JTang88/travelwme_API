@@ -111,6 +111,11 @@ export default {
   },
 
   Mutation: {
+    addPhotoToUser: (parent, { publicId, id }, { models }) => {
+      console.log(publicId);
+      console.log(id)
+      return models.User.update( { publicId: publicId }, { where: { id: id } });
+    },
     updateUser: async (parent, args, { models }) => {
       const id = args.id;
       await delete args.id;
