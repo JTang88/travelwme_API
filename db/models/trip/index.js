@@ -6,7 +6,8 @@ export default (sequelize, Sequelize) => {
     date_start: Sequelize.DATEONLY,
     date_end: Sequelize.DATEONLY,
     gender: Sequelize.STRING,
-    age: Sequelize.INTEGER,
+    age_start: Sequelize.INTEGER,
+    age_end: Sequelize.INTEGER,
     relationship: Sequelize.STRING,
     trip_status: Sequelize.STRING,
   }, {
