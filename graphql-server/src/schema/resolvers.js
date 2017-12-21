@@ -68,36 +68,52 @@ export default {
       })
     },
     searchTrip: (parent, args, { models }) => {
-      return models.Trip.findAll({
+      const Trips = models.Trip.findAll({
+        // where: {
+        //   relationship: args.relationship,
+        //   gender: {
+        //     $or: [args.gender, 'All']
+        //   }
+        // },
+        // age_start: { 
+        //       $lte: args.age,
+        //     },
         where: {
-          gender: {
-            [Op.or]: [args.gender, All]
-          },
-          age: { 
-            [Op.between]: [args.ageStart, args.ageEnd]
-          },
-          cost: args.cost,
           relationship: args.relationship,
-          trip_status: 'open',
+          gender: {
+            $or:[args.gender, 'All']
+          },
+          age_start: { 
+            $lte: args.age,
+          },
+          age_end: { 
+            $gte: args.age,
+          },
+          cost:  { 
+            $between: [args.cost_start, args.cost_end]
+          },
           date_start: { 
-            [Op.between]: [args.date_start, args.date_end]
-          }
+            $between: [date_start, args.date_end]
+          },
+          trip_status: 'open',
         },
         include: [{
           model: models.BodyType,
           where: {
             fitness: args.body_type,
           },
-          // include: [{
-          //   model: models.TripKeyword,
-          //   where:{
-          //     id: {
-          //       [Op.or]: args.keys
-          //     }
-          //   }
-          // }]
+          include: [{
+            model: models.TripKeyword,
+            where:{
+              id: {
+                $or: JSON.parse(args.keys)
+              }
+            }
+          }]
         }]
       })
+      console.log('at search trip', args)
+      return Trips;
     },
     allTripMembers: (parent, args, { models }) => models.TripMembers.findAll(),
     allTrips: (parent, args, { models }) => models.Trip.findAll(),
@@ -107,6 +123,15 @@ export default {
           id,
         },
       }),
+    fitTrips: (parent, args, { models }) => {
+      return models.Trip.findAll({
+      include: [{
+        model: models.BodyType,
+        where: { fitness: args.fitness },
+      }],
+    })
+    console.log('here is args', args)
+  },
 
   },
 
@@ -120,45 +145,20 @@ export default {
       models.User.destroy({ where: args }),
 
     createTrip: async (parent, args, { models }) => {
-      const Trip = await models.Trip.create({
-        title: args.title, 
-        descriptions: args.descriptions, 
-        cost: args.cost, 
-        date_start: args.date_start, 
-        date_end: args.date_end, 
-        gender: args.gender, 
-        age: args.age,  
-        relationship: args.relationship, 
-        trip_status: 'open',
-      })
-      .then ((createdTrip)=>{
-        createdTrip.addTripKeywords(args.keys);
-        createdTrip.addBodyType(args.body_types);
-      });
-      const TripMembers = await models.TripMembers.create({ 
-        tripId: Trip.id, 
-        userId: args.userId, 
-        user_type: "C" 
-      });
-      // const Trip_Details = await models.Trip.addTripKeyword([1,2])
-      // // const Fitness = await models.Trip_Details.create({
-      // //   tripId: Trip.id,
-      // //   keys: [1,2]
+      const Trip = await models.Trip.create(args)
+      Trip.addUsers(args.userId, {through: {user_type: "C"}});
+      Trip.addTripKeywords(JSON.parse(args.keys));
+      Trip.addBodyType(JSON.parse(args.body_types));
 
-      // // })
       return Trip;
     }, 
-    // addKeyWords: async (parent, { id }, {models}) =>{
-    //   await models.Trip.findOne({
-    //     where: {
-    //       id,
-    //     },
-    //   })
-    //   .then ((trip)=> {
-    //     trip.addTripKeywords([1])
-    //   })
-    //   return Trip;
-    // },
+    // addKey: (parent, args , {models}) =>{
+    //   console.log('at add Key', args)
+    //   const words = args.word
+    //     words.forEach((word) => {models.TripKeyword.create(word)}
+    //     )
+    //   },
+  
     updateTrip: async (parent, args, { models }) => {
       const updateTrip = await models.Trip.update({
         title: args.title, 
