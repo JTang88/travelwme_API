@@ -1,7 +1,7 @@
 import express from 'express';
+import mysql from 'mysql2';
 import bodyParser from 'body-parser';
 import jwt from 'jsonwebtoken';
-import mysql from 'mysql2';
 import { graphiqlExpress, graphqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 import cors from 'cors';

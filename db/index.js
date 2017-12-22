@@ -4,9 +4,6 @@ const sequelize = new Sequelize('travelwme', 'Jerry', 'jt111588', {
   host: 'travelwme.crmgwzc9gy7p.us-west-1.rds.amazonaws.com',
   port: 3306,
   dialect: 'mysql',
-  dialectOptions: {
-    ssl: 'Amazon RDS',
-  },
 });
 
 sequelize
