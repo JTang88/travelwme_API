@@ -67,50 +67,60 @@ export default {
         },
       })
     },
-    searchTrip: (parent, args, { models }) => {
-      const Trips = models.Trip.findAll({
-        // where: {
-        //   relationship: args.relationship,
-        //   gender: {
-        //     $or: [args.gender, 'All']
-        //   }
-        // },
-        // age_start: { 
-        //       $lte: args.age,
-        //     },
+    searchTrip: async (parent, args, { models }) => {
+      const Trips = await models.Trip.findAll({
         where: {
           relationship: args.relationship,
           gender: {
-            $or:[args.gender, 'All']
+            $or: [args.gender, 'All']
           },
           age_start: { 
-            $lte: args.age,
+              $lte: args.age,
           },
           age_end: { 
-            $gte: args.age,
+           $gte: args.age,
           },
           cost:  { 
             $between: [args.cost_start, args.cost_end]
           },
           date_start: { 
-            $between: [date_start, args.date_end]
+            $between: [new Date(args.date_start), new Date (args.date_end)]
           },
           trip_status: 'open',
         },
-        include: [{
-          model: models.BodyType,
-          where: {
-            fitness: args.body_type,
-          },
-          include: [{
-            model: models.TripKeyword,
-            where:{
-              id: {
-                $or: JSON.parse(args.keys)
-              }
-            }
-          }]
-        }]
+        // where: {
+        //   relationship: args.relationship,
+        //   gender: {
+        //     $or:[args.gender, 'All']
+        //   },
+        //   age_start: { 
+        //     $lte: args.age,
+        //   },
+        //   age_end: { 
+        //     $gte: args.age,
+        //   },
+        //   cost:  { 
+        //     $between: [args.cost_start, args.cost_end]
+        //   },
+        //   date_start: { 
+        //     $between: [args.date_start, args.date_end]
+        //   },
+        //   trip_status: 'open',
+        // },
+        // include: [{
+        //   model: models.BodyType,
+        //   where: {
+        //     fitness: args.body_type,
+        //   },
+        //   include: [{
+        //     model: models.TripKeyword,
+        //     where:{
+        //       id: {
+        //         $or: JSON.parse(args.keys)
+        //       }
+        //     }
+        //   }]
+        // }]
       })
       console.log('at search trip', args)
       return Trips;
