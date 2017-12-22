@@ -68,6 +68,7 @@ export default {
       })
     },
     searchTrip: async (parent, args, { models }) => {
+      console.log(args)
       const Trips = await models.Trip.findAll({
         where: {
           relationship: args.relationship,
@@ -88,38 +89,19 @@ export default {
           },
           trip_status: 'open',
         },
-        // where: {
-        //   relationship: args.relationship,
-        //   gender: {
-        //     $or:[args.gender, 'All']
-        //   },
-        //   age_start: { 
-        //     $lte: args.age,
-        //   },
-        //   age_end: { 
-        //     $gte: args.age,
-        //   },
-        //   cost:  { 
-        //     $between: [args.cost_start, args.cost_end]
-        //   },
-        //   date_start: { 
-        //     $between: [args.date_start, args.date_end]
-        //   },
-        //   trip_status: 'open',
-        // },
         // include: [{
         //   model: models.BodyType,
         //   where: {
         //     fitness: args.body_type,
         //   },
-        //   include: [{
-        //     model: models.TripKeyword,
-        //     where:{
-        //       id: {
-        //         $or: JSON.parse(args.keys)
-        //       }
-        //     }
-        //   }]
+          // include: [{
+          //   model: models.TripKeyword,
+          //   where:{
+          //     id: {
+          //       $or: JSON.parse(args.keys)
+          //     }
+          //   }
+          // }]
         // }]
       })
       console.log('at search trip', args)

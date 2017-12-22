@@ -63,7 +63,7 @@ type Query {
     date_end: String,
     gender: String, 
     age: Int, 
-    relationship: String,  
+    relationship: String,
     ): [Trip]
   
   getTrip(id: Int!): Trip
