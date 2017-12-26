@@ -1,17 +1,19 @@
 
 
 {
-  "TripKeyword": [
-      {"word": "adventurous"},
-      {"word": "outdoor"},
-      {"word": "luxury"},
-      {"word": "foodlovers"}
+    "TripKeyword": [
+      {"word":"Adventurer"},
+      {"word": "Backpacker"},
+      {"word": "Explorer"},
+      {"word": "Gourmet"},
+      {"word": "Historian"} ,
+      {"word": "Luxury"}
     ],
     "BodyType": [
       {"fitness": "athletic"},
       {"fitness": "average"},
       {"fitness": "sexy"},
-      {"fitness": "couch potato"}
+      {"fitness": "well-rounded"}
     ],
     "User": [
       {
