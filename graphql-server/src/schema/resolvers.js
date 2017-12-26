@@ -3,6 +3,43 @@ import jwt from 'jsonwebtoken';
 import _ from 'lodash';
 import util from 'util'
 
+const convertKeywordToId = (comp) => {
+  if (comp === 'Adventurer') {
+    return 1
+  }
+  if (comp === 'Backpacker') {
+    return 2
+  }
+  if (comp === 'Explorer') {
+    return 3
+  }
+  if(comp === 'Gourmet ') {
+    return 4
+  }
+  if (comp === 'Historian') {
+    return 5
+  } 
+  if (comp === 'Luxury') {
+    return 6
+  }
+}
+
+const convertBodyTypeToId = (comp) => {
+  if (comp === 'athletic') {
+    return 1
+  }
+  if (comp === 'average') {
+    return 2
+  }
+  if (comp === 'sexy') {
+    return 3
+  }
+  if(comp === 'well-rounded') {
+    return 4
+  }
+}
+
+
 export default {
   User: {
     trips: async ({ id }, args, { models }) => {
@@ -76,24 +113,24 @@ export default {
             $or: [args.gender, 'All']
           },
           age_start: { 
-              $lte: args.age,
+            $lte: args.age,
           },
           age_end: { 
-           $gte: args.age,
+            $gte: args.age,
           },
           cost:  { 
             $between: [args.cost_start, args.cost_end]
           },
           date_start: { 
-            $between: [new Date(args.date_start), new Date (args.date_end)]
+            $between: [new Date(args.date_start), new Date(args.date_end)]
           },
           trip_status: 'open',
         },
-        // include: [{
-        //   model: models.BodyType,
-        //   where: {
-        //     fitness: args.body_type,
-        //   },
+        include: [{
+          model: models.BodyType,
+          where: {
+            fitness: args.body_type,
+          },
           // include: [{
           //   model: models.TripKeyword,
           //   where:{
@@ -102,9 +139,10 @@ export default {
           //     }
           //   }
           // }]
-        // }]
+        }]
       })
-      console.log('at search trip', args)
+      // console.log('at search trip', args)
+      console.log('this is the trips I have found for you', Trips);
       return Trips;
     },
     allTripMembers: (parent, args, { models }) => models.TripMembers.findAll(),
@@ -145,9 +183,21 @@ export default {
     createTrip: async (parent, args, { models }) => {
       const Trip = await models.Trip.create(args)
       Trip.addUsers(args.userId, {through: {user_type: "C"}});
-      Trip.addTripKeywords(JSON.parse(args.keys));
-      Trip.addBodyType(JSON.parse(args.body_types));
+     
+      const Keys = JSON.parse(args.keys);
+      const Body_types = JSON.parse(args.body_types)
 
+      for(let i = 0; i < Keys.length; i++) {
+        Trip.addTripKeywords(await convertKeywordToId(Keys[i]));
+      }
+      for(let i = 0; i < Body_types.length; i++) {
+        Trip.addBodyType(await convertBodyTypeToId(Body_types[i]));
+      }
+
+
+
+
+      // { where: { word: args.keys } }
       return Trip;
     }, 
     // addKey: (parent, args , {models}) =>{
