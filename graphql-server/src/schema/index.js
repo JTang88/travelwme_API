@@ -64,6 +64,8 @@ type Query {
     gender: String, 
     age: Int, 
     relationship: String,
+    keys: String,
+    body_type: String,
     ): [Trip]
   
   getTrip(id: Int!): Trip

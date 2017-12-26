@@ -126,20 +126,35 @@ export default {
           },
           trip_status: 'open',
         },
-        include: [{
-          model: models.BodyType,
-          where: {
-            fitness: args.body_type,
-          },
-          // include: [{
-          //   model: models.TripKeyword,
-          //   where:{
-          //     id: {
-          //       $or: JSON.parse(args.keys)
-          //     }
-          //   }
-          // }]
-        }]
+        include: [
+          {
+            model: models.BodyType,
+            where: {
+              fitness: args.body_type,
+            }
+          }, {
+            model: models.TripKeyword,
+            where:{
+              word: {
+                $or: JSON.parse(args.keys)
+              }
+            }
+          }
+        ]
+        // include: [{
+        //   model: models.BodyType,
+        //   where: {
+        //     fitness: args.body_type,
+        //   },
+        //   include: [{
+        //     model: models.TripKeyword,
+        //     where:{
+        //       word: {
+        //         $or: JSON.parse(args.keys)
+        //       }
+        //     }
+        //   }]
+        // }]
       })
       // console.log('at search trip', args)
       console.log('this is the trips I have found for you', Trips);
@@ -193,10 +208,6 @@ export default {
       for(let i = 0; i < Body_types.length; i++) {
         Trip.addBodyType(await convertBodyTypeToId(Body_types[i]));
       }
-
-
-
-
       // { where: { word: args.keys } }
       return Trip;
     }, 
