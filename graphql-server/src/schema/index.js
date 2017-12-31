@@ -11,7 +11,6 @@ type Trip {
   age_end: Int
   relationship: String
   trip_status: String
-  users:[User]
   user_type: String
   members: [TripMembers]
   publicId: String
@@ -23,9 +22,8 @@ type TripKeyword {
 }
 
 type TripMembers {
-
   user_type: String
-  users: [User]
+  user: User
   tripId: Int
 }
   

@@ -55,34 +55,18 @@ export default {
       trips.forEach((trip, idx) => {
         trip.user_type = trip.dataValues.users[0].dataValues.TripMembers.user_type;
       });
+      // console.log('this is users in trip resolver', util.inspect(trips, { showHidden: true, depth: 7 }))
       return trips
     }
-    
   },
   Trip: {
-    users: async ({ id }, args, { models }) => {
-      const users = await models.User.findAll({
-        include: [{
-          model: models.Trip,
-          where: { id },
-          through: {
-            attributes: ['user_type']
-          }
-        }],
-      })
-      users.forEach((user, idx) => {
-        user.user_type = user.dataValues.trips[0].dataValues.TripMembers.user_type;
-      });
-      return users
-    },
     members: ({ id }, args, { models }) => 
     models.TripMembers.findAll({ 
-        where: { tripId: id }
-    })
+        where: { tripId: id } })
   },
   TripMembers: {
-    users: ({ userId }, args, { models }) => 
-    models.User.findAll({ 
+    user: ({ userId }, args, { models }) => 
+    models.User.findOne({ 
         where: { id: userId }
     }),
   },
