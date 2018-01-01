@@ -125,6 +125,33 @@ export default {
       })
       return Trips;
     },
+    showTrendTrips: async (parent, args, { models }) => {
+      const Trips = await models.Trip.findAll({
+        where: {
+          relationship: args.relationship,
+          gender: {
+            $or: [args.gender, 'All']
+          },
+          age_start: { 
+            $lte: args.age,
+          },
+          age_end: { 
+            $gte: args.age,
+          },
+          trip_status: 'open',
+        },
+        include: [
+          {
+            model: models.BodyType,
+            where: {
+              fitness: args.body_type,
+            }
+          },
+        ]
+      })
+      console.log('this is what you get from searchTrendTrip', Trips)
+      return Trips;
+    },
     allTripMembers: (parent, args, { models }) => models.TripMembers.findAll(),
     allTrips: (parent, args, { models }) => models.Trip.findAll(),
     getTrip: (parent, { id }, { models }) =>
