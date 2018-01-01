@@ -66,12 +66,7 @@ type Query {
     body_type: String,
     ): [Trip]
   
-  showTrendTrips(
-    gender: String, 
-    age: Int, 
-    relationship: String,
-    body_type: String,
-    ): [Trip]
+  showTrendTrips(id: Int!): [Trip]
   
   getTrip(id: Int!): Trip
   fitTrips(fitness: String): Trip
