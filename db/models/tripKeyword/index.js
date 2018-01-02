@@ -2,7 +2,7 @@ export default (sequelize, Sequelize) => {
   const TripKeyword = sequelize.define('TripKeyword', {
     word: Sequelize.STRING,
   }, {
-    timestamps: false,
+    timestamps: true,
   });
   return TripKeyword;
 };

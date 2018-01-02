@@ -10,7 +10,7 @@ export default (sequelize, Sequelize) => {
     description: Sequelize.STRING,
     publicId: Sequelize.STRING,
   }, {
-    timestamps: false, 
+    timestamps: true, 
   });
   return User;
 }

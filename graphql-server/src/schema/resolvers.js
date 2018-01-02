@@ -88,6 +88,9 @@ export default {
     },
     searchTrip: async (parent, args, { models }) => {
       const Trips = await models.Trip.findAll({
+        order: [
+          ['createdAt', 'DESC']
+        ],
         where: {
           relationship: args.relationship,
           gender: {
@@ -132,6 +135,10 @@ export default {
         }
       });
       const Trips = await models.Trip.findAll({
+        order: [
+          ['createdAt', 'DESC']
+        ],
+        limit: 25,
         where: {
           relationship: User.relationship,
           gender: {

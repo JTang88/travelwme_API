@@ -2,7 +2,7 @@ export default (sequelize, Sequelize) => {
   const TripMembers = sequelize.define('TripMembers', {  
     user_type: Sequelize.STRING,
   }, {
-    timestamps: false,
+    timestamps: true,
   });
   return TripMembers;
 };

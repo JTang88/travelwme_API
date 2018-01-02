@@ -12,7 +12,7 @@ export default (sequelize, Sequelize) => {
     publicId: Sequelize.STRING,
     trip_status: Sequelize.STRING,
   }, {
-    timestamps: false,
+    timestamps: true,
   });
   return Trip;
 };
