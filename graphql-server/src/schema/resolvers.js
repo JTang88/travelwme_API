@@ -161,6 +161,7 @@ export default {
           },
         ]
       })
+      console.log('this is the trip that mathces the current user: ', Trips)
       return Trips;
     },
     allTripMembers: (parent, args, { models }) => models.TripMembers.findAll(),
