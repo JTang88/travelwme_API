@@ -1,10 +1,14 @@
 import bcrypt from 'bcrypt';
 import gender from 'gender';
+import lodash from 'lodash';
 import axios from 'axios';
 import express from 'express';
 import casual from 'casual';
 import db from './db';
 import seedData from './newdata.json';
+
+
+// console.log('this is tripDetails before buikCreate: ', db.TripDetails);
 
 const app = express();
 const port = 3250;
@@ -61,6 +65,13 @@ const datesMaker = () => {
   }
 }
 
+const keywordToId = (word) => {
+  return word === 'Adventurer' ? 1 : word === 'Backpacker' ? 2 : word === 'Explorer' ? 3 : 
+         word === 'Gourmet' ? 4 : word === 'Historian' ? 5 : word === 'Luxury' ? 6 : ''
+}
+
+
+
 const print = async (func) => {
   console.log(await func());
 }
@@ -72,7 +83,7 @@ const makeUsers = async () => {
   const users = [];
   const memo = {};
 
-  for(let i = 0; i < 200; i++) {
+  for(let i = 0; i < 20; i++) {
     const user = {};
     let name = await casual.first_name;
     const mof = await gender.guess(name);
@@ -121,46 +132,22 @@ const makeTrips = async () => {
 }
 
 
-const makeTripDetails = async () => {
-
+const makeTripDetails = async (trips) => {
+  const tripDetails = [];
+  trips.forEach((trip, i) => {
+    JSON.parse(trip.trip_keywords).forEach(key => {
+      const tripDetail = {};
+      tripDetail.tripId = i + 1;
+      tripDetail.TripKeywordId = keywordToId(key);
+      tripDetails.push(tripDetail);
+    })
+  })
+  return tripDetails;
 }
 
 
-
-
-
-// export default (sequelize, Sequelize) => {
-//   const Trip = sequelize.define('trip', {
-//     title: Sequelize.STRING,
-//     description: Sequelize.STRING,
-//     cost: Sequelize.INTEGER,
-//     date_start: Sequelize.DATEONLY,
-//     date_end: Sequelize.DATEONLY,
-//     gender: Sequelize.STRING,
-//     body_types: Sequelize.STRING,
-//     trip_keywords: Sequelize.STRING,
-//     age_start: Sequelize.INTEGER,
-//     age_end: Sequelize.INTEGER,
-//     relationship: Sequelize.STRING,
-//     publicId: Sequelize.STRING,
-//     trip_status: Sequelize.STRING,
-//    {
-//     timestamps: true,
-//   });
-//   return Trip;
-// };
-
-
-
-
-
-
-
-
-
-
-
-
+// tripId        
+// TripKeywordId
 
 // print(makeTrips);
 
@@ -170,10 +157,14 @@ const makeData = async () => {
   await db.TripKeyword.bulkCreate(seedData.TripKeyword)
   const users = await makeUsers();
   const trips = await makeTrips();
-  db.User.bulkCreate(users);
-  db.Trip.bulkCreate(trips);
-
+  const tripDetails = await makeTripDetails(trips);
+  await db.User.bulkCreate(users);
+  await db.Trip.bulkCreate(trips);
+  console.log(tripDetails);
+  await db.TripDetails.bulkCreate(tripDetails);
 }
+
+// console.log('this is tripDetails after buikCreate: ', db.TripDetails);
 
 
 makeData();
