@@ -11,6 +11,7 @@
       "jest": true
     },
     "rules": {
+      "no-plusplus": 0,
       "jest/no-disabled-tests": 0,
       "jest/no-focused-tests": 0,
       "jest/no-identical-title": 0,

@@ -77,9 +77,9 @@ export default {
  
       // console.log('this is user in getUser resolver', user)
 
-      // if(!user) {
-      //   throw new Error("You are not logged in")
-      // }
+      if(!user) {
+        throw new Error("You are not logged in")
+      }
       return models.User.findOne({
         where: {
           id,
@@ -264,15 +264,14 @@ export default {
     },
     login: async (parent, { email, password }, { models }) => {
       const user = await models.User.findOne({ where: { email }}); 
-
       if(!user) {
         throw new Error('No such user or email exist');
       }
 
-      const valid = bcrypt.compare(password, user.password); 
+      const valid = await bcrypt.compare(password, user.password); 
 
       if(!valid) {
-        throw new Error('invalid password motherfuckers!!');
+        throw new Error('invalid password!!');
       }
 
       const token = await jwt.sign({
