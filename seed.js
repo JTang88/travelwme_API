@@ -192,14 +192,22 @@ const makeTripMembers = async (users, trips) => {
           tripMember.userId = u+1;
 
           if (trip.hasACreator === true) {
-            tripMember.user_type = random(['j', 'i']); 
+            tripMember.user_type = random(['J', 'I']); 
           } else {
-            tripMember.user_type = random(['c', 'j', 'i']);  
-          }
-
-          if (tripMember.user_type === 'c') {
+            tripMember.user_type = 'C'
             trip.hasACreator = true; 
-          } 
+          }
+          // or 
+          
+          // if (trip.hasACreator === true) {
+          //   tripMember.user_type = random(['J', 'I']); 
+          // } else {
+          //   tripMember.user_type = random(['C', 'J', 'I']);  
+          // }
+
+          // if (tripMember.user_type === 'C') {
+          //   trip.hasACreator = true; 
+          // } 
           // push tripMember to TripMembers
           tripMembers.push(tripMember);
         }
