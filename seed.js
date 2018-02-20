@@ -87,7 +87,7 @@ const makeUsers = async () => {
   const users = [];
   const memo = {};
 
-  for(let i = 0; i < 20; i++) {
+  for(let i = 0; i < 100; i++) {
     const user = {};
     let name = await casual.first_name;
     const mof = await gender.guess(name);
@@ -135,6 +135,8 @@ const makeTrips = async () => {
   return trips;
 }
 
+// print(makeUsers);
+
 
 const makeTripDetails = async (trips) => {
   const tripDetails = [];
@@ -163,6 +165,64 @@ const makeFitness = async (trips) => {
 }
 
 
+// 1. age
+// 2. bodyTypes
+// 3. gender
+// 4. relationship 
+
+
+
+const makeTripMembers = async (users, trips) => {
+  const tripsCopy = trips.slice(0);
+  const tripMembers = [];
+  // forEach user
+  users.forEach((user, u) => {
+
+    // iterate through trip data entry once
+    tripsCopy.forEach((trip, t) => {
+
+      // if the criteras match
+
+      if (user.age >= trip.age_start && user.age <= trip.age_end && JSON.parse(trip.body_types).includes(user.body_type) && trip.relationship === user.relationship) {
+        if (trip.gender === user.gender || trip.gender === 'all') {
+          // create a tripMember Obj and add userId and tripId to it
+          const tripMember = {};
+          // and randomly add userType as well
+          tripMember.tripId = t+1
+          tripMember.userId = u+1;
+
+          if (trip.hasACreator === true) {
+            tripMember.user_type = random(['j', 'i']); 
+          } else {
+            tripMember.user_type = random(['c', 'j', 'i']);  
+          }
+
+          if (tripMember.user_type === 'c') {
+            trip.hasACreator = true; 
+          } 
+          // push tripMember to TripMembers
+          tripMembers.push(tripMember);
+        }
+      }   
+    }) 
+  })
+  // retrun tripMembers; 
+  return tripMembers;
+}
+
+
+
+// const temp = async () => {
+//   const users = await makeUsers();
+//   const trips = await makeTrips();
+//   const tripDetails = await makeTripDetails(trips);
+//   const tripMembers = await makeTripMembers(users, trips);
+//   console.log(tripMembers); 
+// }  
+
+// temp();
+
+
 const makeData = async () => {
   await db.BodyType.bulkCreate(seedData.BodyType)  
   await db.TripKeyword.bulkCreate(seedData.TripKeyword)
@@ -170,12 +230,12 @@ const makeData = async () => {
   const trips = await makeTrips();
   const tripDetails = await makeTripDetails(trips);
   const fitness = await makeFitness(trips);
-  console.log(fitness);
+  const tripMembers = await makeTripMembers(users, trips);
   await db.User.bulkCreate(users);
   await db.Trip.bulkCreate(trips);
   await db.TripDetails.bulkCreate(tripDetails);
   await db.Fitness.bulkCreate(fitness);
-
+  await db.TripMembers.bulkCreate(tripMembers);
 }
 
 // console.log('this is tripDetails after buikCreate: ', db.TripDetails);
