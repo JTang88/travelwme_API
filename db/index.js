@@ -25,6 +25,9 @@ db.BodyType = sequelize.import('./models/bodyType');
 db.TripKeyword = sequelize.import('./models/tripKeyword');
 db.TripMembers = sequelize.import('./models/tripMembers');
 db.TripDetails = sequelize.import('./models/tripDetails');
+db.Fitness = sequelize.import('./models/Fitness');
+
+
 db.Comment = sequelize.import('./models/comment');
 db.Vote = sequelize.import('./models/vote');
 
@@ -34,8 +37,8 @@ db.Trip.belongsToMany(db.User, { through: db.TripMembers });
 db.Trip.belongsToMany(db.TripKeyword, { through: db.TripDetails });
 db.TripKeyword.belongsToMany(db.Trip, { through: db.TripDetails });
 
-db.Trip.belongsToMany(db.BodyType, { through: 'Fitness' });
-db.BodyType.belongsToMany(db.Trip, { through: 'Fitness' });
+db.Trip.belongsToMany(db.BodyType, { through: db.Fitness });
+db.BodyType.belongsToMany(db.Trip, { through: db.Fitness });
 
 db.Comment.belongsTo(db.Trip);
 db.Trip.hasMany(db.Comment);

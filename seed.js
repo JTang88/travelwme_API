@@ -70,6 +70,10 @@ const keywordToId = (word) => {
          word === 'Gourmet' ? 4 : word === 'Historian' ? 5 : word === 'Luxury' ? 6 : ''
 }
 
+const typeToId = (type) => {
+  return type === 'athletic' ? 1 : type === 'average' ? 2 : type === 'sexy' ? 3 : type === 'well-rounded' ? 4 : ''
+}
+
 
 
 const print = async (func) => {
@@ -145,11 +149,18 @@ const makeTripDetails = async (trips) => {
   return tripDetails;
 }
 
-
-// tripId        
-// TripKeywordId
-
-// print(makeTrips);
+const makeFitness = async (trips) => {
+  const fitness = [];
+  trips.forEach((trip, i) => {
+    JSON.parse(trip.body_types).forEach(type => {
+      const fit = {};
+      fit.tripId = i + 1;
+      fit.BodyTypeId = typeToId(type);
+      fitness.push(fit);
+    })
+  })
+  return fitness;
+}
 
 
 const makeData = async () => {
@@ -158,10 +169,13 @@ const makeData = async () => {
   const users = await makeUsers();
   const trips = await makeTrips();
   const tripDetails = await makeTripDetails(trips);
+  const fitness = await makeFitness(trips);
+  console.log(fitness);
   await db.User.bulkCreate(users);
   await db.Trip.bulkCreate(trips);
-  console.log(tripDetails);
   await db.TripDetails.bulkCreate(tripDetails);
+  await db.Fitness.bulkCreate(fitness);
+
 }
 
 // console.log('this is tripDetails after buikCreate: ', db.TripDetails);
