@@ -16,4 +16,3 @@ const User = `
   }`;
 
 export default () => [User, Trip];
-

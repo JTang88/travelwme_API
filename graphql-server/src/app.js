@@ -8,7 +8,7 @@ import cors from 'cors';
 import router from './routes';
 // import typeDefs from './schema/';
 // import resolvers from './schema/resolvers';
-import schema from '../../db/models/schema';
+import schema from './graphql';
 
 import models from '../../db';
 import { read } from 'fs';

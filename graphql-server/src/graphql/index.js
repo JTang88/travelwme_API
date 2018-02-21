@@ -1,10 +1,11 @@
+
 import { makeExecutableSchema } from 'graphql-tools';
-import resolvers from '../../graphql-server/src/schema/resolvers';
-import Trip from './trip/schema';
-import TripKeyword from './tripKeyword/schema';
-import TripMembers from './tripMembers/schema';
-import Vote from './vote/schema';
-import User from './user/schema';
+import resolvers from './resolvers';
+import Trip from './types/trip/schema';
+import TripKeyword from './types/tripKeyword/schema';
+import TripMembers from './types/tripMembers/schema';
+import Vote from './types/vote/schema';
+import User from './types/user/schema';
 
 const Query = `
   type Query {
@@ -56,11 +57,18 @@ const SchemaDefinition = `
   }
 `;
 
-
 export default makeExecutableSchema({
   typeDefs: [
     SchemaDefinition, Query, Mutation, Vote, User, TripKeyword, TripMembers, Trip,
   ],
   resolvers,
 });
+
+
+  
+
+
+
+
+
 
