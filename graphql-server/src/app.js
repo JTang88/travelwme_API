@@ -3,11 +3,13 @@ import bodyParser from 'body-parser';
 import jwt from 'jsonwebtoken';
 import mysql from 'mysql2';
 import { graphiqlExpress, graphqlExpress } from 'apollo-server-express';
-import { makeExecutableSchema } from 'graphql-tools';
+// import { makeExecutableSchema } from 'graphql-tools';
 import cors from 'cors';
 import router from './routes';
-import typeDefs from './schema/';
-import resolvers from './schema/resolvers';
+// import typeDefs from './schema/';
+// import resolvers from './schema/resolvers';
+import schema from '../../db/models/schema';
+
 import models from '../../db';
 import { read } from 'fs';
 
@@ -28,10 +30,10 @@ const addUser = async (req, res) => {
   req.next(); 
 } 
 
-const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers,
-});
+// const schema = makeExecutableSchema({
+//   typeDefs,
+//   resolvers,
+// });
 
 app.use(cors('/*'));
 
