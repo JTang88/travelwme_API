@@ -1,5 +1,5 @@
 import TripMembers from '../tripMembers/schema';
-// import User from '../user/schema';
+import User from '../user/schema';
 
 const Trip = `
   type Trip {

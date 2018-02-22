@@ -5,7 +5,6 @@ import mysql from 'mysql2';
 import { graphiqlExpress, graphqlExpress } from 'apollo-server-express';
 // import { makeExecutableSchema } from 'graphql-tools';
 import cors from 'cors';
-import router from './routes';
 // import typeDefs from './schema/';
 // import resolvers from './schema/resolvers';
 import schema from './graphql';

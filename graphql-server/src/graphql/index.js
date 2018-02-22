@@ -1,54 +1,49 @@
-
+import { merge } from 'lodash'
 import { makeExecutableSchema } from 'graphql-tools';
-import resolvers from './resolvers';
+// import all types
+import Query from './queries/schema';
+import Mutation from './mutations/schema';
 import Trip from './types/trip/schema';
 import TripKeyword from './types/tripKeyword/schema';
 import TripMembers from './types/tripMembers/schema';
 import Vote from './types/vote/schema';
 import User from './types/user/schema';
+// import all type resolvers
+import TripResolver from './types/trip/resolver';
+import UserResolver from './types/user/resolver';
+import TripMembersResolver from './types/tripMembers/resolver';
 
-const Query = `
-  type Query {
-    allUsers: [User]
-    getUser(id: Int!): User
-    allTripMembers: [TripMembers]
-    allTrips: [Trip!]!
-  
-    searchTrip(
-      cost_start: Int,
-      cost_end: Int ,
-      date_start: String, 
-      date_end: String,
-      gender: String, 
-      age: Int, 
-      relationship: String,
-      keys: String,
-      body_type: String,
-    ): [Trip]
-    
-    showTrendTrips(id: Int!): [Trip]
-    getTrip(id: Int!): Trip
-    fitTrips(fitness: String): Trip
-  }
-`;
+// import all query resolvers
+import allTripMembers from './queries/resolvers/allTripMembers';
+import allTrips from './queries/resolvers/allTrips';
+import allUsers from './queries/resolvers/allUsers';
+import fitTrips from './queries/resolvers/fitTrips';
+import getTrip from './queries/resolvers/getTrip';
+import getUser from './queries/resolvers/getUser';
+import searchTrip from './queries/resolvers/searchTrip';
+import showTrendTrips from './queries/resolvers/showTrendTrips';
+// import all mutation resolvers
+import addPhotoToTrip from './mutations/resolvers/addPhotoToTrip';
+import addPhotoToUser from './mutations/resolvers/addPhotoToUser';
+import createTrip from './mutations/resolvers/createTrip';
+import deleteUser from './mutations/resolvers/deleteUser';
+import interestedInATrip from './mutations/resolvers/interestedInATrip';
+import login from './mutations/resolvers/login';
+import register from './mutations/resolvers/register';
+import updateTrip from './mutations/resolvers/updateTrip';
+import updateTripState from './mutations/resolvers/updateTripState';
+import updateUser from './mutations/resolvers/updateUser';
+import updateUserRelationshipToTrip from './mutations/resolvers/updateUserRelationshipToTrip';
 
-const Mutation = `
-  type Mutation {
-    updateUser(id: Int!, username: String!, gender: String!, age: Int!, body_type: String!, relationship: String!, description: String!): [Int!]!
-    updateUserRelationshipToTrip(userId: Int!, tripId: Int!, user_type: String!): Trip
-    interestedInATrip(userId: Int!, tripId: Int!, user_type: String!): TripMembers
-    deleteUser(id: Int!): Int!  
-    addKey(word: String) : TripKeyword
-    addPhotoToUser(id: Int!, publicId: String!): [Int!]!
-    addPhotoToTrip(id: Int!, publicId: String!): [Int!]!
-    createTrip(title: String!, description: String!, cost: Int, date_start: String, date_end: String, gender: String!, age_start: Int!, age_end: Int!, relationship: String!, trip_status: String!, keys: String, body_types: String, trip_keywords: String, userId: Int, publicId: String): Trip 
-    updateTrip(id: Int!, title: String!, description: String!, cost: Int!, date_start: String!, date_end: String!, gender: String!, age: Int!, body_type: Int!, relationship: String!, trip_state: String!, key1: String!, key2: String!, key3: String!, key4: String!, key5: String!, key6: String!): [Int!]!
-    updateTripState(id: Int! new_state: String!): Trip
-    deleteTrip(id: Int!): Int!
-    register(username: String!, email: String!, password: String!, gender: String!, age: Int!, relationship: String!, body_type: String!): User!
-    login(email: String, password: String): String!
-  }
-  `;
+
+const resolvers = {
+  Query: merge(allTripMembers, allTrips, allUsers, fitTrips, getTrip, getUser, searchTrip, showTrendTrips),
+  Mutation: merge(addPhotoToTrip, addPhotoToUser, createTrip, deleteUser, interestedInATrip, login, register, updateTrip, updateTripState, updateUser, updateUserRelationshipToTrip),
+  User: UserResolver,
+  Trip: TripResolver,
+  TripMembers: TripMembersResolver,
+};
+
 
 const SchemaDefinition = `
   schema {
@@ -63,12 +58,4 @@ export default makeExecutableSchema({
   ],
   resolvers,
 });
-
-
-  
-
-
-
-
-
 
