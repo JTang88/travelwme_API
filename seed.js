@@ -6,8 +6,6 @@ import express from 'express';
 import casual from 'casual';
 import db from './db';
 import seedData from './newdata.json';
-
-
 // console.log('this is tripDetails before buikCreate: ', db.TripDetails);
 
 const app = express();

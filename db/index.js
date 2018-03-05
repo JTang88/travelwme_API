@@ -50,6 +50,8 @@ db.User.hasMany(db.Vote);
 sequelize.sync();
 
 
+console.log('this is what tripMembers look like', db.TripDetails); 
+
 export default db;
 
 

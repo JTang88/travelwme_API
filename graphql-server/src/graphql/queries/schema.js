@@ -18,6 +18,7 @@ const Query = `
     ): [Trip]
     
     showTrendTrips(id: Int!): [Trip]
+    getCreatedTrips(id: Int!): [Trip]
     getTrip(id: Int!): Trip
     fitTrips(fitness: String): Trip
   }
