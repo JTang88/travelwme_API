@@ -1,10 +1,10 @@
 export default {
-  getCreatedTrips: async (parent, { id }, { models }) => {
+  getWaitingTrips: async (parent, { id }, { models }) => {
     const targetedTripIds = [];
     const targetedTrips = await models.TripMembers.findAll({
       where: {
         userId: id,
-        user_type: 'C',
+        user_type: 'I',
       }
     });
 

@@ -19,6 +19,8 @@ const Query = `
     
     showTrendTrips(id: Int!): [Trip]
     getCreatedTrips(id: Int!): [Trip]
+    getWaitingTrips(id: Int!): [Trip]
+    getJoinedTrips(id: Int!): [Trip]
     getTrip(id: Int!): Trip
     fitTrips(fitness: String): Trip
   }
