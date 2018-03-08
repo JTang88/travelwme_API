@@ -1,11 +1,20 @@
 import bcrypt from 'bcrypt';
 import gender from 'gender';
 import lodash from 'lodash';
+import cloudinary from 'cloudinary';
+import util from 'util';
 import axios from 'axios';
 import express from 'express';
 import casual from 'casual';
 import db from './db';
 import seedData from './newdata.json';
+
+cloudinary.config({ 
+  cloud_name: 'travelwme', 
+  api_key: '747367114652619', 
+  api_secret: 'M5Egmwq-fJALSgZortQgGlN9_pg' 
+});
+
 // console.log('this is tripDetails before buikCreate: ', db.TripDetails);
 
 const app = express();
@@ -72,24 +81,61 @@ const typeToId = (type) => {
   return type === 'athletic' ? 1 : type === 'average' ? 2 : type === 'sexy' ? 3 : type === 'well-rounded' ? 4 : ''
 }
 
-
-
 const print = async (func) => {
   console.log(await func());
 }
 
-
 // data makers below
+
+// const makeUsers = async () => {
+//   const users = [];
+//   const memo = {};
+
+//   for(let i = 0; i < 100; i++) {
+//     const user = {};
+//     let name = await casual.first_name;
+//     const mof = await gender.guess(name);
+//     user.gender = mof.gender === 'unknown' ? 'male' : mof.gender;
+//     memo[name] = !memo[name] ? 0 : memo[name] + 1;
+//     name = memo[name] > 0 ? name + memo[name] : name;
+//     user.username = name;
+//     user.email = `${name}@test.com`;
+//     user.password = await bcrypt.hash(`${name}test`, 12);
+//     user.age = await randomAge();
+//     user.body_type = await random([ 'athletic', 'average', 'sexy', 'well-rounded' ])
+//     user.description = casual.sentence;
+//     user.relationship = random(['single', 'commited', 'it\'s complicated', 'married', 'single', 'single', 'single']);
+//     users.push(user);
+//   }
+//   return users;
+// }
+
+
+// console.log(cloudinary.uploader);
+
+// 'https://randomuser.me/api/?results=5000?gender=female'
+
+// const test = async () => {
+//   const result = await cloudinary.uploader.upload("https://www.elciudadano.cl/wp-content/uploads/2016/09/scarlett-Johansson.jpg");
+//   return result; 
+// }
+// print(test);
+
 
 const makeUsers = async () => {
   const users = [];
   const memo = {};
+  const femaleDate = await axios.get('https://randomuser.me/api/?results=100&gender=female');
+  const maleDate = await axios.get('https://randomuser.me/api/?results=100&gender=male');
+  const femaleUsers = femaleDate.data.results
+  const maleUsers = maleDate.data.results
 
-  for(let i = 0; i < 100; i++) {
+  // console.log(util.inspect(femaleUsers, { showHidden: true, depth: 5 }));
+  for(let i = 0; i < maleUsers.length; i++) {
     const user = {};
-    let name = await casual.first_name;
-    const mof = await gender.guess(name);
-    user.gender = mof.gender === 'unknown' ? 'male' : mof.gender;
+    const { public_id } = await cloudinary.uploader.upload(`${maleUsers[i].picture.large}`);
+    let name = maleUsers[i].name.first
+    user.gender = 'male';
     memo[name] = !memo[name] ? 0 : memo[name] + 1;
     name = memo[name] > 0 ? name + memo[name] : name;
     user.username = name;
@@ -98,20 +144,47 @@ const makeUsers = async () => {
     user.age = await randomAge();
     user.body_type = await random([ 'athletic', 'average', 'sexy', 'well-rounded' ])
     user.description = casual.sentence;
+    user.publicId = public_id;
     user.relationship = random(['single', 'commited', 'it\'s complicated', 'married', 'single', 'single', 'single']);
     users.push(user);
   }
+
+  for(let i = 0; i < femaleUsers.length; i++) {
+    const user = {};
+    const { public_id } = await cloudinary.uploader.upload(`${femaleUsers[i].picture.large}`);
+    let name = femaleUsers[i].name.first
+    user.gender = 'female';
+    memo[name] = !memo[name] ? 0 : memo[name] + 1;
+    name = memo[name] > 0 ? name + memo[name] : name;
+    user.username = name;
+    user.email = `${name}@test.com`;
+    user.password = await bcrypt.hash(`${name}test`, 12);
+    user.age = await randomAge();
+    user.body_type = await random([ 'athletic', 'average', 'sexy', 'well-rounded' ])
+    user.description = casual.sentence;
+    user.publicId = public_id;
+    user.relationship = random(['single', 'commited', 'it\'s complicated', 'married', 'single', 'single', 'single']);
+    users.push(user);
+  }
+
   return users;
 }
 
+print(makeUsers);
 
-// print(makeUsers);
+// const testCloudinary = () => {
+//   const response = await axios.post(
+//     `https://api.cloudinary.com/v1_1/travelwme/image/upload`,
+//     formData,
+//   );
+// }
+
 
 
 const makeTrips = async () => {
   const trips = [];
   const memo = {};
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 100; i++) {
     const dates = datesMaker();
     const trip = {};
     let title = casual.country
@@ -195,18 +268,6 @@ const makeTripMembers = async (users, trips) => {
             tripMember.user_type = 'C'
             trip.hasACreator = true; 
           }
-          // or 
-          
-          // if (trip.hasACreator === true) {
-          //   tripMember.user_type = random(['J', 'I']); 
-          // } else {
-          //   tripMember.user_type = random(['C', 'J', 'I']);  
-          // }
-
-          // if (tripMember.user_type === 'C') {
-          //   trip.hasACreator = true; 
-          // } 
-          // push tripMember to TripMembers
           tripMembers.push(tripMember);
         }
       }   
@@ -243,9 +304,6 @@ const makeData = async () => {
   await db.Fitness.bulkCreate(fitness);
   await db.TripMembers.bulkCreate(tripMembers);
 }
-
-// console.log('this is tripDetails after buikCreate: ', db.TripDetails);
-
 
 makeData();
 
