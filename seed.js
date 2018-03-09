@@ -85,41 +85,7 @@ const print = async (func) => {
   console.log(await func());
 }
 
-// data makers below
-
-// const makeUsers = async () => {
-//   const users = [];
-//   const memo = {};
-
-//   for(let i = 0; i < 100; i++) {
-//     const user = {};
-//     let name = await casual.first_name;
-//     const mof = await gender.guess(name);
-//     user.gender = mof.gender === 'unknown' ? 'male' : mof.gender;
-//     memo[name] = !memo[name] ? 0 : memo[name] + 1;
-//     name = memo[name] > 0 ? name + memo[name] : name;
-//     user.username = name;
-//     user.email = `${name}@test.com`;
-//     user.password = await bcrypt.hash(`${name}test`, 12);
-//     user.age = await randomAge();
-//     user.body_type = await random([ 'athletic', 'average', 'sexy', 'well-rounded' ])
-//     user.description = casual.sentence;
-//     user.relationship = random(['single', 'commited', 'it\'s complicated', 'married', 'single', 'single', 'single']);
-//     users.push(user);
-//   }
-//   return users;
-// }
-
-
-// console.log(cloudinary.uploader);
-
-// 'https://randomuser.me/api/?results=5000?gender=female'
-
-// const test = async () => {
-//   const result = await cloudinary.uploader.upload("https://www.elciudadano.cl/wp-content/uploads/2016/09/scarlett-Johansson.jpg");
-//   return result; 
-// }
-// print(test);
+// dateMakers below..
 
 
 const makeUsers = async () => {
@@ -170,16 +136,7 @@ const makeUsers = async () => {
   return users;
 }
 
-print(makeUsers);
-
-// const testCloudinary = () => {
-//   const response = await axios.post(
-//     `https://api.cloudinary.com/v1_1/travelwme/image/upload`,
-//     formData,
-//   );
-// }
-
-
+// print(makeUsers);
 
 const makeTrips = async () => {
   const trips = [];
@@ -195,6 +152,7 @@ const makeTrips = async () => {
     trip.gender = await random(['male', 'female', 'all', 'all', 'all', 'all']);
     trip.date_start = dates.date_start;
     trip.date_end = dates.date_end;
+    trip.creatorId = Math.floor(Math.random() * 200) + 1;
     trip.age_start = random([18, 25, 30, 35])
     trip.age_end = trip.age_start === 18 ? 30 : trip.age_start + 10;
     trip.relationship = await random(['single', 'commited', 'it\'s complicated', 'married', 'single', 'single', 'single']);
@@ -235,26 +193,15 @@ const makeFitness = async (trips) => {
   return fitness;
 }
 
-
-// 1. age
-// 2. bodyTypes
-// 3. gender
-// 4. relationship 
-
-
-
 const makeTripMembers = async (users, trips) => {
   const tripsCopy = trips.slice(0);
   const tripMembers = [];
   // forEach user
   users.forEach((user, u) => {
-
     // iterate through trip data entry once
     tripsCopy.forEach((trip, t) => {
-
       // if the criteras match
-
-      if (user.age >= trip.age_start && user.age <= trip.age_end && JSON.parse(trip.body_types).includes(user.body_type) && trip.relationship === user.relationship) {
+      if (u+1 !== trip.creatorId && user.age >= trip.age_start && user.age <= trip.age_end && JSON.parse(trip.body_types).includes(user.body_type) && trip.relationship === user.relationship) {
         if (trip.gender === user.gender || trip.gender === 'all') {
           // create a tripMember Obj and add userId and tripId to it
           const tripMember = {};
@@ -262,12 +209,14 @@ const makeTripMembers = async (users, trips) => {
           tripMember.tripId = t+1
           tripMember.userId = u+1;
 
-          if (trip.hasACreator === true) {
-            tripMember.user_type = random(['J', 'I']); 
-          } else {
-            tripMember.user_type = 'C'
-            trip.hasACreator = true; 
-          }
+          // if (trip.hasACreator === true) {
+          tripMember.user_type = random(['J', 'I']); 
+          // } else {
+          //   // tripMember.user_type = 'C'
+          //   trips[t + 1].creatorId = u+1;
+          //   trip.hasACreator = true; 
+          // }
+
           tripMembers.push(tripMember);
         }
       }   
@@ -285,6 +234,7 @@ const makeTripMembers = async (users, trips) => {
 //   const tripDetails = await makeTripDetails(trips);
 //   const tripMembers = await makeTripMembers(users, trips);
 //   console.log(tripMembers); 
+//   console.log(trips);
 // }  
 
 // temp();

@@ -12,6 +12,7 @@ const Trip = `
     date_start: String
     date_end: String
     gender: String
+    creator: User
     age_start: Int
     age_end: Int
     body_types: String

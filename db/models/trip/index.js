@@ -3,6 +3,7 @@ export default (sequelize, Sequelize) => {
     title: Sequelize.STRING,
     description: Sequelize.STRING,
     cost: Sequelize.INTEGER,
+    creatorId: Sequelize.INTEGER,
     date_start: Sequelize.DATEONLY,
     date_end: Sequelize.DATEONLY,
     gender: Sequelize.STRING,
