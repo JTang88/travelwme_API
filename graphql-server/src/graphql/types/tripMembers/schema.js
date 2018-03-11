@@ -3,6 +3,7 @@ import User from '../user/schema';
 
 const TripMembers = `
   type TripMembers {
+    id: Int
     user_type: String
     user: User
     tripId: Int
