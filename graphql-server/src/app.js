@@ -16,6 +16,9 @@ const app = express();
 
 const addUser = async (req, res) => {
   const token = req.headers.authorization.split(' ')[1];
+  console.log('this is token', token)
+  console.log('this is token type', typeof token)
+
   try {
     const { user } = await jwt.verify(token, process.env.TOKEN_SECRET);
     req.user = user;
