@@ -37,11 +37,23 @@ import updateTrip from './mutations/resolvers/updateTrip';
 import updateTripState from './mutations/resolvers/updateTripState';
 import updateUser from './mutations/resolvers/updateUser';
 import updateUserRelationshipToTrip from './mutations/resolvers/updateUserRelationshipToTrip';
+import deleteAUserFromTrip from './mutations/resolvers/deleteAUserFromTrip';
 
 
 const resolvers = {
   Query: merge(allTripMembers, allTrips, allUsers, fitTrips, getTrip, getUser, searchTrip, showTrendTrips, getCreatedTrips, getJoinedTrips, getWaitingTrips),
-  Mutation: merge(addPhotoToTrip, addPhotoToUser, createTrip, deleteUser, interestedInATrip, login, register, updateTrip, updateTripState, updateUser, updateUserRelationshipToTrip),
+  Mutation: merge(addPhotoToTrip, 
+    addPhotoToUser, 
+    createTrip, 
+    deleteUser, 
+    interestedInATrip, 
+    login, register, 
+    updateTrip, 
+    updateTripState, 
+    updateUser, 
+    updateUserRelationshipToTrip,
+    deleteAUserFromTrip
+  ),
   User: UserResolver,
   Trip: TripResolver,
   TripMembers: TripMembersResolver,
