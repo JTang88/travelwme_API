@@ -6,6 +6,7 @@ const TripMembers = `
     id: Int
     user_type: String
     user: User
+    updatedAt: String
     tripId: Int
   }`;
 
