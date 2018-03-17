@@ -132,7 +132,7 @@ const makeUsers = async () => {
     user.relationship = random(['single', 'commited', 'it\'s complicated', 'married', 'single', 'single', 'single']);
     users.push(user);
   }
-
+  // console.log('It made users')
   return users;
 }
 
@@ -148,6 +148,9 @@ const makeTrips = async () => {
     memo[title] = !memo[title] ? 0 : memo[title] + 1; 
     trip.title = memo[title] > 0 ? title+memo[title]+randomTripAdj() : `${title} ${randomTripAdj()}`
     trip.description = casual.sentence;
+    trip.interesters = 0;
+    trip.joiners = 0;
+    trip.forSureGoing = 1;
     trip.cost = await random([5000, 7000, 10000, 20000, 30000]);
     trip.gender = await random(['male', 'female', 'all', 'all', 'all', 'all']);
     trip.date_start = dates.date_start;
@@ -161,6 +164,7 @@ const makeTrips = async () => {
     trip.trip_status = 'open';
     trips.push(trip);
   }
+  // console.log('It madre trips')
   return trips;
 }
 
@@ -203,26 +207,28 @@ const makeTripMembers = async (users, trips) => {
       // if the criteras match
       if (u+1 !== trip.creatorId && user.age >= trip.age_start && user.age <= trip.age_end && JSON.parse(trip.body_types).includes(user.body_type) && trip.relationship === user.relationship) {
         if (trip.gender === user.gender || trip.gender === 'all') {
-          // create a tripMember Obj and add userId and tripId to it
           const tripMember = {};
-          // and randomly add userType as well
           tripMember.tripId = t+1
           tripMember.userId = u+1;
-
-          // if (trip.hasACreator === true) {
           tripMember.user_type = random(['J', 'I']); 
-          // } else {
-          //   // tripMember.user_type = 'C'
-          //   trips[t + 1].creatorId = u+1;
-          //   trip.hasACreator = true; 
-          // }
+          if (tripMember.user_type === 'I') {
+            trips[t].interesters++;
+          } else {
+            trips[t].joiners++;
+            // console.log('in tripMembers before boolena')
+            tripMember.forSureGoing = random([ true, false ]);
+            // console.log('in tripMembers after boolena')
 
+            if (tripMember.forSureGoing === true) {
+              trips[t].forSureGoing++
+            } 
+          }
           tripMembers.push(tripMember);
         }
       }   
     }) 
   })
-  // retrun tripMembers; 
+  // console.log('It madre tripMembers')
   return tripMembers;
 }
 
@@ -233,6 +239,9 @@ const makeTripMembers = async (users, trips) => {
 //   const trips = await makeTrips();
 //   const tripDetails = await makeTripDetails(trips);
 //   const tripMembers = await makeTripMembers(users, trips);
+//   trips;
+//   console.log(users);
+//   console.log(trips);
 //   console.log(tripMembers); 
 //   console.log(trips);
 // }  
@@ -248,11 +257,21 @@ const makeData = async () => {
   const tripDetails = await makeTripDetails(trips);
   const fitness = await makeFitness(trips);
   const tripMembers = await makeTripMembers(users, trips);
-  await db.User.bulkCreate(users);
-  await db.Trip.bulkCreate(trips);
-  await db.TripDetails.bulkCreate(tripDetails);
-  await db.Fitness.bulkCreate(fitness);
-  await db.TripMembers.bulkCreate(tripMembers);
+  trips; 
+  console.log('all obejct are made');
+  db.User.bulkCreate(users);
+  console.log('code broke at inserting trips');
+
+  db.Trip.bulkCreate(trips);
+  console.log('code broke at inserting tripDatials');
+
+  db.TripDetails.bulkCreate(tripDetails);
+  console.log('code broke at inserting fitness');
+
+  db.Fitness.bulkCreate(fitness);
+  console.log('code broke at inserting tripMembwers');
+
+  db.TripMembers.bulkCreate(tripMembers);
 }
 
 makeData();

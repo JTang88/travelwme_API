@@ -13,6 +13,9 @@ const Trip = `
     date_end: String
     gender: String
     creator: User
+    interesters: Int!,
+    joiners: Int!,
+    forSureGoing: Int!,
     age_start: Int
     age_end: Int
     body_types: String
