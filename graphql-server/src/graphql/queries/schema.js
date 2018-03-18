@@ -21,6 +21,7 @@ const Query = `
     getCreatedTrips(id: Int!): [Trip]
     getWaitingTrips(id: Int!): [Trip]
     getJoinedTrips(id: Int!): [Trip]
+    getForSureGoingTrips(id: Int!): [Trip]
     getTrip(id: Int!): Trip
     fitTrips(fitness: String): Trip
   }

@@ -1,11 +1,11 @@
 export default {
-  getJoinedTrips: async (parent, { id }, { models }) => {
+  getForSureGoingTrips: async (parent, { id }, { models }) => {
     const targetedTripIds = [];
     const targetedTrips = await models.TripMembers.findAll({
       where: {
         userId: id,
         user_type: 'J',
-        forSureGoing: false,
+        forSureGoing: true,
       }
     });
 

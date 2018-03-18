@@ -25,6 +25,7 @@ import showTrendTrips from './queries/resolvers/showTrendTrips';
 import getCreatedTrips from './queries/resolvers/getCreatedTrips';
 import getJoinedTrips from './queries/resolvers/getJoinedTrips';
 import getWaitingTrips from './queries/resolvers/getWaitingTrips';
+import getForSureGoingTrips from './queries/resolvers/getForSureGoingTrips';
 // import all mutation resolvers
 import addPhotoToTrip from './mutations/resolvers/addPhotoToTrip';
 import addPhotoToUser from './mutations/resolvers/addPhotoToUser';
@@ -42,7 +43,7 @@ import forSureGoing from './mutations/resolvers/forSureGoing';
 import updateTripStat from './mutations/resolvers/updateTripStat';
 
 const resolvers = {
-  Query: merge(allTripMembers, allTrips, allUsers, fitTrips, getTrip, getUser, searchTrip, showTrendTrips, getCreatedTrips, getJoinedTrips, getWaitingTrips),
+  Query: merge(allTripMembers, allTrips, allUsers, fitTrips, getTrip, getUser, searchTrip, showTrendTrips, getCreatedTrips, getJoinedTrips, getWaitingTrips, getForSureGoingTrips),
   Mutation: merge(
     addPhotoToTrip, 
     addPhotoToUser, 
