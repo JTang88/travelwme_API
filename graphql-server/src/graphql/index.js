@@ -38,11 +38,13 @@ import updateTripState from './mutations/resolvers/updateTripState';
 import updateUser from './mutations/resolvers/updateUser';
 import updateUserRelationshipToTrip from './mutations/resolvers/updateUserRelationshipToTrip';
 import deleteAUserFromTrip from './mutations/resolvers/deleteAUserFromTrip';
-
+import forSureGoing from './mutations/resolvers/forSureGoing';
+import updateTripStat from './mutations/resolvers/updateTripStat';
 
 const resolvers = {
   Query: merge(allTripMembers, allTrips, allUsers, fitTrips, getTrip, getUser, searchTrip, showTrendTrips, getCreatedTrips, getJoinedTrips, getWaitingTrips),
-  Mutation: merge(addPhotoToTrip, 
+  Mutation: merge(
+    addPhotoToTrip, 
     addPhotoToUser, 
     createTrip, 
     deleteUser, 
@@ -52,7 +54,9 @@ const resolvers = {
     updateTripState, 
     updateUser, 
     updateUserRelationshipToTrip,
-    deleteAUserFromTrip
+    deleteAUserFromTrip,
+    forSureGoing,
+    updateTripStat
   ),
   User: UserResolver,
   Trip: TripResolver,

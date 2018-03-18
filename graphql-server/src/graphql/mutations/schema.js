@@ -3,6 +3,8 @@ const Mutation = `
     updateUser(id: Int!, username: String!, gender: String!, age: Int!, body_type: String!, relationship: String!, description: String!): [Int!]!
     updateUserRelationshipToTrip(userId: Int!, tripId: Int!, user_type: String!): TripMembers
     deleteAUserFromTrip(memberId: Int!): Int!
+    forSureGoing(memberId: Int!, tripId: Int!): TripMembers
+    updateTripStat(tripId: Int!, field: String!, type: String!): Trip
     interestedInATrip(userId: Int!, tripId: Int!): TripMembers
     deleteUser(id: Int!): Int!  
     addKey(word: String) : TripKeyword
