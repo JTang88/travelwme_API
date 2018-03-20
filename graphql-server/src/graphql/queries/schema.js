@@ -5,17 +5,7 @@ const Query = `
     allTripMembers: [TripMembers]
     allTrips: [Trip!]!
   
-    searchTrip(
-      cost_start: Int,
-      cost_end: Int ,
-      date_start: String, 
-      date_end: String,
-      gender: String, 
-      age: Int, 
-      relationship: String,
-      keys: String,
-      body_type: String,
-    ): [Trip]
+    searchTrips(userId: Int!, cost_start: Int!, cost_end: Int!, date_start: String!, date_end: String!, keys: String!): [Trip]
     
     showTrendTrips(id: Int!): [Trip]
     getCreatedTrips(id: Int!): [Trip]

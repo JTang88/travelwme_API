@@ -1,4 +1,4 @@
-import { merge } from 'lodash'
+import { merge } from 'lodash';
 import { makeExecutableSchema } from 'graphql-tools';
 // import all types
 import Query from './queries/schema';
@@ -20,7 +20,7 @@ import allUsers from './queries/resolvers/allUsers';
 import fitTrips from './queries/resolvers/fitTrips';
 import getTrip from './queries/resolvers/getTrip';
 import getUser from './queries/resolvers/getUser';
-import searchTrip from './queries/resolvers/searchTrip';
+import searchTrips from './queries/resolvers/searchTrips';
 import showTrendTrips from './queries/resolvers/showTrendTrips';
 import getCreatedTrips from './queries/resolvers/getCreatedTrips';
 import getJoinedTrips from './queries/resolvers/getJoinedTrips';
@@ -43,7 +43,7 @@ import forSureGoing from './mutations/resolvers/forSureGoing';
 import updateTripStat from './mutations/resolvers/updateTripStat';
 
 const resolvers = {
-  Query: merge(allTripMembers, allTrips, allUsers, fitTrips, getTrip, getUser, searchTrip, showTrendTrips, getCreatedTrips, getJoinedTrips, getWaitingTrips, getForSureGoingTrips),
+  Query: merge(allTripMembers, allTrips, allUsers, fitTrips, getTrip, getUser, searchTrips, showTrendTrips, getCreatedTrips, getJoinedTrips, getWaitingTrips, getForSureGoingTrips),
   Mutation: merge(
     addPhotoToTrip, 
     addPhotoToUser, 
