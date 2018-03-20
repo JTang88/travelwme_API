@@ -43,7 +43,20 @@ import forSureGoing from './mutations/resolvers/forSureGoing';
 import updateTripStat from './mutations/resolvers/updateTripStat';
 
 const resolvers = {
-  Query: merge(allTripMembers, allTrips, allUsers, fitTrips, getTrip, getUser, searchTrips, showTrendTrips, getCreatedTrips, getJoinedTrips, getWaitingTrips, getForSureGoingTrips),
+  Query: merge(
+    allTripMembers, 
+    allTrips, 
+    allUsers, 
+    fitTrips, 
+    getTrip, 
+    getUser, 
+    showTrendTrips, 
+    getCreatedTrips, 
+    getJoinedTrips, 
+    getWaitingTrips, 
+    getForSureGoingTrips, 
+    searchTrips,
+  ),
   Mutation: merge(
     addPhotoToTrip, 
     addPhotoToUser, 
