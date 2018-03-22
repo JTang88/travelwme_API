@@ -40,7 +40,7 @@ const convertBodyTypeToId = (comp) => {
 export default {
   createTrip: async (parent, args, { models }) => {
     const Trip = await models.Trip.create(args)
-    Trip.addUsers(args.userId, {through: {user_type: "C"}});
+    // Trip.addUsers(args.userId, {through: {user_type: "C"}});
    
     const Keys = JSON.parse(args.keys);
     const Body_types = JSON.parse(args.body_types)
