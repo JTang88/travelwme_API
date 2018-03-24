@@ -9,6 +9,8 @@ export default (sequelize, Sequelize) => {
     gender: Sequelize.STRING,
     body_types: Sequelize.STRING,
     trip_keywords: Sequelize.STRING,
+    countries: Sequelize.STRING,
+    continents: Sequelize.STRING,
     age_start: Sequelize.INTEGER,
     age_end: Sequelize.INTEGER,
     interesters: Sequelize.INTEGER,

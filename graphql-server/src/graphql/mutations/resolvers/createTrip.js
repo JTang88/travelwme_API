@@ -1,5 +1,3 @@
-
-
 const convertKeywordToId = (comp) => {
   if (comp === 'Adventurer') {
     return 1

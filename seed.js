@@ -8,6 +8,8 @@ import express from 'express';
 import casual from 'casual';
 import db from './db';
 import seedData from './newdata.json';
+import { countries, continentTable } from './country-continent';
+
 
 cloudinary.config({ 
   cloud_name: 'travelwme', 
@@ -144,10 +146,14 @@ const makeTrips = async () => {
   for (let i = 0; i < 100; i++) {
     const dates = datesMaker();
     const trip = {};
-    let title = casual.country
-    memo[title] = !memo[title] ? 0 : memo[title] + 1; 
-    trip.title = memo[title] > 0 ? title+memo[title]+randomTripAdj() : `${title} ${randomTripAdj()}`
+    const randomCountry = random(countries);
+    // let title = casual.country
+    // memo[title] = !memo[title] ? 0 : memo[title] + 1; 
+    // trip.title = memo[title] > 0 ? title+memo[title]+randomTripAdj() : `${title} ${randomTripAdj()}`
+    trip.countries = JSON.stringify([randomCountry]);
+    trip.continents = JSON.stringify([continentTable[randomCountry]]);
     trip.description = casual.sentence;
+    trip.title = `${randomCountry} ${randomTripAdj()}`;
     trip.interesters = 0;
     trip.joiners = 0;
     trip.forSureGoing = 1;
@@ -168,8 +174,9 @@ const makeTrips = async () => {
   return trips;
 }
 
-// print(makeUsers);
 
+
+// print(makeTrips);
 
 const makeTripDetails = async (trips) => {
   const tripDetails = [];

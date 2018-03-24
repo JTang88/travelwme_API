@@ -23,6 +23,8 @@ const Trip = `
     relationship: String
     trip_status: String
     user_type: String
+    countries: String
+    continents: String
     members: [TripMembers]
     publicId: String
   }`;
