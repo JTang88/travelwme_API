@@ -7,7 +7,7 @@ export default {
     });
     const Trips = await models.Trip.findAll({
       order: [
-        ['createdAt', 'DESC']
+        ['interesters', 'DESC']
       ],
       limit: 25,
       where: {

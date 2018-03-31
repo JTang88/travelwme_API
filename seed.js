@@ -8,7 +8,8 @@ import express from 'express';
 import casual from 'casual';
 import db from './db';
 import seedData from './newdata.json';
-import { countries, continentTable } from './country-continent';
+import { countries, continentTable, countryContinentSeed } from './country-continent';
+
 
 
 cloudinary.config({ 
@@ -140,6 +141,8 @@ const makeUsers = async () => {
 
 // print(makeUsers);
 
+const tripLocations = [];
+
 const makeTrips = async () => {
   const trips = [];
   const memo = {};
@@ -147,9 +150,14 @@ const makeTrips = async () => {
     const dates = datesMaker();
     const trip = {};
     const randomCountry = random(countries);
-    // let title = casual.country
-    // memo[title] = !memo[title] ? 0 : memo[title] + 1; 
-    // trip.title = memo[title] > 0 ? title+memo[title]+randomTripAdj() : `${title} ${randomTripAdj()}`
+    for(let j = 0; j < countryContinentSeed.length; j++) {
+      const tripLocation = {};
+      if (randomCountry === countryContinentSeed[j].country) {
+        tripLocation.countriesContinentId = j + 1;
+        tripLocation.tripId = i + 1;
+        tripLocations.push(tripLocation);
+      }
+    }
     trip.countries = JSON.stringify([randomCountry]);
     trip.continents = JSON.stringify([continentTable[randomCountry]]);
     trip.description = casual.sentence;
@@ -175,6 +183,13 @@ const makeTrips = async () => {
 }
 
 
+// const testTripsData = async () => {
+//   const trips = await makeTrips();
+//   console.log(trips);
+//   console.log(tripLocations);
+// }
+
+// testTripsData();
 
 // print(makeTrips);
 
@@ -257,6 +272,7 @@ const makeTripMembers = async (users, trips) => {
 
 
 const makeData = async () => {
+  await db.CountriesContinents.bulkCreate(countryContinentSeed)  
   await db.BodyType.bulkCreate(seedData.BodyType)  
   await db.TripKeyword.bulkCreate(seedData.TripKeyword)
   const users = await makeUsers();
@@ -265,6 +281,7 @@ const makeData = async () => {
   const fitness = await makeFitness(trips);
   const tripMembers = await makeTripMembers(users, trips);
   trips; 
+  tripLocations;
   console.log('all obejct are made');
   db.User.bulkCreate(users);
   console.log('code broke at inserting trips');
@@ -279,6 +296,8 @@ const makeData = async () => {
   console.log('code broke at inserting tripMembwers');
 
   db.TripMembers.bulkCreate(tripMembers);
+  db.TripLocations.bulkCreate(tripLocations);
+
 }
 
 makeData();

@@ -5,7 +5,7 @@ const Query = `
     allTripMembers: [TripMembers]
     allTrips: [Trip!]!
   
-    searchTrips(userId: Int!, cost_start: Int!, cost_end: Int!, date_start: String!, date_end: String!, keys: String!): [Trip]
+    searchTrips(userId: Int!, cost_start: Int!, cost_end: Int!, date_start: String!, date_end: String!, keys: String!, country: String, continent: String): [Trip]
     
     showTrendTrips(id: Int!): [Trip]
     getCreatedTrips(id: Int!): [Trip]

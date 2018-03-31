@@ -1,8 +1,7 @@
 export default {
-  searchTrips: async (parent, args, { models }) => {
-   
+  searchTrips: async (parent, args, { models }) => { 
     console.log('this is args =========================================== ', args)
-
+    const locationKey = args.country === null ? 'continent' : 'country';
     const User = await models.User.findOne({
       where: {
         id: args.userId,
@@ -44,6 +43,12 @@ export default {
             word: {
               $or: JSON.parse(args.keys)
             }
+          }
+        },
+        {
+          model: models.CountriesContinents,
+          where: {
+            [locationKey]: args[locationKey],
           }
         }
       ]

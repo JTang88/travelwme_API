@@ -1,3 +1,5 @@
+import util from 'util';
+
 export const countries = [
  'Egypt', 'Ethiopia', 'Kenya','Republic of South Africa', 'Tunisia', 'Mainland Antarctica', 'Armenia', 'Cambodia', 'China', 'India', 'Indonesia', 'Israel and Gaza', 'Japan', 'Lebanon', 'Malaysia', 'Mongolia', 'Myanmar (Burma)', 'Phillipines', 'Russian Federation', 'Saudi Arabia', 'South Korea', 'Sri Lanka', 'Taiwan', 'Thailand', 'United Arab Emirates', 'Vietnam', 'Australia', 'Fiji', 'France (Islands only)', 'Micronesia, F.S.O', 'New Zealand', 'Solomon Islands', 'Austria', 'Bulgaria', 'Croatia', 'Czech Republic', 'Denmark and Greenland', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Republic of Ireland', 'Italy', 'Netherlands', 'Norway', 'Poland', 'Portugal', 'Spain', 'Sweden', 'Switzerland', 'Turkey', 'Ukraine', 'United Kingdom', 'Bahamas', 'Belize', 'Canada', 'Costa Rica', 'Cuba', 'Dominica', 'Dominican Republic', 'Greenland (Denmark)', 'Jamaica', 'Mexico', 'Netherlands (Islands only)', 'Pacific Islands Inc. Hawaii', 'Panama', 'United Kingdom (Islands only)', 'United States Of America', 'Argentina', 'Brazil', 'Chile', 'Colombia', 'Peru', 'Venezuela',
 ];
@@ -202,51 +204,217 @@ export const continentTable = {
 };
 
 
-console.log(continentTable['Dominican Republic']);
+export const countryContinentSeed = [ 
+  { country: 'Algeria', continent: 'Africa' },
+  { country: 'Angolia', continent: 'Africa' },
+  { country: 'Benin', continent: 'Africa' },
+  { country: 'Botswana', continent: 'Africa' },
+  { country: 'Burkina', continent: 'Africa' },
+  { country: 'Burundi', continent: 'Africa' },
+  { country: 'Cameroon', continent: 'Africa' },
+  { country: 'Central African Republic', continent: 'Africa' },
+  { country: 'Chad', continent: 'Africa' },
+  { country: 'Chana', continent: 'Africa' },
+  { country: 'Comoros Island', continent: 'Africa' },
+  { country: 'Congo', continent: 'Africa' },
+  { country: 'Congo (Zaire)', continent: 'Africa' },
+  { country: 'Cote D\'Ivoire', continent: 'Africa' },
+  { country: 'Djibouti', continent: 'Africa' },
+  { country: 'Egypt', continent: 'Africa' },
+  { country: 'Equatorial Guinea', continent: 'Africa' },
+  { country: 'Eritrea', continent: 'Africa' },
+  { country: 'Ethiopia', continent: 'Africa' },
+  { country: 'Gabon', continent: 'Africa' },
+  { country: 'Guinea', continent: 'Africa' },
+  { country: 'Guinea Bissau', continent: 'Africa' },
+  { country: 'Kenya', continent: 'Africa' },
+  { country: 'Lesotho', continent: 'Africa' },
+  { country: 'Liberia', continent: 'Africa' },
+  { country: 'Libya', continent: 'Africa' },
+  { country: 'Madagascar', continent: 'Africa' },
+  { country: 'Malawi', continent: 'Africa' },
+  { country: 'Mali', continent: 'Africa' },
+  { country: 'Mauritania', continent: 'Africa' },
+  { country: 'Mauritius', continent: 'Africa' },
+  { country: 'Morocco', continent: 'Africa' },
+  { country: 'Mozambique', continent: 'Africa' },
+  { country: 'Namibia', continent: 'Africa' },
+  { country: 'Niger', continent: 'Africa' },
+  { country: 'Nigeria', continent: 'Africa' },
+  { country: 'Rwanda', continent: 'Africa' },
+  { country: 'Sao Tomi and Principe', continent: 'Africa' },
+  { country: 'Senegal', continent: 'Africa' },
+  { country: 'Seychelles', continent: 'Africa' },
+  { country: 'Sierra Leone', continent: 'Africa' },
+  { country: 'Somalia', continent: 'Africa' },
+  { country: 'Republic of South Africa', continent: 'Africa' },
+  { country: 'Sudan', continent: 'Africa' },
+  { country: 'Swaziland', continent: 'Africa' },
+  { country: 'Tanzania', continent: 'Africa' },
+  { country: 'Tunisia', continent: 'Africa' },
+  { country: 'Togo', continent: 'Africa' },
+  { country: 'Uganda', continent: 'Africa' },
+  { country: 'Zambia', continent: 'Africa' },
+  { country: 'Zimbabwe', continent: 'Africa' },
+  { country: 'Mainland Antarctica', continent: 'Antarctica' },
+  { country: 'United Kingdom (Islands only)',
+    continent: 'South America' },
+  { country: 'Afghanistan', continent: 'Asia' },
+  { country: 'Armenia', continent: 'Asia' },
+  { country: 'Azerbaijan', continent: 'Asia' },
+  { country: 'Bahrain', continent: 'Asia' },
+  { country: 'Bangladesh', continent: 'Asia' },
+  { country: 'Bhutan', continent: 'Asia' },
+  { country: 'Brunei', continent: 'Asia' },
+  { country: 'Cambodia', continent: 'Asia' },
+  { country: 'China', continent: 'Asia' },
+  { country: 'Cyprus', continent: 'Asia' },
+  { country: 'Georgia', continent: 'Asia' },
+  { country: 'Iran', continent: 'Asia' },
+  { country: 'Iraq', continent: 'Asia' },
+  { country: 'India', continent: 'Asia' },
+  { country: 'Indonesia', continent: 'Asia' },
+  { country: 'Israel and Gaza', continent: 'Asia' },
+  { country: 'Japan', continent: 'Asia' },
+  { country: 'Jordan', continent: 'Asia' },
+  { country: 'Kazakstan', continent: 'Asia' },
+  { country: 'Kuwait', continent: 'Asia' },
+  { country: 'Kyrgzstan', continent: 'Asia' },
+  { country: 'Laos', continent: 'Asia' },
+  { country: 'Lebanon', continent: 'Asia' },
+  { country: 'Malaysia', continent: 'Asia' },
+  { country: 'Mongolia', continent: 'Asia' },
+  { country: 'Myanmar (Burma)', continent: 'Asia' },
+  { country: 'Nepal', continent: 'Asia' },
+  { country: 'North Korea', continent: 'Asia' },
+  { country: 'Oman', continent: 'Asia' },
+  { country: 'Pakistan', continent: 'Asia' },
+  { country: 'Palau', continent: 'Asia' },
+  { country: 'Phillipines', continent: 'Asia' },
+  { country: 'Quatar', continent: 'Asia' },
+  { country: 'Russian Federation', continent: 'Europe' },
+  { country: 'Saudi Arabia', continent: 'Asia' },
+  { country: 'South Korea', continent: 'Asia' },
+  { country: 'Sri Lanka', continent: 'Asia' },
+  { country: 'Syria', continent: 'Asia' },
+  { country: 'Taiwan', continent: 'Asia' },
+  { country: 'Tajikstan', continent: 'Asia' },
+  { country: 'Thailand', continent: 'Asia' },
+  { country: 'Turkey', continent: 'Europe' },
+  { country: 'Turkmenistan', continent: 'Asia' },
+  { country: 'United Arab Emirates', continent: 'Asia' },
+  { country: 'Uzbekistan', continent: 'Asia' },
+  { country: 'Vietnam', continent: 'Asia' },
+  { country: 'Yemen', continent: 'Asia' },
+  { country: 'Australia', continent: 'Oceania' },
+  { country: 'Fiji', continent: 'Oceania' },
+  { country: 'France (Islands only)', continent: 'North America' },
+  { country: 'Kiribati', continent: 'Oceania' },
+  { country: 'Marshall Islands', continent: 'Oceania' },
+  { country: 'Micronesia, F.S.O', continent: 'Oceania' },
+  { country: 'Nauru', continent: 'Oceania' },
+  { country: 'New Zealand', continent: 'Oceania' },
+  { country: 'Papua New Guinea', continent: 'Oceania' },
+  { country: 'Solomon Islands', continent: 'Oceania' },
+  { country: 'Tonga', continent: 'Oceania' },
+  { country: 'Tuvalu', continent: 'Oceania' },
+  { country: 'Vanuatu', continent: 'Oceania' },
+  { country: 'Western Samoa', continent: 'Oceania' },
+  { country: 'Albania', continent: 'Europe' },
+  { country: 'Andorra', continent: 'Europe' },
+  { country: 'Austria', continent: 'Europe' },
+  { country: 'Belarus', continent: 'Europe' },
+  { country: 'Belgium', continent: 'Europe' },
+  { country: 'Bosnia-Herzegovina', continent: 'Europe' },
+  { country: 'Bulgaria', continent: 'Europe' },
+  { country: 'Cape Verde', continent: 'Europe' },
+  { country: 'Croatia', continent: 'Europe' },
+  { country: 'Czech Republic', continent: 'Europe' },
+  { country: 'Denmark and Greenland', continent: 'Europe' },
+  { country: 'Estonia', continent: 'Europe' },
+  { country: 'Finland', continent: 'Europe' },
+  { country: 'France', continent: 'Europe' },
+  { country: 'Germany', continent: 'Europe' },
+  { country: 'Greece', continent: 'Europe' },
+  { country: 'Hungary', continent: 'Europe' },
+  { country: 'Iceland', continent: 'Europe' },
+  { country: 'Republic of Ireland', continent: 'Europe' },
+  { country: 'Italy', continent: 'Europe' },
+  { country: 'Latvia', continent: 'Europe' },
+  { country: 'Liechtenstein', continent: 'Europe' },
+  { country: 'Lithuania', continent: 'Europe' },
+  { country: 'Luxembourg', continent: 'Europe' },
+  { country: 'Macedonia', continent: 'Europe' },
+  { country: 'Malta', continent: 'Europe' },
+  { country: 'Moldova', continent: 'Europe' },
+  { country: 'Netherlands', continent: 'Europe' },
+  { country: 'Norway', continent: 'Europe' },
+  { country: 'Poland', continent: 'Europe' },
+  { country: 'Portugal', continent: 'Europe' },
+  { country: 'Romania', continent: 'Europe' },
+  { country: 'Slovakia', continent: 'Europe' },
+  { country: 'Slovenia', continent: 'Europe' },
+  { country: 'Spain', continent: 'Europe' },
+  { country: 'Sweden', continent: 'Europe' },
+  { country: 'Switzerland', continent: 'Europe' },
+  { country: 'Ukraine', continent: 'Europe' },
+  { country: 'United Kingdom', continent: 'Europe' },
+  { country: 'Yugoslavia', continent: 'Europe' },
+  { country: 'Barbados', continent: 'North America' },
+  { country: 'Bahamas', continent: 'North America' },
+  { country: 'Belize', continent: 'North America' },
+  { country: 'Canada', continent: 'North America' },
+  { country: 'Costa Rica', continent: 'North America' },
+  { country: 'Cuba', continent: 'North America' },
+  { country: 'Dominica', continent: 'North America' },
+  { country: 'Dominican Republic', continent: 'North America' },
+  { country: 'El Salvador', continent: 'North America' },
+  { country: 'Greenland (Denmark)', continent: 'North America' },
+  { country: 'Grenada', continent: 'North America' },
+  { country: 'Guatemala', continent: 'North America' },
+  { country: 'Haiti', continent: 'North America' },
+  { country: 'Honduras', continent: 'North America' },
+  { country: 'Jamaica', continent: 'North America' },
+  { country: 'Mexico', continent: 'North America' },
+  { country: 'Netherlands (Islands only)',
+    continent: 'North America' },
+  { country: 'Pacific Islands Inc. Hawaii',
+    continent: 'North America' },
+  { country: 'Panama', continent: 'North America' },
+  { country: 'St Kitts-Nevis', continent: 'North America' },
+  { country: 'St Lucia', continent: 'North America' },
+  { country: 'St Vincent and the Grenadines',
+    continent: 'North America' },
+  { country: 'Trinidad and Tobago', continent: 'North America' },
+  { country: 'United States Of America',
+    continent: 'North America' },
+  { country: 'Argentina', continent: 'South America' },
+  { country: 'Bolivia', continent: 'South America' },
+  { country: 'Brazil', continent: 'South America' },
+  { country: 'Chile', continent: 'South America' },
+  { country: 'Colombia', continent: 'South America' },
+  { country: 'Ecuador', continent: 'South America' },
+  { country: 'French Guiana', continent: 'South America' },
+  { country: 'Guyana', continent: 'South America' },
+  { country: 'Nicaragua', continent: 'South America' },
+  { country: 'Paraguay', continent: 'South America' },
+  { country: 'Peru', continent: 'South America' },
+  { country: 'Suriname', continent: 'South America' },
+  { country: 'Uruguay', continent: 'South America' },
+  { country: 'Venezuela', continent: 'South America' } 
+];
 
-// const Africa = ['Algeria', 'Angolia', 'Benin', 'Botswana', 'Burkina', 'Burundi', 'Cameroon', 'Central African Republic', 'Chad', 'Chana', 'Comoros Island', 'Congo', 'Congo (Zaire)', 'Cote D\'Ivoire', 'Djibouti', 'Egypt', 'Equatorial Guinea', 'Eritrea', 'Ethiopia', 'Gabon', 'Guinea', 'Guinea Bissau', 'Kenya', 'Lesotho', 'Liberia', 'Libya', 'Madagascar', 'Malawi', 'Mali', 'Mauritania', 'Mauritius', 'Morocco', 'Mozambique', 'Namibia', 'Niger', 'Nigeria', 'Rwanda', 'Sao Tomi and Principe', 'Senegal', 'Seychelles', 'Sierra Leone', 'Somalia', 'Republic of South Africa', 'Sudan', 'Swaziland', 'Tanzania', 'Tunisia', 'Togo', 'Uganda', 'Zambia', 'Zimbabwe'];
+// const makeCCData = () => {
+//   const result = [];
+  
+//   for (let x in continentTable) {
+//     const countryContinent = {};
+//     countryContinent.country = x;
+//     countryContinent.continent = continentTable[x];
+//     result.push(countryContinent);
+//   }
+  
+//   return result;
+// }
 
-// const Antarctica = ['Mainland Antarctica', 'United Kingdom (Islands only)'];
-
-// const Asia = ['Afghanistan', 'Armenia', 'Azerbaijan', 'Bahrain', 'Bangladesh', 'Bhutan', 'Brunei', 'Cambodia', 'China', 'Cyprus', 'Georgia', 'Iran', 'Iraq', 'India', 'Indonesia', 'Israel and Gaza', 'Japan', 'Jordan', 'Kazakstan', 'Kuwait', 'Kyrgzstan', 'Laos', 'Lebanon', 'Malaysia', 'Mongolia', 'Myanmar (Burma)', 'Nepal', 'North Korea', 'Oman', 'Pakistan', 'Palau', 'Phillipines', 'Quatar', 'Russian Federation', 'Saudi Arabia', 'South Korea', 'Sri Lanka', 'Syria', 'Taiwan', 'Tajikstan', 'Thailand', 'Turkey', 'Turkmenistan', 'United Arab Emirates', 'Uzbekistan', 'Vietnam', 'Yemen'];
-
-// const Oceania = ['Australia', 'Fiji', 'France (Islands only)', 'Kiribati', 'Marshall Islands', 'Micronesia, F.S.O', 'Nauru', 'New Zealand', 'Papua New Guinea', 'Solomon Islands', 'Tonga', 'Tuvalu', 'United Kingdom (Islands only)', 'Vanuatu', 'Western Samoa'];
-
-// const Europe = ['Albania', 'Andorra', 'Austria', 'Belarus', 'Belgium', 'Bosnia-Herzegovina', 'Bulgaria', 'Cape Verde', 'Croatia', 'Czech Republic', 'Denmark and Greenland', 'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Republic of Ireland', 'Italy', 'Latvia', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Macedonia', 'Malta', 'Moldova', 'Netherlands', 'Norway', 'Poland', 'Portugal', 'Romania', 'Russian Federation', 'Slovakia', 'Slovenia', 'Spain', 'Sweden', 'Switzerland', 'Turkey', 'Ukraine', 'United Kingdom', 'Yugoslavia'];
-
-// const NorthAmerica = ['Barbados', 'Bahamas', 'Belize', 'Canada', 'Costa Rica', 'Cuba', 'Dominica', 'Dominican Republic', 'El Salvador', 'France (Islands only)', 'Greenland (Denmark)', 'Grenada', 'Guatemala', 'Haiti', 'Honduras', 'Jamaica', 'Mexico', 'Netherlands (Islands only)', 'Pacific Islands Inc. Hawaii', 'Panama', 'St Kitts-Nevis', 'St Lucia', 'St Vincent and the Grenadines', 'Trinidad and Tobago', 'United Kingdom (Islands only)', 'United States Of America'];
-
-// const SouthAmerica = ['Argentina', 'Bolivia', 'Brazil', 'Chile', 'Colombia', 'Ecuador', 'French Guiana', 'Guyana', 'Nicaragua', 'Paraguay', 'Peru', 'Suriname', 'United Kingdom (Islands only)', 'Uruguay', 'Venezuela']
-
-// const final = {};
-
-// Africa.forEach((country)=> {
-//  final[country] = 'Africa'
-// })
-
-// Antarctica.forEach((country)=> {
-//  final[country] = 'Antarctica'
-// })
-
-// Asia.forEach((country)=> {
-//  final[country] = 'Asia'
-// })
-
-// Oceania.forEach((country)=> {
-//  final[country] = 'Oceania'
-// })
-
-// Europe.forEach((country)=> {
-//  final[country] = 'Europe'
-// })
-
-// NorthAmerica.forEach((country)=> {
-//  final[country] = 'North America'
-// })
-
-// SouthAmerica.forEach((country)=> {
-//  final[country] = 'South America'
-// })
-
-
-// console.log(final)
+// console.log(util.inspect(makeCCData(), { maxArrayLength: null }))
