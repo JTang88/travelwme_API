@@ -37,9 +37,17 @@ const convertBodyTypeToId = (comp) => {
 
 export default {
   createTrip: async (parent, args, { models }) => {
-    const Trip = await models.Trip.create(args)
-    // Trip.addUsers(args.userId, {through: {user_type: "C"}});
-   
+    const cc = await models.CountriesContinents.findAll({
+      where: {
+        country: {
+          $or: JSON.parse(args.countries),
+        },
+      }
+    })
+
+    const Trip = await models.Trip.create(args);
+    Trip.addCountriesContinents(cc);
+
     const Keys = JSON.parse(args.keys);
     const Body_types = JSON.parse(args.body_types)
 

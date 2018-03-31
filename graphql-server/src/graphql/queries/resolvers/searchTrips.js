@@ -13,9 +13,11 @@ export default {
         ['createdAt', 'DESC']
       ],
       where: {
-        relationship: User.relationship,
+        relationship: {
+          $or: [User.relationship, 'all'],
+        },
         gender: {
-          $or: [User.gender, 'All']
+          $or: [User.gender, 'all'],
         },
         age_start: { 
           $lte: User.age,

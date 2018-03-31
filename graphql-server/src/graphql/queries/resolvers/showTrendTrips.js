@@ -10,10 +10,12 @@ export default {
         ['interesters', 'DESC']
       ],
       limit: 25,
-      where: {
-        relationship: User.relationship,
+      where: { 
+        relationship: {
+          $or: [User.relationship, 'all']
+        },
         gender: {
-          $or: [User.gender, 'All']
+          $or: [User.gender, 'all']
         },
         age_start: { 
           $lte: User.age,
