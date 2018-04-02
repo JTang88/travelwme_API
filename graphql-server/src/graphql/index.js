@@ -35,12 +35,13 @@ import interestedInATrip from './mutations/resolvers/interestedInATrip';
 import login from './mutations/resolvers/login';
 import register from './mutations/resolvers/register';
 import updateTrip from './mutations/resolvers/updateTrip';
-import updateTripState from './mutations/resolvers/updateTripState';
+import updateTripStatus from './mutations/resolvers/updateTripStatus';
 import updateUser from './mutations/resolvers/updateUser';
 import updateUserRelationshipToTrip from './mutations/resolvers/updateUserRelationshipToTrip';
 import deleteAUserFromTrip from './mutations/resolvers/deleteAUserFromTrip';
 import forSureGoing from './mutations/resolvers/forSureGoing';
 import updateTripStat from './mutations/resolvers/updateTripStat';
+import updateTripDescription from './mutations/resolvers/updateTripDescription';
 
 const resolvers = {
   Query: merge(
@@ -65,12 +66,13 @@ const resolvers = {
     interestedInATrip, 
     login, register, 
     updateTrip, 
-    updateTripState, 
+    updateTripStatus, 
     updateUser, 
     updateUserRelationshipToTrip,
     deleteAUserFromTrip,
     forSureGoing,
-    updateTripStat
+    updateTripStat,
+    updateTripDescription
   ),
   User: UserResolver,
   Trip: TripResolver,

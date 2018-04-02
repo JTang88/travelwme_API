@@ -4,7 +4,6 @@ const convertKeywordToId = (comp) => {
   }
   if (comp === 'Backpacker') {
     return 2
-    
   }
   if (comp === 'Explorer') {
     return 3
