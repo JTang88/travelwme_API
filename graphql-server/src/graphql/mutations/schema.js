@@ -1,6 +1,6 @@
 const Mutation = `
   type Mutation {
-    updateUser(id: Int!, username: String!, gender: String!, age: Int!, body_type: String!, relationship: String!, description: String!): [Int!]!
+    updateUser(id: Int!, username: String, gender: String, age: Int, body_type: String, relationship: String, description: String): User!
     updateUserRelationshipToTrip(userId: Int!, tripId: Int!, user_type: String!): TripMembers
     deleteAUserFromTrip(memberId: Int!): Int!
     forSureGoing(memberId: Int!, tripId: Int!): TripMembers
