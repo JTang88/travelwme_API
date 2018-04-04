@@ -8,6 +8,7 @@ const Mutation = `
     updateTripDescription(id: Int!, description: String!): Trip
     interestedInATrip(userId: Int!, tripId: Int!): TripMembers
     deleteUser(id: Int!): Int!  
+    forgotPassword(email: String!): String!
     addKey(word: String) : TripKeyword
     addPhotoToUser(id: Int!, publicId: String!): [Int!]!
     addPhotoToTrip(id: Int!, publicId: String!): [Int!]!
