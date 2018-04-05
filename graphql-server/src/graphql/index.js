@@ -43,6 +43,8 @@ import forSureGoing from './mutations/resolvers/forSureGoing';
 import updateTripStat from './mutations/resolvers/updateTripStat';
 import updateTripDescription from './mutations/resolvers/updateTripDescription';
 import forgotPassword from './mutations/resolvers/forgotPassword';
+import updateUserEmail from './mutations/resolvers/updateUserEmail';
+import updateUserPassword from './mutations/resolvers/updateUserPassword';
 
 const resolvers = {
   Query: merge(
@@ -74,7 +76,9 @@ const resolvers = {
     forSureGoing,
     updateTripStat,
     updateTripDescription,
-    forgotPassword
+    forgotPassword,
+    updateUserEmail,
+    updateUserPassword
   ),
   User: UserResolver,
   Trip: TripResolver,
