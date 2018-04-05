@@ -13,7 +13,7 @@ export default {
       throw new Error('invalid password!!');
     }
     const token = await jwt.sign({
-      user: _.pick(user, 'id', 'username')
+      user: _.pick(user, 'id', 'username', 'publicId')
     }, process.env.TOKEN_SECRET , { expiresIn: '1h' })
 
     return token;

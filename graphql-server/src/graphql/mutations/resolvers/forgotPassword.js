@@ -4,7 +4,6 @@ import nodemailer from 'nodemailer';
 
 export default {
   forgotPassword: async (parent, { email }, { models }) => {
-    console.log('this is email in forgotPassword: ', email)
     const user = await models.User.findOne({ where: { email }}); 
     if(!user) {
       throw new Error('No such user or email exist');
