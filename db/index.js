@@ -1,4 +1,5 @@
 import Sequelize from 'sequelize';
+import mongoose from 'mongoose';
 
 const sequelize = new Sequelize('travelwme', 'root', '', {
   host: 'localhost',
@@ -29,9 +30,6 @@ db.Fitness = sequelize.import('./models/Fitness');
 db.CountriesContinents = sequelize.import('./models/countriesContinents')
 db.TripLocations = sequelize.import('./models/tripLocations')
 
-
-
-db.Comment = sequelize.import('./models/comment');
 db.Vote = sequelize.import('./models/vote');
 
 db.User.belongsToMany(db.Trip, { through: db.TripMembers });
@@ -47,19 +45,22 @@ db.TripKeyword.belongsToMany(db.Trip, { through: db.TripDetails });
 db.Trip.belongsToMany(db.BodyType, { through: db.Fitness });
 db.BodyType.belongsToMany(db.Trip, { through: db.Fitness });
 
-db.Comment.belongsTo(db.Trip);
-db.Trip.hasMany(db.Comment);
-db.Vote.belongsTo(db.Comment);
-db.Comment.hasMany(db.Vote);
 db.Vote.belongsTo(db.User);
 db.User.hasMany(db.Vote);
 
 sequelize.sync();
 
+mongoose.connect('mongodb://localhost/travelwme')
+const mongoDb = mongoose.connection;
+mongoDb.on('error', console.error.bind(console, 'connection error:'));
+mongoDb.once('open', () => {
+  console.log('Now connected to MongoDB')
+});
+
 
 console.log('this is what tripMembers look like', db.TripDetails); 
 
-export default db;
+export { db, mongoDb };
 
 
 // import Sequelize from 'sequelize';

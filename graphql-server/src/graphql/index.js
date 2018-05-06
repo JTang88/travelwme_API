@@ -1,13 +1,17 @@
 import { merge } from 'lodash';
+import { PubSub } from 'graphql-subscriptions'
 import { makeExecutableSchema } from 'graphql-tools';
 // import all types
 import Query from './queries/schema';
 import Mutation from './mutations/schema';
+import { Subscription } from './subscriptions/schema';
 import Trip from './types/trip/schema';
 import TripKeyword from './types/tripKeyword/schema';
 import TripMembers from './types/tripMembers/schema';
 import Vote from './types/vote/schema';
 import User from './types/user/schema';
+import Reply from './types/reply/schema';
+import Comment from './types/comment/schema';
 // import all type resolvers
 import TripResolver from './types/trip/resolver';
 import UserResolver from './types/user/resolver';
@@ -45,6 +49,13 @@ import updateTripDescription from './mutations/resolvers/updateTripDescription';
 import forgotPassword from './mutations/resolvers/forgotPassword';
 import updateUserEmail from './mutations/resolvers/updateUserEmail';
 import updateUserPassword from './mutations/resolvers/updateUserPassword';
+import newComment from './mutations/resolvers/newComment';
+// import all subscription resolvers
+import commentAdded from './subscriptions/resolvers/commentAdded';
+
+
+export const pubsub = new PubSub(); 
+
 
 const resolvers = {
   Query: merge(
@@ -78,8 +89,10 @@ const resolvers = {
     updateTripDescription,
     forgotPassword,
     updateUserEmail,
-    updateUserPassword
+    updateUserPassword,
+    newComment,
   ),
+  Subscription: commentAdded,
   User: UserResolver,
   Trip: TripResolver,
   TripMembers: TripMembersResolver,
@@ -90,12 +103,13 @@ const SchemaDefinition = `
   schema {
     query: Query
     mutation: Mutation
+    subscription: Subscription
   }
 `;
 
-export default makeExecutableSchema({
+export const schema = makeExecutableSchema({
   typeDefs: [
-    SchemaDefinition, Query, Mutation, Vote, User, TripKeyword, TripMembers, Trip,
+    SchemaDefinition, Query, Mutation, Subscription, Vote, User, TripKeyword, ...Comment, TripMembers, Trip, Reply
   ],
   resolvers,
 });

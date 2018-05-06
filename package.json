@@ -41,9 +41,12 @@
     "express": "^4.16.2",
     "gender": "0.0.1",
     "graphql": "^0.11.7",
+    "graphql-subscriptions": "^0.5.8",
     "graphql-tools": "^2.12.0",
     "jsonwebtoken": "^8.1.0",
     "lodash": "^4.17.4",
+    "mongodb": "^2.2.35",
+    "mongoose": "^5.0.17",
     "mysql2": "^1.5.1",
     "nodemailer": "^4.6.4",
     "pg": "^7.4.0",
@@ -51,6 +54,7 @@
     "redis": "^2.8.0",
     "sequelize": "^4.26.0",
     "socket.io": "^2.0.4",
-    "sqlite": "^2.9.0"
+    "sqlite": "^2.9.0",
+    "subscriptions-transport-ws": "^0.9.8"
   }
 }

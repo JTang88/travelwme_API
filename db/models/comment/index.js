@@ -1,30 +1,11 @@
-export default (sequelize, Sequelize) => {
-  const Comments = sequelize.define('comment', {
-    content: {
-      type: Sequelize.TEXT,
-      required: true
-    },
-    commenter_username: {
-      type: Sequelize.STRING,
-      required: true
-    },
-    // commenter_email: {
-      // type: Sequelize.STRING,
-      // required: true
-    // },
-    status: {
-      type: Sequelize.ENUM,
-      values: ['approved', 'rejected', 'in review']
+import mongoose from 'mongoose';
 
-    },
-    created_at: {
-      type: Sequelize.DATE,
-      allowNull: false,
-    },
-    
-    deleted_at: Sequelize.DATE,
-    // upvote counter -- cache column
-    //downvote counter -- cache column
-  });
-  return Comments
-}
+const commentSchema = mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
+  tripId: Number,
+  username: String,
+  text: String,
+  reply: [mongoose.Schema.Types.Mixed],
+});
+
+export default mongoose.model('Comment', commentSchema);
