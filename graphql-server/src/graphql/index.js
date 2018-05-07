@@ -30,6 +30,7 @@ import getCreatedTrips from './queries/resolvers/getCreatedTrips';
 import getJoinedTrips from './queries/resolvers/getJoinedTrips';
 import getWaitingTrips from './queries/resolvers/getWaitingTrips';
 import getForSureGoingTrips from './queries/resolvers/getForSureGoingTrips';
+import getComments from './queries/resolvers/getComments';
 // import all mutation resolvers
 import addPhotoToTrip from './mutations/resolvers/addPhotoToTrip';
 import addPhotoToUser from './mutations/resolvers/addPhotoToUser';
@@ -71,6 +72,7 @@ const resolvers = {
     getWaitingTrips, 
     getForSureGoingTrips, 
     searchTrips,
+    getComments
   ),
   Mutation: merge(
     addPhotoToTrip, 

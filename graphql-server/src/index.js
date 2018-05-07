@@ -8,7 +8,6 @@ import { execute, subscribe } from 'graphql';
 import { createServer } from 'http';
 import { SubscriptionServer } from 'subscriptions-transport-ws';
 import { schema } from './graphql';
-// import models from '../../db';
 import { db as models, mongoDb } from '../../db';
 import { read } from 'fs';
 
