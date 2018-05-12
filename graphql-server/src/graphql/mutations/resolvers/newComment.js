@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import Comment from '../../../../../db/models/comment';
-import { pubsub } from '../../index'; 
+import { PubSub } from 'graphql-subscriptions'
+
+export const pubsub = new PubSub(); 
 
 export default {
   newComment: async (parent, { username, tripId, text }, { models }) => {

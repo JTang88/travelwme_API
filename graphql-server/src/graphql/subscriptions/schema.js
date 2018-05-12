@@ -1,9 +1,8 @@
-import { PubSub } from 'graphql-subscriptions';
-
-export const pubSub = new PubSub();
-
-export const Subscription = `
+const Subscription = `
   type Subscription {
     commentAdded(tripId: Int!): Comment
+    replyAdded(tripId: Int): Reply
   }
 `;
+
+export default Subscription;

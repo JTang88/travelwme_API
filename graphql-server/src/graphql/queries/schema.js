@@ -1,6 +1,7 @@
 const Query = `
   type Query {
     getComments(tripId: Int!): [Comment]
+    getReply(tripId: Int!): [Reply]
     allUsers: [User]
     getUser(id: Int!): User
     allTripMembers: [TripMembers]
@@ -19,5 +20,4 @@ const Query = `
 `;
 
 export default Query;
-
 

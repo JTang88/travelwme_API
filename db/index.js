@@ -50,15 +50,22 @@ db.User.hasMany(db.Vote);
 
 sequelize.sync();
 
-mongoose.connect('mongodb://localhost/travelwme')
 const mongoDb = mongoose.connection;
+
+mongoose.connect('mongodb://localhost/travelwme')
+
+
 mongoDb.on('error', console.error.bind(console, 'connection error:'));
 mongoDb.once('open', () => {
   console.log('Now connected to MongoDB')
 });
 
-
 console.log('this is what tripMembers look like', db.TripDetails); 
+
+// console.log('here is mongDb==============================', mongoose.models.Comment.remove({}).exec() )
+
+// mongoose.models.Comment.remove({}).exec()
+// mongoose.models.Reply.remove({}).exec()
 
 export { db, mongoDb };
 

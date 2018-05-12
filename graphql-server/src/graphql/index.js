@@ -1,10 +1,10 @@
 import { merge } from 'lodash';
-import { PubSub } from 'graphql-subscriptions'
+// import { PubSub } from 'graphql-subscriptions'
 import { makeExecutableSchema } from 'graphql-tools';
 // import all types
 import Query from './queries/schema';
 import Mutation from './mutations/schema';
-import { Subscription } from './subscriptions/schema';
+import Subscription from './subscriptions/schema';
 import Trip from './types/trip/schema';
 import TripKeyword from './types/tripKeyword/schema';
 import TripMembers from './types/tripMembers/schema';
@@ -31,6 +31,7 @@ import getJoinedTrips from './queries/resolvers/getJoinedTrips';
 import getWaitingTrips from './queries/resolvers/getWaitingTrips';
 import getForSureGoingTrips from './queries/resolvers/getForSureGoingTrips';
 import getComments from './queries/resolvers/getComments';
+import getReply from './queries/resolvers/getReply';
 // import all mutation resolvers
 import addPhotoToTrip from './mutations/resolvers/addPhotoToTrip';
 import addPhotoToUser from './mutations/resolvers/addPhotoToUser';
@@ -51,11 +52,13 @@ import forgotPassword from './mutations/resolvers/forgotPassword';
 import updateUserEmail from './mutations/resolvers/updateUserEmail';
 import updateUserPassword from './mutations/resolvers/updateUserPassword';
 import newComment from './mutations/resolvers/newComment';
+import newReply from './mutations/resolvers/newReply';
 // import all subscription resolvers
 import commentAdded from './subscriptions/resolvers/commentAdded';
+import replyAdded from './subscriptions/resolvers/replyAdded';
 
 
-export const pubsub = new PubSub(); 
+// export const pubsub = new PubSub(); 
 
 
 const resolvers = {
@@ -72,7 +75,8 @@ const resolvers = {
     getWaitingTrips, 
     getForSureGoingTrips, 
     searchTrips,
-    getComments
+    getComments,
+    getReply,
   ),
   Mutation: merge(
     addPhotoToTrip, 
@@ -80,7 +84,8 @@ const resolvers = {
     createTrip, 
     deleteUser, 
     interestedInATrip, 
-    login, register, 
+    login, 
+    register, 
     updateTrip, 
     updateTripStatus, 
     updateUser, 
@@ -93,8 +98,12 @@ const resolvers = {
     updateUserEmail,
     updateUserPassword,
     newComment,
+    newReply,
   ),
-  Subscription: commentAdded,
+  Subscription: merge(
+    commentAdded,
+    replyAdded,
+  ),
   User: UserResolver,
   Trip: TripResolver,
   TripMembers: TripMembersResolver,
@@ -111,7 +120,7 @@ const SchemaDefinition = `
 
 export const schema = makeExecutableSchema({
   typeDefs: [
-    SchemaDefinition, Query, Mutation, Subscription, Vote, User, TripKeyword, ...Comment, TripMembers, Trip, Reply
+    SchemaDefinition, Query, Mutation, Subscription, Vote, User, TripKeyword, Comment, TripMembers, Trip, Reply
   ],
   resolvers,
 });
