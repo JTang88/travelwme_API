@@ -16,6 +16,7 @@ import Comment from './types/comment/schema';
 import TripResolver from './types/trip/resolver';
 import UserResolver from './types/user/resolver';
 import TripMembersResolver from './types/tripMembers/resolver';
+import commentResolver from './types/comment/resolver';
 
 // import all query resolvers
 import allTripMembers from './queries/resolvers/allTripMembers';
@@ -31,7 +32,7 @@ import getJoinedTrips from './queries/resolvers/getJoinedTrips';
 import getWaitingTrips from './queries/resolvers/getWaitingTrips';
 import getForSureGoingTrips from './queries/resolvers/getForSureGoingTrips';
 import getComments from './queries/resolvers/getComments';
-import getReply from './queries/resolvers/getReply';
+// import getReply from './queries/resolvers/getReply';
 // import all mutation resolvers
 import addPhotoToTrip from './mutations/resolvers/addPhotoToTrip';
 import addPhotoToUser from './mutations/resolvers/addPhotoToUser';
@@ -76,7 +77,7 @@ const resolvers = {
     getForSureGoingTrips, 
     searchTrips,
     getComments,
-    getReply,
+    // getReply,
   ),
   Mutation: merge(
     addPhotoToTrip, 
@@ -107,6 +108,7 @@ const resolvers = {
   User: UserResolver,
   Trip: TripResolver,
   TripMembers: TripMembersResolver,
+  Comment: commentResolver,
 };
 
 

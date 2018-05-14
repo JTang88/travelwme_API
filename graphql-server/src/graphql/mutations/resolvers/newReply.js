@@ -1,43 +1,23 @@
 import mongoose from 'mongoose';
-import Reply from '../../../../../db/models/reply';
+import Comment from '../../../../../db/models/comment';
 import { PubSub } from 'graphql-subscriptions';
 
 export const pubsub = new PubSub(); 
+// it's a question whether another subs needs a new instance on the same query... for this case
 
 export default {
   newReply: async (parent, args, { models }) => {
-    args._id = await new mongoose.Types.ObjectId
-    const reply = await new Reply(args);
     try {
-      await reply.save();
-      console.log('this is Reply', reply);
+      args._id = await new mongoose.Types.ObjectId
+      const comment = await Comment.findById(args.commentId);
+      comment.reply.push(args);
+      comment.save();
+     
     } catch (err) {
       console.log(err)
     }
-    console.log('this is args', args)
-    pubsub.publish('replyAdded', { replyAdded: reply, tripId: args.tripId });
+    pubsub.publish('replyAdded', { replyAdded: args, tripId: args.tripId });
     return args
   }
 };
 
-
-// export default {
-//   newComment: async (parent, { username, tripId, text }, { models }) => {
-//     const comment = new Comment({
-//       _id: new mongoose.Types.ObjectId,
-//       username,
-//       tripId,
-//       text,
-//     })
-//     try {
-//       await comment.save();
-//       console.log('this is comment==================', comment)
-
-//     } catch (err) {
-//       console.log(err)
-//     }
-//     // add new comment to mongoDb
-//     pubsub.publish('commentAdded', { commentAdded: comment, tripId });
-//     return comment
-//   }
-// };

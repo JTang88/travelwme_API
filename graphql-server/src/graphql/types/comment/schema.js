@@ -4,6 +4,7 @@ const Comment = `
     tripId: Int!
     username: String!
     text: String!
+    reply: [Reply]
   }`;
 
 export default Comment;
