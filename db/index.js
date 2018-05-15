@@ -65,7 +65,6 @@ console.log('this is what tripMembers look like', db.TripDetails);
 // console.log('here is mongDb==============================', mongoose.models.Comment.remove({}).exec() )
 
 // mongoose.models.Comment.remove({}).exec()
-// mongoose.models.Reply.remove({}).exec()
 
 export { db, mongoDb };
 

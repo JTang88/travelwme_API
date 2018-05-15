@@ -10,13 +10,14 @@ import TripKeyword from './types/tripKeyword/schema';
 import TripMembers from './types/tripMembers/schema';
 import Vote from './types/vote/schema';
 import User from './types/user/schema';
-import Reply from './types/reply/schema';
+import ReplyDetails from './types/replyDetails/schema';
+import CommentDetails from './types/commentDetails/schema';
 import Comment from './types/comment/schema';
 // import all type resolvers
 import TripResolver from './types/trip/resolver';
 import UserResolver from './types/user/resolver';
 import TripMembersResolver from './types/tripMembers/resolver';
-
+import commentReoslvers from './types/comment/resolver';
 // import all query resolvers
 import allTripMembers from './queries/resolvers/allTripMembers';
 import allTrips from './queries/resolvers/allTrips';
@@ -107,6 +108,7 @@ const resolvers = {
   User: UserResolver,
   Trip: TripResolver,
   TripMembers: TripMembersResolver,
+  Comment: commentReoslvers,
 };
 
 
@@ -120,7 +122,7 @@ const SchemaDefinition = `
 
 export const schema = makeExecutableSchema({
   typeDefs: [
-    SchemaDefinition, Query, Mutation, Subscription, Vote, User, TripKeyword, Comment, TripMembers, Trip, Reply
+    SchemaDefinition, Query, Mutation, Subscription, Vote, User, TripKeyword, ...Comment, TripMembers, Trip,
   ],
   resolvers,
 });

@@ -2,7 +2,6 @@ import { withFilter } from 'graphql-subscriptions';
 import { pubsub } from '../../mutations/resolvers/newReply';
 // import { pubsub } from '../../mutations/resolvers/newComment';
 
-
 export default {
   replyAdded: {
     subscribe: withFilter(

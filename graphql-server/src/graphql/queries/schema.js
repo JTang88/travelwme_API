@@ -1,7 +1,7 @@
 const Query = `
   type Query {
-    getComments(tripId: Int!): [Comment]
-    getReply(tripId: Int!): [Reply]
+    getComments(tripId: Int!): [CommentDetails]
+    getReply(tripId: Int!): [ReplyDetails]
     allUsers: [User]
     getUser(id: Int!): User
     allTripMembers: [TripMembers]

@@ -1,7 +1,7 @@
 const Subscription = `
   type Subscription {
-    commentAdded(tripId: Int!): Comment
-    replyAdded(tripId: Int): Reply
+    commentAdded(tripId: Int!): CommentDetails
+    replyAdded(tripId: Int): ReplyDetails
   }
 `;
 
