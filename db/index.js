@@ -54,6 +54,7 @@ const mongoDb = mongoose.connection;
 
 mongoose.connect('mongodb://localhost/travelwme')
 
+// mongoose.set('debug', true);
 
 mongoDb.on('error', console.error.bind(console, 'connection error:'));
 mongoDb.once('open', () => {
@@ -62,9 +63,9 @@ mongoDb.once('open', () => {
 
 console.log('this is what tripMembers look like', db.TripDetails); 
 
-// console.log('here is mongDb==============================', mongoose.models.Comment.remove({}).exec() )
+// console.log('here is mongDb==============================', mongoose.models.tripComment.remove({}).exec() )
 
-// mongoose.models.Comment.remove({}).exec()
+// mongoose.models.tripComment.remove({}).exec()
 
 export { db, mongoDb };
 

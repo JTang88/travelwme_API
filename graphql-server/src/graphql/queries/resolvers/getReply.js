@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
-import Comment from '../../../../../db/models/comment';
+import TripComment from '../../../../../db/models/tripComment';
 
 export default {
   getReply: async (parent, { tripId }, { models }) => {
-    const comment = await Comment.findOne({ tripId });
-    if (comment) {
-      return comment.replyDetails;
+    const tripComment = await TripComment.findOne({ tripId });
+    if (tripComment) {
+      return tripComment.replyDetails;
     }
     return [];
   }

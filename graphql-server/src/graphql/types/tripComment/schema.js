@@ -1,8 +1,8 @@
 import CommentDetails from '../commentDetails/schema';
 import ReplyDetails from '../replyDetails/schema';
 
-const Comment = `
-  type Comment {
+const TripComment = `
+  type TripComment {
     _id: String!
     tripId: Int!
     username: String!
@@ -11,5 +11,5 @@ const Comment = `
     replyDetails: [ReplyDetails]
   }`;
 
-export default [Comment, CommentDetails, ReplyDetails];
+export default [TripComment, CommentDetails, ReplyDetails];
 

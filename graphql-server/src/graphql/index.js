@@ -12,12 +12,12 @@ import Vote from './types/vote/schema';
 import User from './types/user/schema';
 import ReplyDetails from './types/replyDetails/schema';
 import CommentDetails from './types/commentDetails/schema';
-import Comment from './types/comment/schema';
+import TripComment from './types/tripComment/schema';
 // import all type resolvers
 import TripResolver from './types/trip/resolver';
 import UserResolver from './types/user/resolver';
 import TripMembersResolver from './types/tripMembers/resolver';
-import commentReoslvers from './types/comment/resolver';
+import TripCommentReoslvers from './types/tripComment/resolver';
 // import all query resolvers
 import allTripMembers from './queries/resolvers/allTripMembers';
 import allTrips from './queries/resolvers/allTrips';
@@ -31,7 +31,7 @@ import getCreatedTrips from './queries/resolvers/getCreatedTrips';
 import getJoinedTrips from './queries/resolvers/getJoinedTrips';
 import getWaitingTrips from './queries/resolvers/getWaitingTrips';
 import getForSureGoingTrips from './queries/resolvers/getForSureGoingTrips';
-import getComments from './queries/resolvers/getComments';
+import getTripComments from './queries/resolvers/getTripComments';
 import getReply from './queries/resolvers/getReply';
 // import all mutation resolvers
 import addPhotoToTrip from './mutations/resolvers/addPhotoToTrip';
@@ -76,7 +76,7 @@ const resolvers = {
     getWaitingTrips, 
     getForSureGoingTrips, 
     searchTrips,
-    getComments,
+    getTripComments,
     getReply,
   ),
   Mutation: merge(
@@ -108,7 +108,7 @@ const resolvers = {
   User: UserResolver,
   Trip: TripResolver,
   TripMembers: TripMembersResolver,
-  Comment: commentReoslvers,
+  TripComment: TripCommentReoslvers,
 };
 
 
@@ -122,7 +122,7 @@ const SchemaDefinition = `
 
 export const schema = makeExecutableSchema({
   typeDefs: [
-    SchemaDefinition, Query, Mutation, Subscription, Vote, User, TripKeyword, ...Comment, TripMembers, Trip,
+    SchemaDefinition, Query, Mutation, Subscription, Vote, User, TripKeyword, ...TripComment, TripMembers, Trip,
   ],
   resolvers,
 });

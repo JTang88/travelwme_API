@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Comment from '../../../../../db/models/comment';
+import TripComment from '../../../../../db/models/tripComment';
 import { PubSub } from 'graphql-subscriptions';
 
 export const pubsub = new PubSub(); 
@@ -7,17 +7,17 @@ export const pubsub = new PubSub();
 export default {
   newReply: async (parent, args, { models }) => {
     args._id = new mongoose.Types.ObjectId
-    const comment = await Comment.findOne({ tripId: args.tripId });
-    await comment.replyDetails.push(args);
+    const tripComment = await TripComment.findOne({ tripId: args.tripId });
+    await tripComment.replyDetails.push(args);
 
     try {
-      await comment.save();
+      await tripComment.save();
     } catch (err) {
       console.log(err)
     }
 
-    const newReply = comment.replyDetails[comment.replyDetails.length -1];
-    console.log('here is comment.replyDetails in newReply', comment.replyDetails)
+    const newReply = tripComment.replyDetails[tripComment.replyDetails.length -1];
+    console.log('here is tripComment.replyDetails in newReply', tripComment.replyDetails)
     pubsub.publish('replyAdded', { replyAdded: newReply, tripId: args.tripId });
     return newReply;
   }

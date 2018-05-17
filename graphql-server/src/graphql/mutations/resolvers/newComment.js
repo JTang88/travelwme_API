@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Comment from '../../../../../db/models/comment';
+import TripComment from '../../../../../db/models/tripComment';
 import { PubSub } from 'graphql-subscriptions'
 
 export const pubsub = new PubSub(); 
@@ -12,13 +12,13 @@ export default {
       tripId,
       text,
     }
-    let comment = await Comment.findOne({ tripId });
+    let tripComment = await TripComment.findOne({ tripId });
 
     console.log('commnet in now commnet resolver')
-    if (comment) {
-      comment.commentDetails.push(newComment);
+    if (tripComment) {
+      tripComment.commentDetails.push(newComment);
     } else {
-      comment = new Comment({
+      tripComment = new TripComment({
         _id: new mongoose.Types.ObjectId,
         tripId,
         commentDetails: [newComment],
@@ -26,8 +26,8 @@ export default {
     }
 
     try {
-      await comment.save();
-      console.log('this is comment==================', comment)
+      await tripComment.save();
+      console.log('this is tripComment==================', tripComment)
 
     } catch (err) {
       console.log(err)

@@ -15,12 +15,12 @@ const replyDetailsSchema = mongoose.Schema({
   text: String,
 });
 
-const commentSchema = mongoose.Schema({
+const tripCommentSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
   tripId: Number,
   commentDetails: [commentDetailsSchema],
   replyDetails: [replyDetailsSchema],
 });
 
-export default mongoose.model('Comment', commentSchema);
+export default mongoose.model('tripComment', tripCommentSchema);
 
