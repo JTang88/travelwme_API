@@ -5,35 +5,24 @@ import { PubSub } from 'graphql-subscriptions'
 export const pubsub = new PubSub(); 
 
 export default {
-  newComment: async (parent, { username, tripId, text }, { models }) => {
+  newComment: async (parent, { username, text, tripCommentId }, { models }) => {
     const newComment = {
-      _id: new mongoose.Types.ObjectId,
+      _id: await new mongoose.Types.ObjectId,
       username,
-      tripId,
       text,
     }
-    let tripComment = await TripComment.findOne({ tripId });
-
-    console.log('commnet in now commnet resolver')
-    if (tripComment) {
-      tripComment.commentDetails.push(newComment);
-    } else {
-      tripComment = new TripComment({
-        _id: new mongoose.Types.ObjectId,
-        tripId,
-        commentDetails: [newComment],
-      })
-    }
-
+    const payload = Object.assign({}, newComment, { tripCommentId })
     try {
+      const tripComment = await TripComment.findById(tripCommentId);
+      tripComment.commentDetails.push(newComment);
       await tripComment.save();
       console.log('this is tripComment==================', tripComment)
-
+      console.log('Here is tripCommentId in newCommnet resolver', typeof tripCommentId)
     } catch (err) {
       console.log(err)
     }
     // add new comment to mongoDb
-    pubsub.publish('commentAdded', { commentAdded: newComment, tripId });
+    pubsub.publish('commentAdded', { commentAdded: payload, tripCommentId });
     return newComment;
   }
 };

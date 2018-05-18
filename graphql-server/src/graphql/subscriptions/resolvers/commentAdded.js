@@ -9,7 +9,7 @@ export default {
         console.log('this is payload================', payload)
         // console.log('this is commentAdded.payload================', commentAdded.payload)
         console.log('this is variables================', variables)
-        return payload.tripId === variables.tripId;
+        return payload.tripCommentId === variables.tripCommentId;
       },
     )
   }

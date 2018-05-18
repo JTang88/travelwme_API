@@ -35,7 +35,9 @@ const convertBodyTypeToId = (comp) => {
 }
 
 export default {
-  createTrip: async (parent, args, { models }) => {
+  createTrip: async (parent, args, { models, mongo }) => {
+    const tripComment = await new mongo.TripComment({}).save();
+    args.tripCommentId = tripComment._id.toString();
     const cc = await models.CountriesContinents.findAll({
       where: {
         country: {
@@ -43,7 +45,7 @@ export default {
         },
       }
     })
-
+    console.log('here is args in createTrip', args)
     const Trip = await models.Trip.create(args);
     Trip.addCountriesContinents(cc);
 

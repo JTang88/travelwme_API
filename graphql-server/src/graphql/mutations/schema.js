@@ -1,7 +1,7 @@
 const Mutation = `
   type Mutation {
-    newComment(tripId: Int!, username: String!, text: String!): CommentDetails!
-    newReply(tripId: Int!, commentId: String!, username: String!, text: String!): ReplyDetails!
+    newComment(tripCommentId: String!, username: String!, text: String!): CommentDetails!
+    newReply(tripCommentId: String!, commentId: String!, username: String!, text: String!): ReplyDetails!
     updateUser(id: Int!, username: String, gender: String, age: Int, body_type: String, relationship: String, description: String): User!
     updateUserRelationshipToTrip(userId: Int!, tripId: Int!, user_type: String!): TripMembers
     updateUserEmail(id: Int!, email: String!): User!
