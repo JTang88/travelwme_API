@@ -9,9 +9,10 @@ export default (sequelize, Sequelize) => {
     relationship: Sequelize.STRING,  
     description: Sequelize.STRING,
     publicId: Sequelize.STRING,
+    convoListId: Sequelize.STRING,
+    notificationId: Sequelize.STRING,
   }, {
     timestamps: true, 
   });
   return User;
-}
-
+};

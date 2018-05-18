@@ -32,7 +32,7 @@ const addUser = async (req, res) => {
 app.use(cors('/*'));
 
 // comment out the follwoing line to bypass authentication, also go to resolver.js, find the comments and do the same
-// app.use(addUser);
+app.use(addUser);
 
 app.use('/graphiql', 
   graphiqlExpress({ 

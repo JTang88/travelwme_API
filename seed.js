@@ -5,10 +5,34 @@ import cloudinary from 'cloudinary';
 import util from 'util';
 import axios from 'axios';
 import express from 'express';
+import mongoose from 'mongoose';
 import casual from 'casual';
-import db from './db';
 import seedData from './newdata.json';
+import ConvoList from './db/models/convoList';
+import Notification from './db/models/notification';
+import TripComment from './db/models/tripComment';
+import { db } from './db';
 import { countries, continentTable, countryContinentSeed } from './country-continent';
+
+
+// const testMongo = async () => {
+//   const tripComment = await new TripComment({});
+//   await tripComment.save();
+//   console.log('here is tripComment', tripComment);
+//   const stringId = await tripComment._id.toString()
+//   console.log('here is typeof tripComment._id', typeof tripComment._id);
+//   console.log('here is tripComment._id', tripComment._id);
+//   console.log('here is the toString() of tripComment._id', stringId);
+//   const convertedBackId = await mongoose.Types.ObjectId(stringId);
+//   console.log('here is convertedBackId', convertedBackId);
+//   console.log('well are they equal?', tripComment._id === convertedBackId)
+//   const find = await TripComment.findById(stringId).exec();
+//   const findById = await TripComment.findById(convertedBackId);
+//   console.log('here to what you get using convertedBackId', findById)
+// }
+
+// setTimeout(testMongo, 0);
+// testMongo();
 
 
 
@@ -94,17 +118,23 @@ const print = async (func) => {
 const makeUsers = async () => {
   const users = [];
   const memo = {};
-  const femaleDate = await axios.get('https://randomuser.me/api/?results=100&gender=female');
-  const maleDate = await axios.get('https://randomuser.me/api/?results=100&gender=male');
+  const femaleDate = await axios.get('https://randomuser.me/api/?results=60&gender=female');
+  const maleDate = await axios.get('https://randomuser.me/api/?results=60&gender=male');
   const femaleUsers = femaleDate.data.results
   const maleUsers = maleDate.data.results
 
   // console.log(util.inspect(femaleUsers, { showHidden: true, depth: 5 }));
   for(let i = 0; i < maleUsers.length; i++) {
+    // await new mongoose.models.ConvList
+    const convoList = await new ConvoList({}).save();
+    const notification = await new Notification({}).save();
+
     const user = {};
     const { public_id } = await cloudinary.uploader.upload(`${maleUsers[i].picture.large}`);
     let name = maleUsers[i].name.first
     user.gender = 'male';
+    user.convoListId = convoList._id.toString();
+    user.notificationId = notification._id.toString();
     memo[name] = !memo[name] ? 0 : memo[name] + 1;
     name = memo[name] > 0 ? name + memo[name] : name;
     user.username = name;
@@ -118,8 +148,15 @@ const makeUsers = async () => {
     users.push(user);
   }
 
+  // convoListId
+  // notificationId
   for(let i = 0; i < femaleUsers.length; i++) {
+    const convoList = await new ConvoList({}).save();
+    const notification = await new Notification({}).save();
+
     const user = {};
+    user.convoListId = convoList._id.toString();
+    user.notificationId = notification._id.toString();
     const { public_id } = await cloudinary.uploader.upload(`${femaleUsers[i].picture.large}`);
     let name = femaleUsers[i].name.first
     user.gender = 'female';
@@ -146,9 +183,11 @@ const tripLocations = [];
 const makeTrips = async () => {
   const trips = [];
   const memo = {};
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 80; i++) {
+    const tripComment = await new TripComment({}).save();
     const dates = datesMaker();
     const trip = {};
+    trip.tripCommentId = tripComment._id.toString();
     const randomCountry = random(countries);
     for(let j = 0; j < countryContinentSeed.length; j++) {
       const tripLocation = {};
@@ -169,7 +208,7 @@ const makeTrips = async () => {
     trip.gender = await random(['male', 'female', 'all', 'all', 'all', 'all']);
     trip.date_start = dates.date_start;
     trip.date_end = dates.date_end;
-    trip.creatorId = Math.floor(Math.random() * 200) + 1;
+    trip.creatorId = Math.floor(Math.random() * 120) + 1;
     trip.age_start = random([18, 25, 30, 35])
     trip.age_end = trip.age_start === 18 ? 30 : trip.age_start + 10;
     trip.relationship = await random(['single', 'commited', 'it\'s complicated', 'married', 'single', 'single', 'single']);
@@ -275,6 +314,9 @@ const makeData = async () => {
   await db.CountriesContinents.bulkCreate(countryContinentSeed)  
   await db.BodyType.bulkCreate(seedData.BodyType)  
   await db.TripKeyword.bulkCreate(seedData.TripKeyword)
+ 
+  console.log('====================the code brokeh here before make users...==============================')
+
   const users = await makeUsers();
   const trips = await makeTrips();
   const tripDetails = await makeTripDetails(trips);
@@ -301,7 +343,6 @@ const makeData = async () => {
 }
 
 makeData();
-
 
 
 

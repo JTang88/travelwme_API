@@ -13,11 +13,18 @@ import User from './types/user/schema';
 import ReplyDetails from './types/replyDetails/schema';
 import CommentDetails from './types/commentDetails/schema';
 import TripComment from './types/tripComment/schema';
+import Notification from './types/notification/schema';
+import Note from './types/note/schema';
+import ConvoList from './types/convoList/schema';
+import Convo from './types/convo/schema';
 // import all type resolvers
 import TripResolver from './types/trip/resolver';
 import UserResolver from './types/user/resolver';
 import TripMembersResolver from './types/tripMembers/resolver';
 import TripCommentReoslvers from './types/tripComment/resolver';
+import NotificationResolver from './types/notification/resolver';
+import ConvoListResolver from './types/convoList/resolver';
+import ConvoResolver from './types/convo/resolver';
 // import all query resolvers
 import allTripMembers from './queries/resolvers/allTripMembers';
 import allTrips from './queries/resolvers/allTrips';
@@ -61,6 +68,8 @@ import replyAdded from './subscriptions/resolvers/replyAdded';
 
 // export const pubsub = new PubSub(); 
 
+// Notification from './types/notification/schema';
+// import Notes f
 
 const resolvers = {
   Query: merge(
@@ -109,6 +118,9 @@ const resolvers = {
   Trip: TripResolver,
   TripMembers: TripMembersResolver,
   TripComment: TripCommentReoslvers,
+  Notification: NotificationResolver,
+  ConvoList: ConvoListResolver,
+  Convo: ConvoResolver,
 };
 
 
@@ -122,7 +134,7 @@ const SchemaDefinition = `
 
 export const schema = makeExecutableSchema({
   typeDefs: [
-    SchemaDefinition, Query, Mutation, Subscription, Vote, User, TripKeyword, ...TripComment, TripMembers, Trip,
+    SchemaDefinition, Query, Mutation, Subscription, Vote, User, TripKeyword, ...TripComment, TripMembers, Trip, ...Notification, ...Convo, ...ConvoList
   ],
   resolvers,
 });

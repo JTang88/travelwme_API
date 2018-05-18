@@ -19,7 +19,7 @@ export default (sequelize, Sequelize) => {
     relationship: Sequelize.STRING,
     publicId: Sequelize.STRING,
     trip_status: Sequelize.STRING,
-    // commentId: Sequelize.STRING,
+    tripCommentId: Sequelize.STRING,
   }, {
     timestamps: true,
   });

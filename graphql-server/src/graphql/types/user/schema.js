@@ -13,6 +13,8 @@ const User = `
     trips: [Trip!]!
     user_type: String
     publicId: String
+    convoListId: String!
+    notificationId: String!
   }`;
 
 export default () => [User, Trip];

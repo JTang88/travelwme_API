@@ -27,6 +27,7 @@ const Trip = `
     continents: String
     members: [TripMembers]
     publicId: String
+    tripCommentId: String!
   }`;
 
 export default () => [Trip, TripMembers];
