@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const noteSchema = mongoose.Schema({
   type: String,
   senderName: String,
-  tripName: String,
+  tripTitle: String,
   tripId: Number,
 });
 

@@ -3,7 +3,7 @@ const Note = `
     _id: String!
     type: String!
     senderName: String
-    tripName: String
+    tripTitle: String
     tripId: Int
   }`;
 

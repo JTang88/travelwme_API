@@ -61,13 +61,9 @@ mongoDb.once('open', () => {
   console.log('Now connected to MongoDB')
 });
 
-// console.log('this is what tripMembers look like', db.TripDetails); 
-
 // mongoDb.models.TripComment.remove({})
 // mongoDb.models.ConvoList.remove({}).exec()
 // mongoDb.models.Convo.remove({}).exec()
 // mongoDb.models.Notification.remove({}).exec()
-
-// console.log('here is mongoDb=================================', mongoDb);
 
 export { db, mongoDb };

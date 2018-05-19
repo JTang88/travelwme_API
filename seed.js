@@ -328,7 +328,7 @@ const makeData = async () => {
   db.User.bulkCreate(users);
   console.log('code broke at inserting trips');
 
-  db.Trip.bulkCreate(trips);
+  await db.Trip.bulkCreate(trips);
   console.log('code broke at inserting tripDatials');
 
   db.TripDetails.bulkCreate(tripDetails);
