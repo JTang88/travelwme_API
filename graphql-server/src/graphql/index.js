@@ -40,6 +40,7 @@ import getWaitingTrips from './queries/resolvers/getWaitingTrips';
 import getForSureGoingTrips from './queries/resolvers/getForSureGoingTrips';
 import getTripComments from './queries/resolvers/getTripComments';
 import getReply from './queries/resolvers/getReply';
+import getNotifications from './queries/resolvers/getNotifications';
 // import all mutation resolvers
 import addPhotoToTrip from './mutations/resolvers/addPhotoToTrip';
 import addPhotoToUser from './mutations/resolvers/addPhotoToUser';
@@ -64,6 +65,7 @@ import newReply from './mutations/resolvers/newReply';
 // import all subscription resolvers
 import commentAdded from './subscriptions/resolvers/commentAdded';
 import replyAdded from './subscriptions/resolvers/replyAdded';
+import noteAdded from './subscriptions/resolvers/noteAdded';
 
 
 // export const pubsub = new PubSub(); 
@@ -87,6 +89,7 @@ const resolvers = {
     searchTrips,
     getTripComments,
     getReply,
+    getNotifications,
   ),
   Mutation: merge(
     addPhotoToTrip, 
@@ -113,6 +116,7 @@ const resolvers = {
   Subscription: merge(
     commentAdded,
     replyAdded,
+    noteAdded,
   ),
   User: UserResolver,
   Trip: TripResolver,
@@ -134,7 +138,7 @@ const SchemaDefinition = `
 
 export const schema = makeExecutableSchema({
   typeDefs: [
-    SchemaDefinition, Query, Mutation, Subscription, Vote, User, TripKeyword, ...TripComment, TripMembers, Trip, ...Notification, ...Convo, ...ConvoList
+    SchemaDefinition, Query, Note, Mutation, Subscription, Vote, User, TripKeyword, ...TripComment, TripMembers, Trip, ...Notification, ...Convo, ...ConvoList
   ],
   resolvers,
 });

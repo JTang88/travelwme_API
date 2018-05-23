@@ -1,10 +1,10 @@
 import { withFilter } from 'graphql-subscriptions';
-import { pubsub } from '../../mutations/resolvers/newComment';
+import pubSub from '../../pubSub';
 
 export default {
   commentAdded: {
     subscribe: withFilter(
-      () => pubsub.asyncIterator('commentAdded'),
+      () => pubSub.asyncIterator('commentAdded'),
       (payload, variables) => {
         console.log('this is payload================', payload)
         // console.log('this is commentAdded.payload================', commentAdded.payload)

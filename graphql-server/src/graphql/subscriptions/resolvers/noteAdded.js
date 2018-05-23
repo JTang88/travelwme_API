@@ -2,14 +2,14 @@ import { withFilter } from 'graphql-subscriptions';
 import pubSub from '../../pubSub';
 
 export default {
-  replyAdded: {
+  noteAdded: {
     subscribe: withFilter(
-      () => pubSub.asyncIterator('replyAdded'),
+      () => pubSub.asyncIterator('noteAdded'),
       (payload, variables) => {
         console.log('this is payload================', payload)
-        // console.log('this is replyAdded.payload================', replyAdded.payload)
+        // console.log('this is noteAdded.payload================', noteAdded.payload)
         console.log('this is variables================', variables)
-        return payload.tripCommentId === variables.tripCommentId;
+        return payload.notificationId === variables.notificationId;
       },
     )
   }

@@ -1,6 +1,7 @@
 const Query = `
   type Query {
     getTripComments(tripCommentId: String!): [CommentDetails]
+    getNotifications(notificationId: String!): [Note]
     getReply(tripCommentId: String!): [ReplyDetails]
     allUsers: [User]
     getUser(id: Int!): User

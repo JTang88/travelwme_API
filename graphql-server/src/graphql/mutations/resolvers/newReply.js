@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
 import TripComment from '../../../../../db/models/tripComment';
-import { PubSub } from 'graphql-subscriptions';
-
-export const pubsub = new PubSub(); 
+import pubSub from '../../pubSub';
 
 export default {
   newReply: async (parent, { tripCommentId, ...args }, { models }) => {
@@ -22,7 +20,7 @@ export default {
     console.log('Here is payload in newReply resolver', payload);
 
 
-    pubsub.publish('replyAdded', { replyAdded: payload, tripCommentId });
+    pubSub.publish('replyAdded', { replyAdded: payload, tripCommentId });
     return newReply;
   }
 };
