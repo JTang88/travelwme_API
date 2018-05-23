@@ -1,5 +1,7 @@
 const Mutation = `
   type Mutation {
+    newMsg(username: String!, text: String!, convoId: String!): Msg
+    newConvo(convoListId: String!, username: String!, text: String!): ConvoId
     newComment(tripCommentId: String!, username: String!, text: String!): CommentDetails!
     newReply(tripCommentId: String!, commentId: String!, username: String!, text: String!): ReplyDetails!
     updateUser(id: Int!, username: String, gender: String, age: Int, body_type: String, relationship: String, description: String): User!

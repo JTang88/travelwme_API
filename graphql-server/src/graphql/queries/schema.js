@@ -1,6 +1,8 @@
 const Query = `
   type Query {
+    getConvo(convoId: String!): Convo
     getTripComments(tripCommentId: String!): [CommentDetails]
+    getConvoList(convoListId: String!): ConvoList
     getNotifications(notificationId: String!): [Note]
     getReply(tripCommentId: String!): [ReplyDetails]
     allUsers: [User]

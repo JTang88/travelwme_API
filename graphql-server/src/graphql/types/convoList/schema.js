@@ -1,5 +1,6 @@
 const ConvoId = `
 type ConvoId {
+  _id: String
   convoId: String
 }`;
 

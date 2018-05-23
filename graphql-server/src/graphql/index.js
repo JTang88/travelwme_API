@@ -41,6 +41,8 @@ import getForSureGoingTrips from './queries/resolvers/getForSureGoingTrips';
 import getTripComments from './queries/resolvers/getTripComments';
 import getReply from './queries/resolvers/getReply';
 import getNotifications from './queries/resolvers/getNotifications';
+import getConvoList from './queries/resolvers/getConvoList';
+import getConvo from './queries/resolvers/getConvo';
 // import all mutation resolvers
 import addPhotoToTrip from './mutations/resolvers/addPhotoToTrip';
 import addPhotoToUser from './mutations/resolvers/addPhotoToUser';
@@ -62,10 +64,14 @@ import updateUserEmail from './mutations/resolvers/updateUserEmail';
 import updateUserPassword from './mutations/resolvers/updateUserPassword';
 import newComment from './mutations/resolvers/newComment';
 import newReply from './mutations/resolvers/newReply';
+import newConvo from './mutations/resolvers/newConvo';
+import newMsg from './mutations/resolvers/newMsg';
 // import all subscription resolvers
 import commentAdded from './subscriptions/resolvers/commentAdded';
 import replyAdded from './subscriptions/resolvers/replyAdded';
 import noteAdded from './subscriptions/resolvers/noteAdded';
+import convoAdded from './subscriptions/resolvers/convoAdded';
+import msgAdded from './subscriptions/resolvers/msgAdded';
 
 
 // export const pubsub = new PubSub(); 
@@ -90,6 +96,8 @@ const resolvers = {
     getTripComments,
     getReply,
     getNotifications,
+    getConvoList,
+    getConvo,
   ),
   Mutation: merge(
     addPhotoToTrip, 
@@ -112,11 +120,15 @@ const resolvers = {
     updateUserPassword,
     newComment,
     newReply,
+    newConvo,
+    newMsg,
   ),
   Subscription: merge(
     commentAdded,
     replyAdded,
     noteAdded,
+    convoAdded,
+    msgAdded,
   ),
   User: UserResolver,
   Trip: TripResolver,
