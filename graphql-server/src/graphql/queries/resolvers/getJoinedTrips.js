@@ -5,7 +5,9 @@ export default {
       where: {
         userId: id,
         user_type: 'J',
-        forSureGoing: false,
+        forSureGoing: {
+          $or: [false, null],
+        },
       }
     });
 
