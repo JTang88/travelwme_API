@@ -11,7 +11,7 @@ const Mutation = `
     forSureGoing(memberId: Int!, tripId: Int!): TripMembers
     updateTripStat(tripId: Int!, field: String!, type: String!): Trip
     updateTripDescription(id: Int!, description: String!): Trip
-    interestedInATrip(userId: Int!, tripId: Int!): TripMembers
+    interestedInATrip(userId: Int!, tripId: Int!, senderName: String!, creatorId: Int!, tripTitle: String!): TripMembers
     deleteUser(id: Int!): Int!  
     forgotPassword(email: String!): String!
     addKey(word: String) : TripKeyword
