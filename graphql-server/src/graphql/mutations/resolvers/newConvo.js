@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import pubSub from '../../pubSub';
 
 export default {
-  newConvo: async (parent, { convoListId, username, userId, text }, { models, mongo }) => {
+  newConvo: async (parent, { senderConvoListId, convoListId, username, userId, text }, { models, mongo }) => {
     // Use this new convo to get access to sql database and return those fields
     const convo = await new mongo.Convo({});
     const msg = {
@@ -13,16 +13,20 @@ export default {
     await convo.userIds.push(userId);
     await convo.msgs.push(msg);
     convo.save();
+
     const convoList = await mongo.ConvoList.findById(convoListId);
-    const convoId = {
-      _id: await new mongoose.Types.ObjectId,
-      convoId: convo._id,
-    }
-    await convoList.convoIds.push(convoId);
+    await convoList.convoIds.push(convo._id);
+
+    const senderConvoList = await mongo.ConvoList.findById(senderConvoListId);
+    await senderConvoList.convoIds.push(convo._id);
+
     convoList.save();
-    
-    pubSub.publish('convoAdded', { convoAdded: convoId, convoListId });
-    return convoId;
+    senderConvoList.save();
+
+    pubSub.publish('convoAdded', { convoAdded: convo._id, convoListId });
+    pubSub.publish('convoAdded', { convoAdded: convo._id, convoListId: senderConvoListId });
+
+    return convo._id;
   }
 };
 

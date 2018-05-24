@@ -23,7 +23,6 @@ import UserResolver from './types/user/resolver';
 import TripMembersResolver from './types/tripMembers/resolver';
 import TripCommentReoslvers from './types/tripComment/resolver';
 import NotificationResolver from './types/notification/resolver';
-import ConvoListResolver from './types/convoList/resolver';
 import ConvoResolver from './types/convo/resolver';
 // import all query resolvers
 import allTripMembers from './queries/resolvers/allTripMembers';
@@ -135,7 +134,6 @@ const resolvers = {
   TripMembers: TripMembersResolver,
   TripComment: TripCommentReoslvers,
   Notification: NotificationResolver,
-  ConvoList: ConvoListResolver,
   Convo: ConvoResolver,
 };
 
@@ -150,7 +148,7 @@ const SchemaDefinition = `
 
 export const schema = makeExecutableSchema({
   typeDefs: [
-    SchemaDefinition, Query, Note, Mutation, Subscription, Vote, User, TripKeyword, ...TripComment, TripMembers, Trip, ...Notification, ...Convo, ...ConvoList
+    SchemaDefinition, Query, Note, Mutation, Subscription, Vote, User, TripKeyword, ...TripComment, TripMembers, Trip, ...Notification, ...Convo, ConvoList
   ],
   resolvers,
 });

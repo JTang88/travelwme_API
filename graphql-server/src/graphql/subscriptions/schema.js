@@ -3,7 +3,7 @@ const Subscription = `
     commentAdded(tripCommentId: String!): CommentDetails
     replyAdded(tripCommentId: String!): ReplyDetails
     noteAdded(notificationId: String!): Note
-    convoAdded(convoListId: String!): ConvoId
+    convoAdded(convoListId: String!): String
     msgAdded(convoId: String!) : Msg
   }
 `;

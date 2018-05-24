@@ -1,14 +1,8 @@
-const ConvoId = `
-type ConvoId {
-  _id: String
-  convoId: String
-}`;
-
 const ConvoList = `
   type ConvoList {
     _id: String!
-    convoIds: [ConvoId]
+    convoIds: [String]
   }`;
 
-export default [ConvoList, ConvoId];
+export default ConvoList;
 
