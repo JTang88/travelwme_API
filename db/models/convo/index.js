@@ -6,6 +6,7 @@ const msgSchema = mongoose.Schema({
 });
 
 const convoSchema = mongoose.Schema({
+  userIds: [],
   msgs: [msgSchema],
 });
 

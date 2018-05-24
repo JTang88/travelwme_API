@@ -2,13 +2,15 @@ import mongoose from 'mongoose';
 import pubSub from '../../pubSub';
 
 export default {
-  newConvo: async (parent, { convoListId, username, text }, { models, mongo }) => {
+  newConvo: async (parent, { convoListId, username, userId, text }, { models, mongo }) => {
+    // Use this new convo to get access to sql database and return those fields
     const convo = await new mongo.Convo({});
     const msg = {
       _id: await new mongoose.Types.ObjectId,
       username,
       text,
     }
+    await convo.userIds.push(userId);
     await convo.msgs.push(msg);
     convo.save();
     const convoList = await mongo.ConvoList.findById(convoListId);
