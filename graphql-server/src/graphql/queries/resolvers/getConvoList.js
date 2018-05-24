@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
 export default {
-  getConvoList: async (parent, { convoListid }, { models, mongo }) => {
-    const convoList = await mongo.convoList.findById(convoListId);
-    return convList;
+  getConvoList: async (parent, { convoListId }, { models, mongo }) => {
+    const convoList = await mongo.ConvoList.findById(convoListId);
+    return convoList;
   }
 };

@@ -18,7 +18,9 @@ export default {
       _id: await new mongoose.Types.ObjectId,
       convoId: convo._id,
     }
-    convoList.convoIds.push(convoId);
+    await convoList.convoIds.push(convoId);
+    convoList.save();
+    
     pubSub.publish('convoAdded', { convoAdded: convoId, convoListId });
     return convoId;
   }
