@@ -2,8 +2,13 @@ import mongoose from 'mongoose';
 import pubSub from '../../pubSub';
 
 export default {
-  newConvo: async (parent, { senderConvoListId, convoListId, username, userId, text }, { models, mongo }) => {
+  newConvo: async (parent, { convoListId, userId, username, receiverUserId, text }, { models, mongo }) => {
     // Use this new convo to get access to sql database and return those fields
+    const receiver = await models.User.findById(receiverUserId);
+    const receiverConvoListId = receiver.convoListId;
+    console.log('=========================here is receiverConvoListId===================', receiverConvoListId)
+
+
     const convo = await new mongo.Convo({});
     const msg = {
       _id: await new mongoose.Types.ObjectId,
@@ -11,20 +16,21 @@ export default {
       text,
     }
     await convo.userIds.push(userId);
+    await convo.userIds.push(receiverUserId);
     await convo.msgs.push(msg);
     convo.save();
 
     const convoList = await mongo.ConvoList.findById(convoListId);
     await convoList.convoIds.push(convo._id);
 
-    const senderConvoList = await mongo.ConvoList.findById(senderConvoListId);
-    await senderConvoList.convoIds.push(convo._id);
+    const receiverConvoList = await mongo.ConvoList.findById(receiverConvoListId);
+    await receiverConvoList.convoIds.push(convo._id);
 
     convoList.save();
-    senderConvoList.save();
+    receiverConvoList.save();
 
     pubSub.publish('convoAdded', { convoAdded: convo._id, convoListId });
-    pubSub.publish('convoAdded', { convoAdded: convo._id, convoListId: senderConvoListId });
+    pubSub.publish('convoAdded', { convoAdded: convo._id, convoListId: receiverConvoListId });
 
     return convo._id;
   }
