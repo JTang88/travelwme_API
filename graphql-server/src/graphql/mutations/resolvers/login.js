@@ -14,7 +14,7 @@ export default {
     }
     const token = await jwt.sign({
       user: _.pick(user, 'id'),
-    }, process.env.TOKEN_SECRET , { expiresIn: '1h' })
+    }, process.env.TOKEN_SECRET , { expiresIn: '5h' })
 
     return token;
   }  
