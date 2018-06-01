@@ -4,6 +4,11 @@ import ConvoList from '../../../../../db/models/convoList';
 
 export default {
   register: async (parent, args, { models , mongo }) => {
+    const user = await models.User.findOne({ where: { email: args.email } });
+    if (user) {
+      throw new Error('email already exist');
+    }
+  
     try {
       args.password = await bcrypt.hash(args.password, 12);
       console.log('in here ==================================================')
