@@ -18,7 +18,6 @@ const Query = `
     getJoinedTrips(id: Int!): [Trip]
     getForSureGoingTrips(id: Int!): [Trip]
     getTrip(id: Int!): Trip
-    fitTrips(fitness: String): Trip
   }
 `;
 

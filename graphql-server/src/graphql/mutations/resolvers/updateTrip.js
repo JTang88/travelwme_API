@@ -8,7 +8,6 @@ export default {
       date_end: args.date_end, 
       gender: args.gender, 
       age: args.age, 
-      fitness: args.fitness, 
       relationship_status: args.relationship_status, 
       trip_state: args.trip_state,
     }, { where: { id: args.id } });

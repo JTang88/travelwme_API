@@ -7,7 +7,6 @@ const User = `
     email: String!
     gender: String
     age: Int,
-    body_type: String
     description: String
     relationship: String  
     trips: [Trip!]!

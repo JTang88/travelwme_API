@@ -25,14 +25,6 @@ export default {
         },
         trip_status: 'open',
       },
-      include: [
-        {
-          model: models.BodyType,
-          where: {
-            fitness: User.body_type,
-          }
-        },
-      ]
     })
     return Trips;
   },

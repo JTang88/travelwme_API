@@ -28,7 +28,6 @@ import ConvoResolver from './types/convo/resolver';
 import allTripMembers from './queries/resolvers/allTripMembers';
 import allTrips from './queries/resolvers/allTrips';
 import allUsers from './queries/resolvers/allUsers';
-import fitTrips from './queries/resolvers/fitTrips';
 import getTrip from './queries/resolvers/getTrip';
 import getUser from './queries/resolvers/getUser';
 import searchTrips from './queries/resolvers/searchTrips';
@@ -83,7 +82,6 @@ const resolvers = {
     allTripMembers, 
     allTrips, 
     allUsers, 
-    fitTrips, 
     getTrip, 
     getUser, 
     showTrendTrips, 

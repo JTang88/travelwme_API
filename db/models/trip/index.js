@@ -7,7 +7,6 @@ export default (sequelize, Sequelize) => {
     date_start: Sequelize.DATEONLY,
     date_end: Sequelize.DATEONLY,
     gender: Sequelize.STRING,
-    body_types: Sequelize.STRING,
     trip_keywords: Sequelize.STRING,
     countries: Sequelize.STRING,
     continents: Sequelize.STRING,

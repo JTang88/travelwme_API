@@ -141,7 +141,6 @@ const makeUsers = async () => {
     user.email = `${name}@test.com`;
     user.password = await bcrypt.hash(`${name}test`, 12);
     user.age = await randomAge();
-    user.body_type = await random([ 'athletic', 'average', 'sexy', 'well-rounded' ])
     user.description = casual.sentence;
     user.publicId = public_id;
     user.relationship = random(['single', 'commited', 'it\'s complicated', 'married', 'single', 'single', 'single']);
@@ -166,7 +165,6 @@ const makeUsers = async () => {
     user.email = `${name}@test.com`;
     user.password = await bcrypt.hash(`${name}test`, 12);
     user.age = await randomAge();
-    user.body_type = await random([ 'athletic', 'average', 'sexy', 'well-rounded' ])
     user.description = casual.sentence;
     user.publicId = public_id;
     user.relationship = random(['single', 'commited', 'it\'s complicated', 'married', 'single', 'single', 'single']);
@@ -213,7 +211,6 @@ const makeTrips = async () => {
     trip.age_end = trip.age_start === 18 ? 30 : trip.age_start + 10;
     trip.relationship = await random(['single', 'commited', 'it\'s complicated', 'married', 'single', 'single', 'single']);
     trip.trip_keywords = JSON.stringify( await randomArr([ "Backpacker", "Explorer", "Gourmet", "Historian", "Luxury" ] ))
-    trip.body_types = JSON.stringify( await randomArr([ 'athletic', 'average', 'sexy', 'well-rounded' ]));
     trip.trip_status = 'open';
     trips.push(trip);
   }
@@ -245,19 +242,6 @@ const makeTripDetails = async (trips) => {
   return tripDetails;
 }
 
-const makeFitness = async (trips) => {
-  const fitness = [];
-  trips.forEach((trip, i) => {
-    JSON.parse(trip.body_types).forEach(type => {
-      const fit = {};
-      fit.tripId = i + 1;
-      fit.BodyTypeId = typeToId(type);
-      fitness.push(fit);
-    })
-  })
-  return fitness;
-}
-
 const makeTripMembers = async (users, trips) => {
   const tripsCopy = trips.slice(0);
   const tripMembers = [];
@@ -266,7 +250,7 @@ const makeTripMembers = async (users, trips) => {
     // iterate through trip data entry once
     tripsCopy.forEach((trip, t) => {
       // if the criteras match
-      if (u+1 !== trip.creatorId && user.age >= trip.age_start && user.age <= trip.age_end && JSON.parse(trip.body_types).includes(user.body_type) && trip.relationship === user.relationship) {
+      if (u+1 !== trip.creatorId && user.age >= trip.age_start && user.age <= trip.age_end && trip.relationship === user.relationship) {
         if (trip.gender === user.gender || trip.gender === 'all') {
           const tripMember = {};
           tripMember.tripId = t+1
@@ -312,7 +296,6 @@ const makeTripMembers = async (users, trips) => {
 
 const makeData = async () => {
   await db.CountriesContinents.bulkCreate(countryContinentSeed)  
-  await db.BodyType.bulkCreate(seedData.BodyType)  
   await db.TripKeyword.bulkCreate(seedData.TripKeyword)
  
   console.log('====================the code brokeh here before make users...==============================')
@@ -320,7 +303,6 @@ const makeData = async () => {
   const users = await makeUsers();
   const trips = await makeTrips();
   const tripDetails = await makeTripDetails(trips);
-  const fitness = await makeFitness(trips);
   const tripMembers = await makeTripMembers(users, trips);
   trips; 
   tripLocations;
@@ -332,10 +314,6 @@ const makeData = async () => {
   console.log('code broke at inserting tripDatials');
 
   db.TripDetails.bulkCreate(tripDetails);
-  console.log('code broke at inserting fitness');
-
-  db.Fitness.bulkCreate(fitness);
-  console.log('code broke at inserting tripMembwers');
 
   db.TripMembers.bulkCreate(tripMembers);
   db.TripLocations.bulkCreate(tripLocations);
@@ -346,164 +324,6 @@ makeData();
 
 
 
-
-
-
-// The current problems to solves
-  // 1. tripKeywards Arr & tripKeyword table matching 
-    // solution: 
-    // Assuming that you will have tripkeyword arr filled while creating the trips data
-    // Store the trip data created in a variable
-      // get all the tripKeyord array values, and make tripDetails table accordingly
-
-
-
-
-
-
-// Step 1 : uncomment out the follow block and run babel-node seed.js
-
-// Need to keep the following block for creating content in the bodyType and tripKeywords tables!! 
-// db.BodyType.bulkCreate(seedData.BodyType)
-// .then(() => {
-//  console.log('created bodytype');
-// })
-// .catch((err) => {
-//  console.log('error', err);
-// });
-
-// db.TripKeyword.bulkCreate(seedData.TripKeyword)
-// .then(() => {
-//   console.log('created trip keyword');
-// })
-
-
-// step 2 : comment out the above and uncomment out the following block and run seed.js
-
-
-
-
-// create a data maker for each table as helper functions
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const makeAUser = async () => {
-
-//   const password = await bcrypt.hash('jt122384', 12);
-
-//   db.User.create({
-//     "username": "Jen Tang",
-//     "email": "jen@gmail.com",
-//     "password": password,
-//     "gender": "female",
-//     "age": "33",
-//     "relationship": "single",
-//     "description": "I'm a nice sister",
-//   });
-
-// } 
-
-// makeAUser();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const db = require ('./db');
-// const seedData = require('./newdata.json');
-
-// db.TripKeyword.bulkCreate(seedData.TripKeyword)
-// .then(() => {
-//  console.log('created trip keyword');
-// })
-// .catch((err) => {
-//  console.log('error', err);
-// });
-
-
-
-
-// db.TripKeyword.update({ word: 'Backpacker'}, { where: { id: 2 } });
-
-// db.TripKeyword.destroy({ where: { id: 8 } });
-
-
-// .catch((err) => {
-//   console.log('error', err);
-// });
-
-// db.BodyType.bulkCreate(seedData.BodyType)
-// .then(() => {
-//   console.log('created bodytype');
-// })
-// .catch((err) => {
-//   console.log('error', err);
-// });
-
-// db.User.bulkCreate(seedData.User)
-//   .then(() => {
-//     console.log('created user');
-//   })
-//   .catch((err) => {
-//     console.log('error', err);
-//   });
-
-// db.Trip.bulkCreate(seedData.Trip)
-//   .then((trips) => {
-//     trips.forEach((trip, idx) => {
-//       trip.addTripKeywords(seedData.Trip[idx].keys);
-//       trip.addBodyType(seedData.Trip[idx].body_types);
-      
-//     });
-//     // console.log('my test array', test[0].addTripKeywords);
-//   })
-//   .then(() => {
-//     console.log('created trip');
-//   })
-//   .catch((err) => {
-//     console.log('error', err);
-//   });
-
-
-// db.TripMembers.bulkCreate(seedData.TripMembers)
-//   .then(() => {
-//     console.log('created tripmembers');
-//   })
-//   .catch((err) => {
-//     console.log('error', err);
-//   });
 
 
 

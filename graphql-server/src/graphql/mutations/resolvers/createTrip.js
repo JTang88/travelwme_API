@@ -19,21 +19,6 @@ const convertKeywordToId = (comp) => {
   }
 }
 
-const convertBodyTypeToId = (comp) => {
-  if (comp === 'athletic') {
-    return 1
-  }
-  if (comp === 'average') {
-    return 2
-  }
-  if (comp === 'sexy') {
-    return 3
-  }
-  if(comp === 'well-rounded') {
-    return 4
-  }
-}
-
 export default {
   createTrip: async (parent, args, { models, mongo }) => {
     const tripComment = await new mongo.TripComment({}).save();
@@ -50,13 +35,9 @@ export default {
     Trip.addCountriesContinents(cc);
 
     const Keys = JSON.parse(args.keys);
-    const Body_types = JSON.parse(args.body_types)
 
     for(let i = 0; i < Keys.length; i++) {
       Trip.addTripKeywords(await convertKeywordToId(Keys[i]));
-    }
-    for(let i = 0; i < Body_types.length; i++) {
-      Trip.addBodyType(await convertBodyTypeToId(Body_types[i]));
     }
     return Trip;
   }, 

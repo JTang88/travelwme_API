@@ -35,11 +35,6 @@ export default {
       },
       include: [
         {
-          model: models.BodyType,
-          where: {
-            fitness: User.body_type,
-          }
-        }, {
           model: models.TripKeyword,
           where:{
             word: {
@@ -55,48 +50,6 @@ export default {
         }
       ]
     })
-    console.log('this is the trips I found for you: ', Trips)
-    console.log('this is User_body_type: ', User.body_type)
-
     return Trips;
   }
 };
-
-
-// export default {
-//   showTrendTrips: async (parent, { id }, { models }) => {
-//     const User = await models.User.findOne({
-//       where: {
-//         id,
-//       }
-//     });
-//     const Trips = await models.Trip.findAll({
-//       order: [
-//         ['createdAt', 'DESC']
-//       ],
-//       limit: 25,
-//       where: {
-//         relationship: User.relationship,
-//         gender: {
-//           $or: [User.gender, 'All']
-//         },
-//         age_start: { 
-//           $lte: User.age,
-//         },
-//         age_end: { 
-//           $gte: User.age,
-//         },
-//         trip_status: 'open',
-//       },
-//       include: [
-//         {
-//           model: models.BodyType,
-//           where: {
-//             fitness: User.body_type,
-//           }
-//         },
-//       ]
-//     })
-//     return Trips;
-//   },
-// }

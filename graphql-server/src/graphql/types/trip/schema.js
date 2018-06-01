@@ -18,7 +18,6 @@ const Trip = `
     forSureGoing: Int!,
     age_start: Int
     age_end: Int
-    body_types: String
     trip_keywords: String
     relationship: String
     trip_status: String
