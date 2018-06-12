@@ -1,3 +1,5 @@
+import getAge from '../../../../services/getAge';
+
 export default {
   searchTrips: async (parent, args, { models }) => { 
     console.log('this is args =========================================== ', args)
@@ -20,10 +22,10 @@ export default {
           $or: [User.gender, 'all'],
         },
         age_start: { 
-          $lte: User.age,
+          $lte: getAge(User.birthday),
         },
         age_end: { 
-          $gte: User.age,
+          $gte: getAge(User.birthday),
         },
         cost:  { 
           $between: [args.cost_start, args.cost_end]

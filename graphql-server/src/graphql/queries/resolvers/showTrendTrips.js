@@ -1,3 +1,5 @@
+import getAge from '../../../../services/getAge';
+
 export default {
   showTrendTrips: async (parent, { id }, { models }) => {
     const User = await models.User.findOne({
@@ -18,10 +20,10 @@ export default {
           $or: [User.gender, 'all']
         },
         age_start: { 
-          $lte: User.age,
+          $lte: getAge(User.birthday),
         },
         age_end: { 
-          $gte: User.age,
+          $gte: getAge(User.birthday),
         },
         trip_status: 'open',
       },

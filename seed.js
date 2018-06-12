@@ -11,6 +11,7 @@ import seedData from './newdata.json';
 import ConvoList from './db/models/convoList';
 import Notification from './db/models/notification';
 import TripComment from './db/models/tripComment';
+import getAge from './graphql-server/services/getAge';
 import { db } from './db';
 import { countries, continentTable, countryContinentSeed } from './country-continent';
 
@@ -104,9 +105,17 @@ const keywordToId = (word) => {
          word === 'Gourmet' ? 4 : word === 'Historian' ? 5 : word === 'Luxury' ? 6 : ''
 }
 
+const randomBirthday = () => {
+  const year = Math.floor(Math.random() * (2000 - 1975) + 1975);
+  const month = Math.floor(Math.random() * 12 + 1);
+  const date = Math.floor(Math.random() * 30 + 1);
+  return `${year}-${month}-${date}`
+}
+
 const typeToId = (type) => {
   return type === 'athletic' ? 1 : type === 'average' ? 2 : type === 'sexy' ? 3 : type === 'well-rounded' ? 4 : ''
 }
+
 
 const print = async (func) => {
   console.log(await func());
@@ -140,10 +149,10 @@ const makeUsers = async () => {
     user.username = name;
     user.email = `${name}@test.com`;
     user.password = await bcrypt.hash(`${name}test`, 12);
-    user.age = await randomAge();
+    user.birthday = await randomBirthday();
     user.description = casual.sentence;
     user.publicId = public_id;
-    user.relationship = random(['single', 'commited', 'it\'s complicated', 'married', 'single', 'single', 'single']);
+    user.relationship = random(['single', 'in a relationship', 'single', 'single', 'single']);
     users.push(user);
   }
 
@@ -164,10 +173,10 @@ const makeUsers = async () => {
     user.username = name;
     user.email = `${name}@test.com`;
     user.password = await bcrypt.hash(`${name}test`, 12);
-    user.age = await randomAge();
+    user.birthday = await randomBirthday();
     user.description = casual.sentence;
     user.publicId = public_id;
-    user.relationship = random(['single', 'commited', 'it\'s complicated', 'married', 'single', 'single', 'single']);
+    user.relationship = random(['single', 'in a relationship', 'single', 'single']);
     users.push(user);
   }
   // console.log('It made users')
@@ -203,13 +212,13 @@ const makeTrips = async () => {
     trip.joiners = 0;
     trip.forSureGoing = 1;
     trip.cost = await random([5000, 7000, 10000, 20000, 30000]);
-    trip.gender = await random(['male', 'female', 'all', 'all', 'all', 'all']);
+    trip.gender = await random(['male', 'female', 'all', 'all', 'all', 'all', 'all', 'all']);
     trip.date_start = dates.date_start;
     trip.date_end = dates.date_end;
     trip.creatorId = Math.floor(Math.random() * 120) + 1;
     trip.age_start = random([18, 25, 30, 35])
     trip.age_end = trip.age_start === 18 ? 30 : trip.age_start + 10;
-    trip.relationship = await random(['single', 'commited', 'it\'s complicated', 'married', 'single', 'single', 'single']);
+    trip.relationship = await random(['single', 'in a relationship', 'single', 'single', 'all', 'all']);
     trip.trip_keywords = JSON.stringify( await randomArr([ "Backpacker", "Explorer", "Gourmet", "Historian", "Luxury" ] ))
     trip.trip_status = 'open';
     trips.push(trip);
@@ -250,7 +259,8 @@ const makeTripMembers = async (users, trips) => {
     // iterate through trip data entry once
     tripsCopy.forEach((trip, t) => {
       // if the criteras match
-      if (u+1 !== trip.creatorId && user.age >= trip.age_start && user.age <= trip.age_end && trip.relationship === user.relationship) {
+      const userAge = getAge(user.birthday);
+      if (u+1 !== trip.creatorId && userAge >= trip.age_start && userAge <= trip.age_end && trip.relationship === user.relationship) {
         if (trip.gender === user.gender || trip.gender === 'all') {
           const tripMember = {};
           tripMember.tripId = t+1

@@ -6,7 +6,7 @@ const User = `
     username: String!
     email: String!
     gender: String
-    age: Int,
+    birthday: String,
     description: String
     relationship: String  
     trips: [Trip!]!
