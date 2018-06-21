@@ -12,7 +12,7 @@ import Vote from './types/vote/schema';
 import User from './types/user/schema';
 import ReplyDetails from './types/replyDetails/schema';
 import CommentDetails from './types/commentDetails/schema';
-import TripComment from './types/tripComment/schema';
+// import TripComment from './types/tripComment/schema';
 import Notification from './types/notification/schema';
 import Note from './types/note/schema';
 import ConvoList from './types/convoList/schema';
@@ -21,7 +21,6 @@ import Convo from './types/convo/schema';
 import TripResolver from './types/trip/resolver';
 import UserResolver from './types/user/resolver';
 import TripMembersResolver from './types/tripMembers/resolver';
-import TripCommentReoslvers from './types/tripComment/resolver';
 import NotificationResolver from './types/notification/resolver';
 import ConvoResolver from './types/convo/resolver';
 // import all query resolvers
@@ -71,11 +70,6 @@ import noteAdded from './subscriptions/resolvers/noteAdded';
 import convoAdded from './subscriptions/resolvers/convoAdded';
 import msgAdded from './subscriptions/resolvers/msgAdded';
 
-
-// export const pubsub = new PubSub(); 
-
-// Notification from './types/notification/schema';
-// import Notes f
 
 const resolvers = {
   Query: merge(
@@ -130,7 +124,6 @@ const resolvers = {
   User: UserResolver,
   Trip: TripResolver,
   TripMembers: TripMembersResolver,
-  TripComment: TripCommentReoslvers,
   Notification: NotificationResolver,
   Convo: ConvoResolver,
 };
@@ -146,7 +139,21 @@ const SchemaDefinition = `
 
 export const schema = makeExecutableSchema({
   typeDefs: [
-    SchemaDefinition, Query, Note, Mutation, Subscription, Vote, User, TripKeyword, ...TripComment, TripMembers, Trip, ...Notification, ...Convo, ConvoList
+    SchemaDefinition, 
+    Query, 
+    Note, 
+    Mutation, 
+    Subscription, 
+    Vote, 
+    User, 
+    TripKeyword, 
+    ReplyDetails, 
+    CommentDetails, 
+    TripMembers, 
+    Trip, 
+    ...Notification, 
+    ...Convo, 
+    ConvoList
   ],
   resolvers,
 });
