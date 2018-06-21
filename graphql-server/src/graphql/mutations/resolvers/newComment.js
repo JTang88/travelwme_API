@@ -3,11 +3,12 @@ import TripComment from '../../../../../db/models/tripComment';
 import pubSub from '../../pubSub';
 
 export default {
-  newComment: async (parent, { username, text, tripCommentId }, { models }) => {
+  newComment: async (parent, { username, publicId, text, tripCommentId }, { models }) => {
     const newComment = {
       _id: await new mongoose.Types.ObjectId,
       username,
       text,
+      publicId,
     }
     const payload = Object.assign({}, newComment, { tripCommentId })
     try {

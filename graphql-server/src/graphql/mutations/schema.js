@@ -2,8 +2,8 @@ const Mutation = `
   type Mutation {
     newMsg(username: String!, text: String!, convoId: String!): Msg
     newConvo(convoListId: String!, username: String!, userId: Int!, receiverUserId: Int!, text: String!): String
-    newComment(tripCommentId: String!, username: String!, text: String!): CommentDetails!
-    newReply(tripCommentId: String!, commentId: String!, username: String!, text: String!): ReplyDetails!
+    newComment(tripCommentId: String!, publicId: String, username: String!, text: String!): CommentDetails!
+    newReply(tripCommentId: String!, publicId: String, commentId: String!, username: String!, text: String!): ReplyDetails!
     updateUser(id: Int!, username: String, gender: String, birthday: String, relationship: String, description: String): User!
     updateUserRelationshipToTrip(userId: Int!, tripId: Int!, senderName: String!, tripTitle: String, user_type: String!): TripMembers
 

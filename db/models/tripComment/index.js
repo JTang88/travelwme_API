@@ -2,12 +2,14 @@ import mongoose from 'mongoose';
 
 const commentDetailsSchema = mongoose.Schema({
   username: String,
+  publicId: String,
   text: String,
 });
 
 const replyDetailsSchema = mongoose.Schema({
   commentId: String,
   username: String,
+  publicId: String,
   text: String,
 });
 
