@@ -3,7 +3,8 @@ import getAge from '../../../../services/getAge';
 export default {
   searchTrips: async (parent, args, { models }) => { 
     console.log('this is args =========================================== ', args)
-    const locationKey = args.country === null ? 'continent' : 'country';
+    const locationKey = args.countries === null ? 'continents' : 'countries';
+    const CountriesContinentsKey = locationKey === 'continents' ? 'continent' : 'country'
     const User = await models.User.findOne({
       where: {
         id: args.userId,
@@ -47,7 +48,9 @@ export default {
         {
           model: models.CountriesContinents,
           where: {
-            [locationKey]: args[locationKey],
+            [CountriesContinentsKey]: {
+              $or: JSON.parse(args[locationKey]),
+            },
           }
         }
       ]
