@@ -1,5 +1,6 @@
 export default {
-  addPhotoToUser: (parent, { publicId, id }, { models }) => {
-    return models.User.update({ publicId }, { where: { id } });
+  addPhotoToUser: async (parent, { publicId, id }, { models }) => {
+    await models.User.update({ publicId }, { where: { id } });
+    return models.User.findById(id);
   },
 };

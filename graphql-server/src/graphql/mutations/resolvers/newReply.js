@@ -4,6 +4,7 @@ import pubSub from '../../pubSub';
 
 export default {
   newReply: async (parent, { tripCommentId, ...args }, { models }) => {
+    console.log('inside of new Reply')
     args._id = new mongoose.Types.ObjectId
     const tripComment = await TripComment.findById(tripCommentId);
     try {
