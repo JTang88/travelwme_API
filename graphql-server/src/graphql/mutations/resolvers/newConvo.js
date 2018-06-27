@@ -12,7 +12,7 @@ export default {
     const convo = await new mongo.Convo({});
     const msg = {
       _id: await new mongoose.Types.ObjectId,
-      username,
+      userId,
       text,
     }
     await convo.userIds.push(userId);

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const msgSchema = mongoose.Schema({
-  username: String,
+  userId: String,
   text: String,
 });
 

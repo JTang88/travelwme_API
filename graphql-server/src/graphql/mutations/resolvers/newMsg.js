@@ -2,10 +2,10 @@ import mongoose from 'mongoose';
 import pubSub from '../../pubSub';
 
 export default {
-  newMsg: async (parent, { username, text, convoId }, { models, mongo }) => {
+  newMsg: async (parent, { userId, text, convoId }, { models, mongo }) => {
     const newMsg = {
       _id: await new mongoose.Types.ObjectId,
-      username,
+      userId,
       text,
     }
     const convo = await mongo.Convo.findById(convoId);

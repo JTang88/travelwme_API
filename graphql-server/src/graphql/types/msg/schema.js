@@ -1,7 +1,7 @@
 const Msg = `
   type Msg {
     _id: String
-    username: String
+    userId: String
     text: String
   }`;
 
