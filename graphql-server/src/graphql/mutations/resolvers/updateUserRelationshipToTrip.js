@@ -7,7 +7,10 @@ export default {
       const tm = await models.TripMembers.update({ user_type: args.user_type }, { where: { userId: args.userId, tripId: args.tripId } });
       const result = await models.TripMembers.findOne({ where: { userId: args.userId, tripId: args.tripId } });
       // find the user's notificationId
-      const { notificationId } = await models.User.findById(args.userId);
+      const user = await models.User.findById(args.userId);
+      user.newNotification = true;
+      user.save();
+      const { notificationId } = user; 
       console.log('here is notificationId', notificationId);
       // store the new notification to such id location
       const notication = await mongo.Notification.findById(notificationId);

@@ -62,6 +62,9 @@ import newComment from './mutations/resolvers/newComment';
 import newReply from './mutations/resolvers/newReply';
 import newConvo from './mutations/resolvers/newConvo';
 import newMsg from './mutations/resolvers/newMsg';
+import toggleNewNotification from './mutations/resolvers/toggleNewNotification';
+import toggleNewMessage from './mutations/resolvers/toggleNewMessage'
+
 // import all subscription resolvers
 import commentAdded from './subscriptions/resolvers/commentAdded';
 import replyAdded from './subscriptions/resolvers/replyAdded';
@@ -111,6 +114,8 @@ const resolvers = {
     newReply,
     newConvo,
     newMsg,
+    toggleNewNotification,
+    toggleNewMessage,
   ),
   Subscription: merge(
     commentAdded,

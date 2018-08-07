@@ -1,6 +1,8 @@
 const Mutation = `
   type Mutation {
-    newMsg(userId: Int!, text: String!, convoId: String!): Msg
+    toggleNewNotification(userId: Int!): User
+    toggleNewMessage(userId: Int!): User
+    newMsg(receiverUserId: Int!, userId: Int!, text: String!, convoId: String!): Msg
     newConvo(convoListId: String!, userId: Int!, receiverUserId: Int!, text: String!): String
     newComment(tripCommentId: String!, publicId: String, username: String!, text: String!): CommentDetails!
     newReply(tripCommentId: String!, publicId: String, commentId: String!, username: String!, text: String!): ReplyDetails!
