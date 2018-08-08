@@ -5,7 +5,10 @@ export default {
   interestedInATrip: async (parent, { userId, tripId, senderName, creatorId, tripTitle }, { models, mongo }) => {
     try {
       const tripMember = await models.TripMembers.create({ userId, tripId, user_type: 'I' })
-      const { notificationId } = await models.User.findById(creatorId);
+      const user = await models.User.findById(creatorId);
+      user.newNotification = true;
+      user.save();
+      const { notificationId } = user;
       const notication = await mongo.Notification.findById(notificationId);
       const note = {
         _id: await new mongoose.Types.ObjectId,

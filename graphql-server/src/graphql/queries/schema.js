@@ -6,6 +6,7 @@ const Query = `
     getNotifications(notificationId: String!): [Note]
     getReply(tripCommentId: String!): [ReplyDetails]
     allUsers: [User]
+    getCurrentUser(id: Int!): User
     getUser(id: Int!): User
     allTripMembers: [TripMembers]
     allTrips: [Trip!]!

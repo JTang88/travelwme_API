@@ -5,6 +5,9 @@ export default {
   newConvo: async (parent, { convoListId, userId, username, receiverUserId, text }, { models, mongo }) => {
     // Use this new convo to get access to sql database and return those fields
     const receiver = await models.User.findById(receiverUserId);
+    receiver.newMessage = true;
+    receiver.save();
+    
     const receiverConvoListId = receiver.convoListId;
     console.log('=========================here is receiverConvoListId===================', receiverConvoListId)
 

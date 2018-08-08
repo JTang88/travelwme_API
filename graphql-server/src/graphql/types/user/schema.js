@@ -15,6 +15,8 @@ const User = `
     convoListId: String!
     notificationId: String!
     createdAt: String!
+    newMessage: Boolean!
+    newNotification: Boolean!
   }`;
 
 export default () => [User, Trip];
