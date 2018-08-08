@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import jwt from 'jsonwebtoken';
+import mysql from 'mysql2';
 import { graphiqlExpress, graphqlExpress } from 'apollo-server-express';
 import cors from 'cors';
 import { execute, subscribe } from 'graphql';
@@ -8,6 +9,7 @@ import { createServer } from 'http';
 import { SubscriptionServer } from 'subscriptions-transport-ws';
 import { schema } from './graphql';
 import { db as models, mongoDb } from '../../db';
+import { read } from 'fs';
 
 models.sequelize.sync();
 
@@ -18,7 +20,7 @@ const addUser = async (req, res) => {
   try {
     const { user } = await jwt.verify(token, process.env.TOKEN_SECRET);
     req.user = user;
-  } catch (err) {
+  } catch(err) {
     console.log(err);
   }
   req.next(); 

@@ -1,0 +1,28 @@
+{
+    "extends": ["airbnb",
+                "plugin:jest/recommended"
+            ],
+    "parserOptions": {
+        "ecmaVersion": 6
+    },
+    "env": {
+      "node": true,
+      "es6": true,
+      "jest": true
+    },
+    "rules": {
+      "no-plusplus": 0,
+      "jest/no-disabled-tests": 0,
+      "jest/no-focused-tests": 0,
+      "jest/no-identical-title": 0,
+      "jest/prefer-to-have-length": "off",
+      "jest/valid-expect": 0,
+      "eol-last": "off",
+      "no-shadow": "off",
+      "no-console": "off",
+      "arrow-body-style": "off",
+      "curly": "warn",
+      "arrow-parens": "off",
+      "no-unused-vars": "off"
+    } 
+}

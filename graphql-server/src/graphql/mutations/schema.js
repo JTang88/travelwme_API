@@ -1,13 +1,12 @@
 const Mutation = `
   type Mutation {
-    toggleNewNotification(userId: Int!): User
-    toggleNewMessage(userId: Int!): User
-    newMsg(receiverUserId: Int!, userId: Int!, text: String!, convoId: String!): Msg
+    newMsg(userId: Int!, text: String!, convoId: String!): Msg
     newConvo(convoListId: String!, userId: Int!, receiverUserId: Int!, text: String!): String
     newComment(tripCommentId: String!, publicId: String, username: String!, text: String!): CommentDetails!
     newReply(tripCommentId: String!, publicId: String, commentId: String!, username: String!, text: String!): ReplyDetails!
     updateUser(id: Int!, username: String, gender: String, birthday: String, relationship: String, description: String): User!
     updateUserRelationshipToTrip(userId: Int!, tripId: Int!, senderName: String!, tripTitle: String, user_type: String!): TripMembers
+
     updateUserEmail(id: Int!, email: String!): User!
     updateUserPassword(id: Int!, oldPassword: String!, newPassword: String!): String!
     deleteAUserFromTrip(memberId: Int!): Int!
@@ -19,6 +18,7 @@ const Mutation = `
     forgotPassword(email: String!): String!
     addKey(word: String) : TripKeyword
     addPhotoToUser(id: Int!, publicId: String!): User!
+    addPhotoToTrip(id: Int!, publicId: String!): [Int!]!
     createTrip(title: String!, description: String!, cost: Int, date_start: String, date_end: String, gender: String!, age_start: Int!, age_end: Int!, relationship: String!, trip_status: String!, keys: String, trip_keywords: String, interesters: Int, joiners: Int, forSureGoing: Int, creatorId: Int, countries: String, continents: String): Trip 
     updateTrip(id: Int!, title: String!, description: String!, cost: Int!, date_start: String!, date_end: String!, gender: String!, age: Int!, relationship: String!, trip_state: String!, key1: String!, key2: String!, key3: String!, key4: String!, key5: String!, key6: String!): [Int!]!
     updateTripStatus(id: Int! trip_status: String!): Trip

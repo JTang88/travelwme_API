@@ -9,4 +9,5 @@ env.config({
 });
 
 require(path.join(__dirname, '/../graphql-server/src/'));
+require(path.join(__dirname, '/../socket-server/src'));
 

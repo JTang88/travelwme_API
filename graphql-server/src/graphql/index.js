@@ -41,6 +41,7 @@ import getNotifications from './queries/resolvers/getNotifications';
 import getConvoList from './queries/resolvers/getConvoList';
 import getConvo from './queries/resolvers/getConvo';
 // import all mutation resolvers
+import addPhotoToTrip from './mutations/resolvers/addPhotoToTrip';
 import addPhotoToUser from './mutations/resolvers/addPhotoToUser';
 import createTrip from './mutations/resolvers/createTrip';
 import deleteUser from './mutations/resolvers/deleteUser';
@@ -62,9 +63,6 @@ import newComment from './mutations/resolvers/newComment';
 import newReply from './mutations/resolvers/newReply';
 import newConvo from './mutations/resolvers/newConvo';
 import newMsg from './mutations/resolvers/newMsg';
-import toggleNewNotification from './mutations/resolvers/toggleNewNotification';
-import toggleNewMessage from './mutations/resolvers/toggleNewMessage'
-
 // import all subscription resolvers
 import commentAdded from './subscriptions/resolvers/commentAdded';
 import replyAdded from './subscriptions/resolvers/replyAdded';
@@ -93,6 +91,7 @@ const resolvers = {
     getConvo,
   ),
   Mutation: merge(
+    addPhotoToTrip, 
     addPhotoToUser, 
     createTrip, 
     deleteUser, 
@@ -114,8 +113,6 @@ const resolvers = {
     newReply,
     newConvo,
     newMsg,
-    toggleNewNotification,
-    toggleNewMessage,
   ),
   Subscription: merge(
     commentAdded,

@@ -2,8 +2,7 @@ import mongoose from 'mongoose';
 import pubSub from '../../pubSub';
 
 export default {
-  newMsg: async (parent, { userId, text, convoId, receiverUserId }, { models, mongo }) => {
-    models.User.update({ newMessage: true }, { where: { id: receiverUserId } });
+  newMsg: async (parent, { userId, text, convoId }, { models, mongo }) => {
     const newMsg = {
       _id: await new mongoose.Types.ObjectId,
       userId,

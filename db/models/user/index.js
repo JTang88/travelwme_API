@@ -10,14 +10,6 @@ export default (sequelize, Sequelize) => {
     publicId: Sequelize.STRING,
     convoListId: Sequelize.STRING,
     notificationId: Sequelize.STRING,
-    newNotification: {
-      type: Sequelize.BOOLEAN,
-      defaultValue: false,
-    },
-    newMessage: {
-      type: Sequelize.BOOLEAN,
-      defaultValue: false,
-    },
   }, {
     timestamps: true, 
   });
