@@ -38,10 +38,11 @@ import { countries, continentTable, countryContinentSeed } from './country-conti
 
 
 cloudinary.config({ 
-  cloud_name: 'travelwme', 
-  api_key: '747367114652619', 
-  api_secret: 'M5Egmwq-fJALSgZortQgGlN9_pg' 
+  cloud_name: process.env.CLOUDNAME, 
+  api_key: process.env.CLOUDINARY_API_KEY, 
+  api_secret: process.env.CLOUDINARY_API_SECRET, 
 });
+
 
 // console.log('this is tripDetails before buikCreate: ', db.TripDetails);
 
